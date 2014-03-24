@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-03-23T11:13:37-05:00</updated>
+  <updated>2014-03-23T20:42:20-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Eddú Meléndez]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Why Am I Writing This Blog?]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog/"/>
+    <updated>2014-03-23T11:52:28-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog</id>
+    <content type="html"><![CDATA[<p>I am starting writing this blog because I want to share my knowlege and expertise with everyone.</p>
+
+<p>Also, I will share some books that I have taken into account.</p>
+]]></content>
+  </entry>
   
 </feed>
