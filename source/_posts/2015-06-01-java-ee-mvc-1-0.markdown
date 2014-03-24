@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Java EE: MVC 1.0"
+date: 2015-06-01 22:16:32 -0500
+comments: true
+categories: [java, java ee, mvc]
+---
+Java EE is evolving and there are a lot of news coming in Java EE8. Java EE is constantly adopting standards and now is time to the new spec `MVC 1.0` (JSR-371) is part of Java EE8 which will be released in 2016.
+
+If you are thinking on a new concept, let me tell that you are wrong MVC is Model, View, Controller the pattern for web frameworks and you already knew it.
+
+Now, UI frameworks has been categorized in:
+
+* Action-based, like MVC.
+* Component-based, like JSF.
+
+But, I am pretty sure that you have the following question [Why another MVC framework?](http://www.oracle.com/technetwork/articles/java/mvc-2280472.html).
+
+Complete integration with Jersey (JAX-RS) and obviously with all Java EE ecosystem.
+
+You can see in [ozark](https://github.com/spericas/ozark) github repository the RI (Reference Implementation) to the frameworks below:
+
+* Freemaker
+* Handlebars
+* Mustache
+* Thymeleaf
+* Velocity
+
+**Note:** Glassfish 4.1, is the only Server Application which support this specification at the time I am writing this post.
+
+To use it in your projects add the this dependency in your pom.xml (if you are using maven)
+
+```xml
+<dependency>
+	<groupId>javax.mvc</groupId>
+	<artifactId>javax.mvc-api</artifactId>
+	<version>1.0-edr1</version>
+</dependency>
+```
+
+JSP's are located at `src/main/webapp/WEB-INF/views` folder.
+
+There are 4 ways to return a view:
+
+1. Void method with `@View` and the jsp name.
+2. Return `String` with the jsp name.
+3. Return `Viewable` class with the jsp name.
+4. Return `Response` class from JAX-RS to return the jsp name as a entity.
+
+```java
+@Controller
+@Path("book")
+@Produces("text/html")
+public class BookController {
+
+    @GET
+	@View("books.jsp")
+	public void viewBooks() {
+
+	}
+
+	@GET
+	public String viewBookInfo() {
+		return "book.jsp";
+	}
+
+	@GET
+	public Viewable viewBookDetail() {
+		return new Viewable("bookDetail.jsp");
+	}
+
+	@GET
+	public Response viewBook() {
+		return Response.status(Response.Status.OK).entity("book.jsp").build();
+	}
+
+}
+```
+
+If you can check the code of this API take a look the github repository [MVC 1.0](https://github.com/spericas/mvc-spec)

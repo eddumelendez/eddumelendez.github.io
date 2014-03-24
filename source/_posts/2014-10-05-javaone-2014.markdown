@@ -1,0 +1,78 @@
+---
+layout: post
+title: "JavaOne 2014"
+date: 2014-10-05 19:39:37 -0500
+comments: true
+categories: [javaone, java]
+lang: en
+---
+This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me.
+
+In the JavaHub, I could take a look about:  
+
+- Mission Control.
+- 3D Modeling and Printing, using Java FX.
+- New features in Netbeans, which allow us to migrate from older java versions to java 8 and use Streams.
+- Internet of Things, using Java Embedded and Raspberry Pi.
+- Hackergarten, the place where you can contribute in open source projects talking with the experts.
+
+Some companies were present in this event such as:
+Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.
+
+Also, had the chance to meet:  
+
+- Anton Arhipov - [@antonarhipov](https://twitter.com/antonarhipov), JRebel and XRebel Product Manager at Zeroturnaround.
+- Arun Gupta - [@arungupta](https://twitter.com/arungupta), Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.
+- Benjamin Muschko - [@bmuschko](https://twitter.com/bmuschko), Principal Engineer at Gradleware and Author of Gradle in Action.
+- John Ferguson - [@wakaleo](https://twitter.com/wakaleo), Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.
+- Josh Long - [@starbuxman](https://twitter.com/starbuxman), Spring Developer Advocate.
+- Phill Weeb - [@phillip_webb](https://twitter.com/phillip_webb), Spring Framework committer and co-lead of Spring Boot.
+
+Below, are the sessions I found most interesting:  
+
+Sunday  
+
+- Introduction to Java 8: JVM, Language, and Platform.
+- Starting a JUGgernaut: How to Start and Rapidly Grow Your JUG.
+- Java Strategy and Technical Keynotes.
+
+Monday  
+
+- Hadoop for Java Developers. http://goo.gl/f2CwNz
+- Next Step in Automation: Elastic Build Environment.
+- Programming with Streams in Java 8.
+
+Tuesday  
+
+- Devoxx4Kids for Parents.
+- Functional UIs with Java 8 and Vaadin.
+- Building a Continuous Delivery Pipeline with Gradle and Jenkins.
+
+Wednesday  
+
+- Continuous Delivery and Zero Downtime: What Your Architecture Needs to Succeed.
+- Apache TomEE, Java EE Web Profile, and More on Tomcat.
+- REST Assured: Hypermedia APIs with Spring MVC.
+
+Tuesday  
+
+- The Deploy Factory: Open Source Tools for Java Deployment.
+- Run Java Applications with Docker on the Raspberry Pi and Other Platforms.
+
+**Java 8** was the main topic during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:
+
+> Java arrived later with lambdas but arrived with the desserts (Streams)
+
+**MVC 1.0** part of **JEE 8** had place at JavaOne... in my opinion looks like Spring MVC but good to know that good things have been adopted.
+
+**JavaOne** is the best place to meet people, authors, learn new things, get stuff like raspberry pi, books and t-shirts and drink a beer.
+
+Duke and me![](https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-1.jpg)
+
+Keynote![](https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-2.jpg)
+
+Duke![](https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-3.jpg)
+
+Duke Awards![](https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-4.jpg)
+
+Josh Long and me![](https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-5.jpg)

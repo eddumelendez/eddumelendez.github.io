@@ -15,4 +15,11 @@ group :development do
   gem 'stringex', '~> 1.4.0'
 end
 
+group :jekyll_plugins do
+  gem 'octopress-paginate'
+  gem 'octopress-multilingual', '~> 1.2.0'
+  gem 'octopress-linkblog', '~> 2.0.0'
+  gem 'octopress-feeds'
+end
+
 gem 'sinatra', '~> 1.4.2'
