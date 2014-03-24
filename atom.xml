@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-03-23T20:42:20-05:00</updated>
+  <updated>2014-03-23T21:08:47-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -18,9 +18,19 @@
     <link href="http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog/"/>
     <updated>2014-03-23T11:52:28-05:00</updated>
     <id>http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog</id>
-    <content type="html"><![CDATA[<p>I am starting writing this blog because I want to share my knowlege and expertise with everyone.</p>
+    <content type="html"><![CDATA[<p>I am starting writing this blog because I want to share my knowledge and expertise with everyone. Also, I would like to get feedback from others.</p>
 
-<p>Also, I will share some books that I have taken into account.</p>
+<p>My favourite topics are related to:</p>
+
+<ul>
+<li>Agile Practices</li>
+<li>Maven</li>
+<li>Mule ESB</li>
+<li>Spring Framework</li>
+</ul>
+
+
+<p>Also, I will share some books that I have taken into consideration during my continuous improvement process.</p>
 ]]></content>
   </entry>
   
