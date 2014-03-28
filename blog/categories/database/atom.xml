@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Database | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/database/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-03-27T22:03:55-05:00</updated>
+  <updated>2014-03-27T22:09:29-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -24,8 +24,9 @@
 
 <p>Lines below you can see how to setup <strong>MYSQL</strong> compatibility into <strong>HSQL</strong> and <strong>H2</strong> databases, both for testing purpose. Also, you can see the dependencies if you are using maven projects.</p>
 
-<p>*HSQL
-You can review this <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html">link</a> for more information.</p>
+<h2>HSQL</h2>
+
+<p>You can review this <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html">link</a> for more information.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>script.sql</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -53,8 +54,9 @@ You can review this <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html
 </span><span class='line'><span class="nt">&lt;p&gt;&lt;/dependency&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>*H2
-You can review this <a href="http://www.h2database.com/html/features.html#compatibility">link</a> for more information.</p>
+<h2>H2</h2>
+
+<p>You can review this <a href="http://www.h2database.com/html/features.html#compatibility">link</a> for more information.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>script.sql</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
