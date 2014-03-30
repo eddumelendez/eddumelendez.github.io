@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Hsqldb | Eddú Meléndez]]></title>
-  <link href="http://eddumelendez.github.io/blog/categories/hsqldb/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Hsql | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/hsql/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-03-27T22:09:29-05:00</updated>
+  <updated>2014-03-30T02:53:14-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>

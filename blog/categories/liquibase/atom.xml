@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Liquibase | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/liquibase/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-03-30T02:53:14-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Database Change Management]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/"/>
+    <updated>2014-03-27T22:15:11-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/27/database-change-management</id>
+    <content type="html"><![CDATA[<p>First, I have some questions to you:</p>
+
+<ol>
+<li>Do you have scripts into the Source Control Management?</li>
+<li>Do you know which scripts have been executed into the database?</li>
+<li>Do you write scripts for rollback?</li>
+<li>Are DBAs involve in your development process?</li>
+<li>Tell me, how do you manage your database changes?</li>
+</ol>
+
+
+<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
+Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
+
+<h2>What it is my point?</h2>
+
+<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
+
+<h2>Which is involve?</h2>
+
+<ol>
+<li>Every database modification should be written as a delta script.</li>
+<li>Add rollback section to your scripts.</li>
+<li>Use a naming conventions for your scripts.</li>
+<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
+<li>Version Control your scripts.</li>
+<li>Maintain a database changelog.</li>
+</ol>
+
+
+<h2>Advantages</h2>
+
+<ol>
+<li>Reduce risks during deployments.</li>
+<li>Ensure you are executing the right scripts.</li>
+<li>You can build a new database.</li>
+</ol>
+
+
+<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+]]></content>
+  </entry>
+  
+</feed>
