@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mockito | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/mockito/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-03-30T02:53:14-05:00</updated>
+  <updated>2014-04-27T17:35:49-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -71,7 +71,7 @@
 
 <p><strong>2.</strong> In this example, we will use annotations so we have two ways to enable them.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>PrincipalTest.java</span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>UserServiceImplTest.java</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -83,7 +83,7 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RunWith</span><span class="o">(</span><span class="n">MockitoJUnitRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>              <span class="c1">//First method to enable mockito&amp;rsquo;s annotations</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincipalTest</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@Before</span>
 </span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
@@ -96,9 +96,9 @@
 
 <p><strong>Note: You can use one of them.</strong></p>
 
-<p><strong>3.</strong> Principal HAS-A Dependency. For that reason, create a Dependency mock and it will be injected in Principal. Then, we can mock Dependency methods as you can see in step 3.</p>
+<p><strong>3.</strong> UserServiceImpl HAS-A UserRepository. For that reason, create a UserRepository mock and it will be injected in UserServiceImpl. Then, we can mock UserRepository methods as you can see in step 3.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>PrincipalTest.java</span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>UserServiceImplTest.java</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -122,25 +122,25 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RunWith</span><span class="o">(</span><span class="n">MockitoJUnitRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>            <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincipalTest</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@Mock</span>                               <span class="c1">//1. Create Dependency mock object</span>
-</span><span class='line'><span class="n">Dependency</span> <span class="n">dependency</span><span class="o">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@Mock</span>                               <span class="c1">//1. Create UserRepository mock object</span>
+</span><span class='line'><span class="n">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="nd">@InjectMocks</span>                        <span class="c1">//2. Insert Dependency mock object into Principal</span>
-</span><span class='line'><span class="n">Principal</span> <span class="n">principal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Principal</span><span class="o">();</span>
+</span><span class='line'><span class="nd">@InjectMocks</span>                        <span class="c1">//2. Insert UserRepository mock object into UserService</span>
+</span><span class='line'><span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
 </span><span class='line'>
 </span><span class='line'><span class="nd">@Before</span>
 </span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">MockitoAnnotations</span><span class="o">.</span><span class="na">initMocks</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class='line'>    <span class="c1">//MockitoAnnotations.initMocks(this);</span>
 </span><span class='line'><span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="nd">@Test</span>
 </span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSomething</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">dependency</span><span class="o">.</span><span class="na">doSomething</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="s">&quot;This is a mock&quot;</span><span class="o">);</span> <span class="c1">//3. Mocking objects</span>
-</span><span class='line'>    <span class="n">principal</span><span class="o">.</span><span class="na">principalMethod</span><span class="o">();</span>
-</span><span class='line'>    <span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">dependency</span><span class="o">).</span><span class="na">doSomething</span><span class="o">();</span> <span class="c1">//4. Verify that doSomething method has been executed</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">&quot;emelendez&quot;</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userRepository</span><span class="o">.</span><span class="na">getPassword</span><span class="o">(</span><span class="n">username</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="s">&quot;PasswordMock&quot;</span><span class="o">);</span> <span class="c1">//3. Mocking objects</span>
+</span><span class='line'>    <span class="n">userService</span><span class="o">.</span><span class="na">validateCredential</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userRepository</span><span class="o">).</span><span class="na">getPassword</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
 </span><span class='line'><span class="o">}</span>
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
