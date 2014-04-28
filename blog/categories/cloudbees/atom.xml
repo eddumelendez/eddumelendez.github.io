@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Cloudbees | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/cloudbees/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-04-27T22:11:00-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cloudbees]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/04/27/cloudbees/"/>
+    <updated>2014-04-27T21:49:32-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/04/27/cloudbees</id>
+    <content type="html"><![CDATA[<p>Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found <strong>Cloudbees</strong> and meets my expectation.</p>
+
+<h2>What is Paas?</h2>
+
+<p>Nowadays, we should know about <em>Platform as a Service</em>. But, it doesn&rsquo;t matter if you don&rsquo;t know it. You can learn something new everyday. Briefly, PaaS is a environment on cloud based on products from the providers. So, Cloudbees is a <strong>PaaS</strong>. In this case, Cloudbees was built using Sonar, Jenkins, Subversion, Git, MySQL, Tomcat and many other tools.</p>
+
+<h2>What can you find on Cloudbees?</h2>
+
+<p>You can find several products such as I have mentioned before, besides JFrog, SendGrid, AppDynamics, New Relic, Mongo HQ.</p>
+
+<p>I suggest to use it at university projects. Sometimes we need to application server, and using Cloudbees we can have source control management, database, application server, maven repository. It is a good place to start teaching about <em>Continuous Integration</em>, <em>Continuous Delivery</em>.</p>
+
+<p><strong>Note:</strong> We have to consider that Cloudbees provide a limit space, if you want more space you have to buy.
+Cloudbees, is a good service. And I hope you can use it.</p>
+]]></content>
+  </entry>
+  
+</feed>
