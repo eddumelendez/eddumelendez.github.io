@@ -9,8 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="First, I have some questions to you: Do you have scripts into the Source Control Management?
-Do you know which scripts have been executed into the &hellip;">
+  <meta name="description" content="What is Continuous Inspection? It is an Agile Practice which tell us inspect the source code in order to find bad habits avoiding issues and bad &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,73 @@ Do you know which scripts have been executed into the &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/27/continuous-inspection-with-sonarqube/">Continuous Inspection With SonarQube</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-27T23:28:37-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>What is Continuous Inspection?</h2>
+
+<p>It is an Agile Practice which tell us inspect the source code in order to find bad habits avoiding issues and bad design in the future.</p>
+
+<h2>What is SonarQube?</h2>
+
+<p><a href="http://www.sonarqube.org/">SonarQube</a> is an Open Source Project based on seven axes:</p>
+
+<ol>
+<li>Potential bugs</li>
+<li>Coding rules</li>
+<li>Tests</li>
+<li>Duplications</li>
+<li>Comments</li>
+<li>Architecture and design</li>
+<li>Complexity</li>
+</ol>
+
+
+<p>Sonar (the firstname of this project) or SonarQube (current name) help us to identify points mentioned above.</p>
+
+<h4>Did you remember this phrase?</h4>
+
+<blockquote><p>Loose coupling and high cohesion.</p></blockquote>
+
+<p>Into the dashboard, you can see RFC (Response For Class) and LCOM4 (Lack of Cohesion Of Methods version 4). Those are related to Coupling and Cohesion respectively.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/sonarqube-RFC.png" alt="" /></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/sonarqube-LCOM4.png" alt="" /></p>
+
+<p><strong>Code Review</strong> and <strong>Pair Programming</strong> are practices that we need to do in order to support Continuous Inspection Process.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -486,6 +552,10 @@ Another option is get a backup from production, is not a bad idea if you want to
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/27/continuous-inspection-with-sonarqube/">Continuous Inspection With SonarQube</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/03/27/database-change-management/">Database Change Management</a>
