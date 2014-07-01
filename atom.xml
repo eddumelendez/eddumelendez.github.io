@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-07-01T01:57:23-05:00</updated>
+  <updated>2014-07-01T02:10:58-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -24,16 +24,20 @@
 
 <p>This is a book that you should to read. It has a very good introduction about Messaging concepts, Advanced Message Queuing Protocol (AMQP) description and core concepts. Differences between AMQP and another protocols.</p>
 
-<p>Chapters:
-+ Chapter 1: A Rabbit Springs to Life
-+ Chapter 2: Creating an application Inbox
-+ Chapter 3: Switching to Server-push
-+ Chapter 4: Handling Application Logs
-+ Chapter 5: Tweaking Message Delivery
-+ Chapter 6: Smart Message Routing
-+ Chapter 7: Taking RabbitMQ to Production
-+ Chapter 8: Testing and Tracing Applications
-+ Appendix: Message Schemas</p>
+<p>Chapters:</p>
+
+<ul>
+<li>Chapter 1: A Rabbit Springs to Life</li>
+<li>Chapter 2: Creating an application Inbox</li>
+<li>Chapter 3: Switching to Server-push</li>
+<li>Chapter 4: Handling Application Logs</li>
+<li>Chapter 5: Tweaking Message Delivery</li>
+<li>Chapter 6: Smart Message Routing</li>
+<li>Chapter 7: Taking RabbitMQ to Production</li>
+<li>Chapter 8: Testing and Tracing Applications</li>
+<li>Appendix: Message Schemas</li>
+</ul>
+
 
 <p>The book has a lot of examples in different programming languages, most of them in java but also in ruby and python. It also has a section about load test. So, I think that all the topics are covered.</p>
 
