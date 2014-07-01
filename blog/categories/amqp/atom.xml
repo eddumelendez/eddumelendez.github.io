@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Amqp | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/amqp/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-07-01T01:57:23-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Review: RabbitMQ Essentials]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials/"/>
+    <updated>2014-07-01T00:36:56-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials</id>
+    <content type="html"><![CDATA[<p>I have had the opportunity to have acces to <strong>&ldquo;RabbitMQ Essentials&rdquo;</strong> book published by Packtpub.com. Thanks to the author David Dossot (@ddossot)</p>
+
+<p>Are you interested in Messaging or Message Queuing?</p>
+
+<p>This is a book that you should to read. It has a very good introduction about Messaging concepts, Advanced Message Queuing Protocol (AMQP) description and core concepts. Differences between AMQP and another protocols.</p>
+
+<p>Chapters:
++ Chapter 1: A Rabbit Springs to Life
++ Chapter 2: Creating an application Inbox
++ Chapter 3: Switching to Server-push
++ Chapter 4: Handling Application Logs
++ Chapter 5: Tweaking Message Delivery
++ Chapter 6: Smart Message Routing
++ Chapter 7: Taking RabbitMQ to Production
++ Chapter 8: Testing and Tracing Applications
++ Appendix: Message Schemas</p>
+
+<p>The book has a lot of examples in different programming languages, most of them in java but also in ruby and python. It also has a section about load test. So, I think that all the topics are covered.</p>
+
+<p>Link: <a href="bit.ly/1mASQR1">RabbitMQ Essentials</a></p>
+]]></content>
+  </entry>
+  
+</feed>
