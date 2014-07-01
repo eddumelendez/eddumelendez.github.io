@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Amqp | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/amqp/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-07-01T02:10:58-05:00</updated>
+  <updated>2014-07-01T02:12:58-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -41,7 +41,7 @@
 
 <p>The book has a lot of examples in different programming languages, most of them in java but also in ruby and python. It also has a section about load test. So, I think that all the topics are covered.</p>
 
-<p>Link: <a href="bit.ly/1mASQR1">RabbitMQ Essentials</a></p>
+<p>Link: <a href="http://bit.ly/1mASQR1">RabbitMQ Essentials</a></p>
 ]]></content>
   </entry>
   
