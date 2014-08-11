@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/</loc>
+    <lastmod>2014-08-11T14:23:31-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management/</loc>
     <lastmod>2014-08-11T01:23:06-05:00</lastmod>
     <priority>0.8</priority>
@@ -53,21 +59,21 @@
   
   <url>
     <loc>http://eddumelendez.github.io/blog/archives/</loc>
-    <lastmod>2014-08-11T00:37:07-05:00</lastmod>
+    <lastmod>2014-08-11T04:46:32-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://eddumelendez.github.io/</loc>
-    <lastmod>2014-08-11T00:37:07-05:00</lastmod>
+    <lastmod>2014-08-11T04:46:32-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://eddumelendez.github.io/about/</loc>
-    <lastmod>2014-08-11T00:37:07-05:00</lastmod>
+    <lastmod>2014-08-11T04:46:32-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
