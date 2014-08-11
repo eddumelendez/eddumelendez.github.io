@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-07-01T02:12:58-05:00</updated>
+  <updated>2014-08-11T00:37:07-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,131 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Zuul: Application Configuration Management]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management/"/>
+    <updated>2014-08-11T01:23:06-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management</id>
+    <content type="html"><![CDATA[<p>Months ago I read the following blog <strong>Mule Meets Zuul</strong> <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-1/">Part I</a> | <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-2/">Part II</a> at <a href="http://blogs.mulesoft.org">Mulesoft&rsquo;s blog</a>
+and I was very interested in it.</p>
+
+<h2>Problem</h2>
+
+<p>It is a headache when you have to lead with a lot of property files and even worst when you have many environments.</p>
+
+<h2>What is Zuul?</h2>
+
+<p>Zuul is an open source web application which centralize and manage property file configuration.</p>
+
+<h2>Steps to install Zuul</h2>
+
+<p>Zuul can integrate with Google, Yahoo, LDAP and Active Directory.</p>
+
+<p>Here the steps to set up Zuul against LDAP.</p>
+
+<p><strong>1.</strong> Install <a href="http://docs.adaptivecomputing.com/viewpoint/hpc/Content/topics/1-setup/installSetup/settingUpOpenLDAPOnCentos6.htm">OpenLDAP</a>.</p>
+
+<p><strong>2.</strong> Load this <a href="https://dl.dropboxusercontent.com/u/15671111/blog/ldap-data.ldif">file</a> into the LDAP.</p>
+
+<p><strong>3.</strong> Instal Mysql</p>
+
+<pre><code>    yum install-y mysql-server mysql-devel
+    chkconfig mysqld on
+    service mysqld start
+</code></pre>
+
+<p><strong>4.</strong> Create zuul database.</p>
+
+<p><strong>5.</strong> Download  <a href="http://www.devnull.org/zuul">Zuul</a>.</p>
+
+<p><strong>6.</strong> Set this parameters at:</p>
+
+<p>   <strong>Unix:</strong> %TOMCAT_HOME%/bin/catalina.sh</p>
+
+<pre><code>   export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
+
+<p>   <strong>Windows:</strong> %TOMCAT_HOME%/bin/catalina.bat</p>
+
+<pre><code>   set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
+
+<p><strong>7.</strong> Add database driver into <strong>%TOMCAT_HOME%/lib</strong>.</p>
+
+<p><strong>8.</strong> Copy ldap.properties and zuul-data-config.properties from <strong>zuul/WEB-INF/classes/examples</strong> to <strong>%TOMCAT_HOME%/lib</strong>.</p>
+
+<p><strong>9.</strong> Modify ldap.properties</p>
+
+<figure class='code'><figcaption><span>ldap.properties</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">ldap.url</span><span class="o">=</span><span class="s">ldap://localhost:389</span>
+</span><span class='line'><span class="na">ldap.username</span><span class="o">=</span><span class="s">cn=Manager,dc=example,dc=com</span>
+</span><span class='line'><span class="na">ldap.password</span><span class="o">=</span><span class="s">p@ssw0rd</span>
+</span><span class='line'><span class="na">ldap.dn.ROLE_SYSTEM_ADMIN</span><span class="o">=</span><span class="s">CN=Zuul System Admins,OU=Groups,DC=acme,DC=com</span>
+</span><span class='line'><span class="na">ldap.dn.ROLE_ADMIN</span><span class="o">=</span><span class="s">CN=Zuul Admins,OU=Groups,DC=acme,DC=com</span>
+</span><span class='line'><span class="na">ldap.dn.ROLE_USER</span><span class="o">=</span><span class="s">CN=Zuul Users,OU=Groups,DC=acme,DC=com</span>
+</span><span class='line'><span class="na">ldap.group.search.base</span><span class="o">=</span><span class="s">OU=Groups,DC=acme,DC=com</span>
+</span><span class='line'><span class="na">ldap.group.role.attribute</span><span class="o">=</span><span class="s">entryDN</span>
+</span><span class='line'><span class="na">ldap.group.filter</span><span class="o">=</span><span class="s">member={0}</span>
+</span><span class='line'><span class="na">ldap.user.search.base</span><span class="o">=</span><span class="s">OU=Users,DC=acme,DC=com</span>
+</span><span class='line'><span class="na">ldap.user.search.filter</span><span class="o">=</span><span class="s">uid={0}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>10.</strong> Start tomcat and zuul application will create the database tables using <a href="http://www.liquibase.org">liquibase</a>.</p>
+
+<p>Now, you have Zuul application ready to use.</p>
+
+<p>Create a property in dev environment named <strong>myproperty</strong></p>
+
+<p>Download <a href="https://github.com/eddumelendez/zuul-demo">Zuul demo</a></p>
+
+<p>Now run mvn test, you will get the value from Zuul Service.</p>
+
+<h2>Screenshots</h2>
+
+<p>Create new property option.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-1.png" alt="" /></p>
+
+<p>Create new property view.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-2.png" alt="" /></p>
+
+<p>Property created.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-3.png" alt="" /></p>
+
+<p>Property view and ready to add key and values.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-4.png" alt="" /></p>
+
+<p>Adding new property.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-5.png" alt="" /></p>
+
+<p>Property created in DEV environment.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-6.png" alt="" /></p>
+
+<p>Key Management option.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-7.png" alt="" /></p>
+
+<p>Key Management view.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-8.png" alt="" /></p>
+
+<p>Changing password.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-9.png" alt="" /></p>
+
+<p>You can also create groups.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-10.png" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Review: RabbitMQ Essentials]]></title>
