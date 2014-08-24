@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Months ago, I published my first post about Database Change Management. So, now we will review liquibase. In this blog, I am using sql scripts but &hellip;">
+  <meta name="description" content="Months ago, I published my first post about Database Change Management. So now, we will review liquibase. In this blog, I am using sql scripts but &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,7 +105,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So, now we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
+  <div class="entry-content"><p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So now, we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
 
 <p>In this blog, I am using sql scripts but there are another ways to work with Liquibase such as XML, YAML, JSON and you have to consider which it is the best option for you.</p>
 
@@ -130,6 +130,20 @@ After that, add scripts into the project. Then you must to register the script a
 <li>Maven</li>
 </ul>
 
+
+<h2>Liquibase&rsquo;s Goals</h2>
+
+<p>I will mention just some of them, the list below are the most used by me:</p>
+
+<ul>
+<li>rollback: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
+<li>tag: mark the last script executed.</li>
+<li>update: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
+<li>updateTestingRollback: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
+</ul>
+
+
+<blockquote><p><strong>Note:</strong> See all the liquibase&rsquo;s goals <a href="http://www.liquibase.org/documentation/maven/">here</a>.</p></blockquote>
 
 <h2>Demo</h2>
 
@@ -186,15 +200,27 @@ After that, add scripts into the project. Then you must to register the script a
 
 
   <div class="entry-content"><p>Months ago I read the following blog <strong>Mule Meets Zuul</strong> <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-1/">Part I</a> | <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-2/">Part II</a> at <a href="http://blogs.mulesoft.org">Mulesoft&rsquo;s blog</a>
-and I was very interested in it.</p>
+and Zuul caught my attention.</p>
 
-<h2>Problem</h2>
+<h2>What is the problem?</h2>
 
 <p>It is a headache when you have to lead with a lot of property files and even worst when you have many environments.</p>
 
 <h2>What is Zuul?</h2>
 
-<p>Zuul is an open source web application which centralize and manage property file configuration.</p>
+<p>Zuul is an open source web application which centralize and manage property files configuration.</p>
+
+<h2>What can I do?</h2>
+
+<ul>
+<li>Create environments</li>
+<li>Upload property files</li>
+<li>Create new entries</li>
+<li>Clone property files between environments</li>
+<li>Group property files in folders</li>
+<li>Encryption support</li>
+</ul>
+
 
 <h2>Steps to install Zuul</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ant | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/ant/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-08-11T04:46:32-05:00</updated>
+  <updated>2014-08-23T21:55:53-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -18,7 +18,7 @@
     <link href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/"/>
     <updated>2014-08-11T14:23:31-05:00</updated>
     <id>http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase</id>
-    <content type="html"><![CDATA[<p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So, now we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
+    <content type="html"><![CDATA[<p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So now, we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
 
 <p>In this blog, I am using sql scripts but there are another ways to work with Liquibase such as XML, YAML, JSON and you have to consider which it is the best option for you.</p>
 
@@ -43,6 +43,20 @@ After that, add scripts into the project. Then you must to register the script a
 <li>Maven</li>
 </ul>
 
+
+<h2>Liquibase&rsquo;s Goals</h2>
+
+<p>I will mention just some of them, the list below are the most used by me:</p>
+
+<ul>
+<li>rollback: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
+<li>tag: mark the last script executed.</li>
+<li>update: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
+<li>updateTestingRollback: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
+</ul>
+
+
+<blockquote><p><strong>Note:</strong> See all the liquibase&rsquo;s goals <a href="http://www.liquibase.org/documentation/maven/">here</a>.</p></blockquote>
 
 <h2>Demo</h2>
 

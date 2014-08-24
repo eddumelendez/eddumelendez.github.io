@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-08-11T04:46:32-05:00</updated>
+  <updated>2014-08-23T21:55:53-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -19,15 +19,27 @@
     <updated>2014-08-11T01:23:06-05:00</updated>
     <id>http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management</id>
     <content type="html"><![CDATA[<p>Months ago I read the following blog <strong>Mule Meets Zuul</strong> <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-1/">Part I</a> | <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-2/">Part II</a> at <a href="http://blogs.mulesoft.org">Mulesoft&rsquo;s blog</a>
-and I was very interested in it.</p>
+and Zuul caught my attention.</p>
 
-<h2>Problem</h2>
+<h2>What is the problem?</h2>
 
 <p>It is a headache when you have to lead with a lot of property files and even worst when you have many environments.</p>
 
 <h2>What is Zuul?</h2>
 
-<p>Zuul is an open source web application which centralize and manage property file configuration.</p>
+<p>Zuul is an open source web application which centralize and manage property files configuration.</p>
+
+<h2>What can I do?</h2>
+
+<ul>
+<li>Create environments</li>
+<li>Upload property files</li>
+<li>Create new entries</li>
+<li>Clone property files between environments</li>
+<li>Group property files in folders</li>
+<li>Encryption support</li>
+</ul>
+
 
 <h2>Steps to install Zuul</h2>
 
