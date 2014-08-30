@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Months ago, I published my first post about Database Change Management. So now, we will review liquibase. In this blog, I am using sql scripts but &hellip;">
+  <meta name="description" content="I have had the change to review another book from Packtpub.com. Now, it&rsquo;s time to take a look inside the Learning Cypher. Maybe you have heard &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,94 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-30T21:35:39-05:00" pubdate data-updated="true">Aug 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
+
+<p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
+
+<p><strong>What is Cypher?</strong> It is the Query Language used in Neo4j database.</p>
+
+<p>It has a good introduction about Neo4j using embedded database and using the Java API provided by Neo4j.</p>
+
+<p>For example: Imagine that we would like to get all the Users from the graph database. User must be an Node.</p>
+
+<p>First, create an User node:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE (a:User {username: "jroe", firstname: "Jane", lastname: "Roe"}),
+</span><span class='line'>(b:User {username: "cgarcia", firstname: "Carlos", lastname: "Garcia"}),
+</span><span class='line'>(c:User {username: "mweng", firstname: "Mei", lastname: "Weng"})</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using the query below you will get all the user information:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But, if we want some fields:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>RETURN u.username, u.firstname, u.lastname</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are another example, using WHERE clause</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>WHERE u.username = 'cgarcia'
+</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are more topics using Regex, Join, Sorting and so on. Another interesting topics are:
+* Profiling
+* Migraton from SQL</p>
+
+<p><strong>Note:</strong> The author mention to <em>spring-data-neo4j</em> module from springframework which make the configuration and integration easy.</p>
+
+<p>I really recommend this book if you want to dive into Neo4j world.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a></h1>
     
     
@@ -136,10 +224,10 @@ After that, add scripts into the project. Then you must to register the script a
 <p>I will mention just some of them, the list below are the most used by me:</p>
 
 <ul>
-<li>rollback: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
-<li>tag: mark the last script executed.</li>
-<li>update: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
-<li>updateTestingRollback: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
+<li><code>rollback</code>: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
+<li><code>tag</code>: mark the last script executed.</li>
+<li><code>update</code>: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
+<li><code>updateTestingRollback</code>: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
 </ul>
 
 
@@ -920,6 +1008,10 @@ Another option is get a backup from production, is not a bad idea if you want to
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a>
       </li>
     
@@ -933,10 +1025,6 @@ Another option is get a backup from production, is not a bad idea if you want to
     
       <li class="post">
         <a href="/blog/2014/04/27/continuous-inspection-with-sonarqube/">Continuous Inspection With SonarQube</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/27/cloudbees/">Cloudbees</a>
       </li>
     
   </ul>

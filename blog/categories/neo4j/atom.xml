@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Neo4j | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/neo4j/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-08-30T01:11:26-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Learning Cypher Review]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/"/>
+    <updated>2014-08-30T21:35:39-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review</id>
+    <content type="html"><![CDATA[<p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
+
+<p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
+
+<p><strong>What is Cypher?</strong> It is the Query Language used in Neo4j database.</p>
+
+<p>It has a good introduction about Neo4j using embedded database and using the Java API provided by Neo4j.</p>
+
+<p>For example: Imagine that we would like to get all the Users from the graph database. User must be an Node.</p>
+
+<p>First, create an User node:
+<code>
+CREATE (a:User {username: "jroe", firstname: "Jane", lastname: "Roe"}),
+(b:User {username: "cgarcia", firstname: "Carlos", lastname: "Garcia"}),
+(c:User {username: "mweng", firstname: "Mei", lastname: "Weng"})
+</code></p>
+
+<p>Using the query below you will get all the user information:
+<code>
+MATCH (u:User)
+RETURN u
+</code></p>
+
+<p>But, if we want some fields:
+<code>
+MATCH (u:User)
+RETURN u.username, u.firstname, u.lastname
+</code></p>
+
+<p>There are another example, using WHERE clause
+<code>
+MATCH (u:User)
+WHERE u.username = 'cgarcia'
+RETURN u
+</code></p>
+
+<p>There are more topics using Regex, Join, Sorting and so on. Another interesting topics are:
+* Profiling
+* Migraton from SQL</p>
+
+<p><strong>Note:</strong> The author mention to <em>spring-data-neo4j</em> module from springframework which make the configuration and integration easy.</p>
+
+<p>I really recommend this book if you want to dive into Neo4j world.</p>
+]]></content>
+  </entry>
+  
+</feed>

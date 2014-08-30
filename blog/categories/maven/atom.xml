@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Maven | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/maven/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-08-23T21:55:53-05:00</updated>
+  <updated>2014-08-30T01:11:26-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -49,10 +49,10 @@ After that, add scripts into the project. Then you must to register the script a
 <p>I will mention just some of them, the list below are the most used by me:</p>
 
 <ul>
-<li>rollback: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
-<li>tag: mark the last script executed.</li>
-<li>update: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
-<li>updateTestingRollback: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
+<li><code>rollback</code>: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
+<li><code>tag</code>: mark the last script executed.</li>
+<li><code>update</code>: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
+<li><code>updateTestingRollback</code>: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
 </ul>
 
 

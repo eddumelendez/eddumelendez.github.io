@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Database Change Management - Eddú Meléndez</title>
+  <title>Learning Cypher Review - Eddú Meléndez</title>
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="First, I have some questions to you: Do you have scripts into the Source Control Management?
-Do you know which scripts have been executed into the &hellip;">
+  <meta name="description" content="I have had the change to review another book from Packtpub.com. Now, it&rsquo;s time to take a look inside the Learning Cypher. Maybe you have heard &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Do you know which scripts have been executed into the &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">
+  <link rel="canonical" href="http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Eddú Meléndez" type="application/atom+xml">
@@ -80,7 +79,7 @@ Do you know which scripts have been executed into the &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Database Change Management</h1>
+      <h1 class="entry-title">Learning Cypher Review</h1>
     
     
       <p class="meta">
@@ -96,53 +95,66 @@ Do you know which scripts have been executed into the &hellip;">
   
 
 
-<time datetime="2014-03-27T22:15:11-05:00" pubdate data-updated="true">Mar 27<sup>th</sup>, 2014</time>
+<time datetime="2014-08-30T21:35:39-05:00" pubdate data-updated="true">Aug 30<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>First, I have some questions to you:</p>
+<div class="entry-content"><p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
 
-<ol>
-<li>Do you have scripts into the Source Control Management?</li>
-<li>Do you know which scripts have been executed into the database?</li>
-<li>Do you write scripts for rollback?</li>
-<li>Are DBAs involve in your development process?</li>
-<li>Tell me, how do you manage your database changes?</li>
-</ol>
+<p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
 
+<p><strong>What is Cypher?</strong> It is the Query Language used in Neo4j database.</p>
 
-<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
-Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
+<p>It has a good introduction about Neo4j using embedded database and using the Java API provided by Neo4j.</p>
 
-<h2>What it is my point?</h2>
+<p>For example: Imagine that we would like to get all the Users from the graph database. User must be an Node.</p>
 
-<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
+<p>First, create an User node:</p>
 
-<h2>Which is involve?</h2>
-
-<ol>
-<li>Every database modification should be written as a delta script.</li>
-<li>Add rollback section to your scripts.</li>
-<li>Use a naming conventions for your scripts.</li>
-<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
-<li>Version Control your scripts.</li>
-<li>Maintain a database changelog.</li>
-</ol>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE (a:User {username: "jroe", firstname: "Jane", lastname: "Roe"}),
+</span><span class='line'>(b:User {username: "cgarcia", firstname: "Carlos", lastname: "Garcia"}),
+</span><span class='line'>(c:User {username: "mweng", firstname: "Mei", lastname: "Weng"})</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Advantages</h2>
+<p>Using the query below you will get all the user information:</p>
 
-<ol>
-<li>Reduce risks during deployments.</li>
-<li>Ensure you are executing the right scripts.</li>
-<li>You can build a new database.</li>
-</ol>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
 
 
-<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+<p>But, if we want some fields:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>RETURN u.username, u.firstname, u.lastname</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are another example, using WHERE clause</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>WHERE u.username = 'cgarcia'
+</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are more topics using Regex, Join, Sorting and so on. Another interesting topics are:
+* Profiling
+* Migraton from SQL</p>
+
+<p><strong>Note:</strong> The author mention to <em>spring-data-neo4j</em> module from springframework which make the configuration and integration easy.</p>
+
+<p>I really recommend this book if you want to dive into Neo4j world.</p>
 </div>
 
 
@@ -165,12 +177,12 @@ Another option is get a backup from production, is not a bad idea if you want to
   
 
 
-<time datetime="2014-03-27T22:15:11-05:00" pubdate data-updated="true">Mar 27<sup>th</sup>, 2014</time>
+<time datetime="2014-08-30T21:35:39-05:00" pubdate data-updated="true">Aug 30<sup>th</sup>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/automation/'>automation</a>, <a class='category' href='/blog/categories/dbdeploy/'>dbdeploy</a>, <a class='category' href='/blog/categories/flyway/'>flyway</a>, <a class='category' href='/blog/categories/liquibase/'>liquibase</a>
+    <a class='category' href='/blog/categories/cypher/'>cypher</a>, <a class='category' href='/blog/categories/neo4j/'>neo4j</a>, <a class='category' href='/blog/categories/nosql/'>nosql</a>
   
 </span>
 
@@ -179,7 +191,7 @@ Another option is get a backup from production, is not a bad idea if you want to
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/" data-via="eddumelendez" data-counturl="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/" data-via="eddumelendez" data-counturl="http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -192,10 +204,8 @@ Another option is get a backup from production, is not a bad idea if you want to
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/03/27/embedded-database-compatibility/" title="Previous Post: Embedded Database compatibility">&laquo; Embedded Database compatibility</a>
+        <a class="basic-alignment left" href="/blog/2014/08/11/database-change-management-liquibase/" title="Previous Post: Database Change Management: Liquibase">&laquo; Database Change Management: Liquibase</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/04/27/cloudbees/" title="Next Post: Cloudbees">Cloudbees &raquo;</a>
       
     </p>
   </footer>
@@ -277,8 +287,8 @@ Another option is get a backup from production, is not a bad idea if you want to
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://eddumelendez.github.io/blog/2014/03/27/database-change-management/';
-        var disqus_url = 'http://eddumelendez.github.io/blog/2014/03/27/database-change-management/';
+        var disqus_identifier = 'http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/';
+        var disqus_url = 'http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/';
         var disqus_script = 'embed.js';
       
     (function () {
