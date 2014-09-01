@@ -9,6 +9,12 @@
   </url>
   
   <url>
+    <loc>http://eddumelendez.github.io/blog/2014/08/30/jenkins-and-liquibase-working-together/</loc>
+    <lastmod>2014-08-30T02:03:53-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/</loc>
     <lastmod>2014-08-11T14:23:31-05:00</lastmod>
     <priority>0.8</priority>
@@ -65,21 +71,21 @@
   
   <url>
     <loc>http://eddumelendez.github.io/blog/archives/</loc>
-    <lastmod>2014-08-30T01:11:26-05:00</lastmod>
+    <lastmod>2014-08-31T20:24:48-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://eddumelendez.github.io/</loc>
-    <lastmod>2014-08-30T01:11:26-05:00</lastmod>
+    <lastmod>2014-08-31T20:24:48-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://eddumelendez.github.io/about/</loc>
-    <lastmod>2014-08-30T01:11:26-05:00</lastmod>
+    <lastmod>2014-08-31T20:24:48-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

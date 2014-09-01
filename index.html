@@ -170,6 +170,108 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-30T02:03:53-05:00" pubdate data-updated="true">Aug 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have talked about <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase">Database Change Management using Liquibase</a>.
+Now, I will talk about the integration with Jenkins CI.</p>
+
+<p>As you can see in the example of my previous post. In the <code>pom.xml</code> there are 3 profiles: <code>update</code>,<code>tag</code> and <code>rollback</code> which will be used by Jenkins.
+The profile approach will be useful in our integration.</p>
+
+<p>I am going to use <strong>Cloudbees</strong> (PaaS)</p>
+
+<ol>
+<li>First, you need to have an <a href="http://www.cloudbees.com/">Cloudbees</a> account.</li>
+<li>Click on <em>Databases</em> and then click <em>Add Database</em>.</li>
+<li>Create a liquibase_demo database.</li>
+<li>Click on <em>Builds</em>, Jenkins dashboard will be display.</li>
+<li>Create <em>New Job</em>.</li>
+<li>Put a name, choose <em>Build a free-style software project</em> option and then click <em>OK</em>.</li>
+<li><p>Now, let start to configure Jenkins&rsquo;s job. You will be able to see the image below
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-1.png" alt="" /></p></li>
+<li><p>Check <em>This build is parameterized</em> option. Then, click <em>Add Parameter</em>. Add the following parameters: <code>driver</code>, <code>url</code>, <code>username</code>, <code>password</code>, <code>changeLogFile</code>, <code>tag</code> and <code>action</code>.</p></li>
+</ol>
+
+
+<p>  <code>driver</code>, <code>url</code>, <code>username</code>, <code>changeLogFile</code>, <code>tag</code> are <strong>String Parameter</strong>
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-2.png" alt="" /></p>
+
+<p>  <code>password</code> is a <strong>Password Parameter</strong>.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-3.png" alt="" /></p>
+
+<p>  <code>action</code> is a <strong>Choice Parameter</strong> with the following options: <code>update</code>, <code>tag</code> and <code>rollback</code>
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-4.png" alt="" /></p>
+
+<ol>
+<li><p>Now, lets configure the Source Code Management. In this example, I habe published the <a href="https://github.com/eddumelendez/liquibase-demo">demo</a> in GitHub.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-5.png" alt="" /></p></li>
+<li><p> Now, go to <strong>Build</strong> section, click on <em>Add build step</em> and choose <em>Invoke top-level Maven targets</em>. Add the maven&rsquo;s goal and properties. Then, <em>Save</em>.</p></li>
+</ol>
+
+
+<p>  Maven Goal:</p>
+
+<pre><code>     mvn install -P$action
+</code></pre>
+
+<p>  Maven Properties:</p>
+
+<pre><code>     liquibase.driver=$driver
+     liquibase.username=$username
+     liquibase.password=$password
+     liquibase.url=$url
+     liquibase.changeLogFile=$changeLogFile
+     liquibase.rollbackTag=$tag
+     liquibase.tag=$tag
+     liquibase.promptOnNonLocalDatabase=false
+</code></pre>
+
+<p>  If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.</p>
+
+<p>  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p>
+
+<ol>
+<li> Finally, click <em>Build with parameters</em>, test your job and enjoy.
+<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-7.png" alt="" /></li>
+</ol>
+
+
+<p>Avoid risks and say good bye to manual tasks. For that reason, I love automation!</p>
+
+<p><strong>Note:</strong> Liquibase can be used inside the java application using <a href="http://www.liquibase.org/documentation/spring.html">spring integration</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a></h1>
     
     
@@ -931,55 +1033,9 @@ Another option is get a backup from production, is not a bad idea if you want to
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/23/why-am-i-writing-this-blog/">Why Am I Writing This Blog?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-23T11:52:28-05:00" pubdate data-updated="true">Mar 23<sup>rd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am starting writing this blog because I want to share my knowledge and expertise with everyone. Also, I would like to get feedback from others.</p>
-
-<p>My favourite topics are related to:</p>
-
-<ul>
-<li>Agile Practices</li>
-<li>Maven</li>
-<li>Mule ESB</li>
-<li>Spring Framework</li>
-</ul>
-
-
-<p>Also, I will share some books that I have taken into consideration during my continuous improvement process.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1012,6 +1068,10 @@ Another option is get a backup from production, is not a bad idea if you want to
       </li>
     
       <li class="post">
+        <a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a>
       </li>
     
@@ -1021,10 +1081,6 @@ Another option is get a backup from production, is not a bad idea if you want to
     
       <li class="post">
         <a href="/blog/2014/07/01/review-rabbitmq-essentials/">Review: RabbitMQ Essentials</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/27/continuous-inspection-with-sonarqube/">Continuous Inspection With SonarQube</a>
       </li>
     
   </ul>
