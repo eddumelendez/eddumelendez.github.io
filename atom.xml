@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-09-02T23:25:53-05:00</updated>
+  <updated>2014-09-03T01:33:00-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,333 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RAML: Designing an API]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/09/02/raml-designing-an-api/"/>
+    <updated>2014-09-02T23:28:31-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/09/02/raml-designing-an-api</id>
+    <content type="html"><![CDATA[<p>As a developers, every day we are working coding many APIs.
+But, <em>what about design?</em> Sometimes due to the project schedule, too much requirements and even the lack of knowledge about what is <code>REST</code>; developers forget about the design of API.<br/>
+Months ago I was surfing on the internet, don&rsquo;t remember where but I read:</p>
+
+<blockquote><p><code>REST</code>is more than work with <code>xml</code> or <code>json</code>.</p></blockquote>
+
+<p>And that&rsquo;s true. So, I researched more about REST and learned lot of things.</p>
+
+<h2>What RAML is?</h2>
+
+<p><code>RESTful API Modeling Language</code> allow us to design, describe, define the API. It&rsquo;s human readable and it is visible to everyone.</p>
+
+<p>That&rsquo;s pretty cool, we can design the API and document as well.</p>
+
+<h2>Security</h2>
+
+<p><code>RAML</code> supports authentication:</p>
+
+<ul>
+<li>Basic authentication</li>
+<li>Digest authentication</li>
+<li>Oauth 1.0</li>
+<li>Oauth 2.0</li>
+</ul>
+
+
+<h2>Book Store API</h2>
+
+<p>In the example below, I have designed a Books Store API working my favourite book list.
+The API allow me to Create, Read, Update and Delete books. A simple CRUD operation which is represents by HTTP methods.</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>OPERATION</strong> </th>
+<th> <strong>HTTP METHODS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CREATE        </td>
+<td> POST</td>
+</tr>
+<tr>
+<td>READ          </td>
+<td> GET</td>
+</tr>
+<tr>
+<td>UPDATE        </td>
+<td> PUT</td>
+</tr>
+<tr>
+<td>DELETE        </td>
+<td> DELETE</td>
+</tr>
+</tbody>
+</table>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#%RAML 0.8
+</span><span class='line'>---
+</span><span class='line'>title: Book Store API
+</span><span class='line'>version: 1.0
+</span><span class='line'>baseUri: http://localhost:8081/api
+</span><span class='line'>/books:
+</span><span class='line'>  displayName: Books Catalog
+</span><span class='line'>  get:
+</span><span class='line'>    responses:
+</span><span class='line'>      200:
+</span><span class='line'>        body:
+</span><span class='line'>          application/json:
+</span><span class='line'>            example: |
+</span><span class='line'>                {
+</span><span class='line'>                  "bookId": 1,
+</span><span class='line'>                  "title": "Angel & Demons",
+</span><span class='line'>                  "isbn": "0-671-02735-2",
+</span><span class='line'>                  "authors": [
+</span><span class='line'>                    "Dan Brown"
+</span><span class='line'>                  ]
+</span><span class='line'>                },
+</span><span class='line'>                {
+</span><span class='line'>                  "bookId": 2,
+</span><span class='line'>                  "title": "The Da Vinci Code",
+</span><span class='line'>                  "isbn": "0-385-50420-9",
+</span><span class='line'>                  "authors": [
+</span><span class='line'>                    "Dan Brown"
+</span><span class='line'>                  ]
+</span><span class='line'>                },
+</span><span class='line'>                {
+</span><span class='line'>                  "bookId": 3,
+</span><span class='line'>                  "title": "The Lost Symbol",
+</span><span class='line'>                  "isbn": "978-0-385-50422-5",
+</span><span class='line'>                  "authors": [
+</span><span class='line'>                    "Dan Brown"
+</span><span class='line'>                  ]
+</span><span class='line'>                },
+</span><span class='line'>                {
+</span><span class='line'>                  "bookId": 4,
+</span><span class='line'>                  "title": "Inferno",
+</span><span class='line'>                  "isbn": "978-0-385-53785-8",
+</span><span class='line'>                  "authors": [
+</span><span class='line'>                    "Dan Brown"
+</span><span class='line'>                  ]
+</span><span class='line'>                }
+</span><span class='line'>  post:
+</span><span class='line'>    body:
+</span><span class='line'>      application/json:
+</span><span class='line'>        example: |  
+</span><span class='line'>            {
+</span><span class='line'>             "title": "Deception Point",
+</span><span class='line'>             "isbn": "0-671-02738-7",
+</span><span class='line'>             "authors": [
+</span><span class='line'>              "Dan Brown"
+</span><span class='line'>             ]
+</span><span class='line'>            }
+</span><span class='line'>    responses:
+</span><span class='line'>      201:
+</span><span class='line'>        description: Book has been successfully created.
+</span><span class='line'>      409:
+</span><span class='line'>        description: Book already exists.
+</span><span class='line'>  /{bookId}:
+</span><span class='line'>    displayName: Book
+</span><span class='line'>    uriParameters:
+</span><span class='line'>      bookId:
+</span><span class='line'>        description: |
+</span><span class='line'>          Book Identifier
+</span><span class='line'>        required: true
+</span><span class='line'>    get:
+</span><span class='line'>      description: Retrieve book-related information.
+</span><span class='line'>      responses:
+</span><span class='line'>        200:
+</span><span class='line'>          body:
+</span><span class='line'>            application/json:
+</span><span class='line'>              example:  |
+</span><span class='line'>                {
+</span><span class='line'>                  "bookId": 1,
+</span><span class='line'>                  "title": "Angel & Demons",
+</span><span class='line'>                  "isbn": "0-671-02735-2",
+</span><span class='line'>                  "authors": [
+</span><span class='line'>                    "Dan Brown"
+</span><span class='line'>                  ]  
+</span><span class='line'>                }
+</span><span class='line'>    put:
+</span><span class='line'>      description: Update book information.
+</span><span class='line'>      body:
+</span><span class='line'>         application/json:
+</span><span class='line'>          example: |  
+</span><span class='line'>            {
+</span><span class='line'>             "title": "Inferno",
+</span><span class='line'>             "isbn": "978-0-385-53785-8",
+</span><span class='line'>             "authors": [
+</span><span class='line'>              "Dan Brown"
+</span><span class='line'>             ]
+</span><span class='line'>            }
+</span><span class='line'>      responses:
+</span><span class='line'>        204:
+</span><span class='line'>          description: |
+</span><span class='line'>            The book has been successfully updated.
+</span><span class='line'>        404:
+</span><span class='line'>          description: |
+</span><span class='line'>            Unable to find book with that identifier.
+</span><span class='line'>    delete:
+</span><span class='line'>      description: Remove book from the catalog.
+</span><span class='line'>      responses:
+</span><span class='line'>        204:
+</span><span class='line'>          description: |
+</span><span class='line'>            The book has been successfully removed.
+</span><span class='line'>        404:
+</span><span class='line'>          description: |
+</span><span class='line'>            Unable to find book with that identifier.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, the Book Store API have five services:</p>
+
+<ul>
+<li>GET <a href="http://localhost:8081/api/books">http://localhost:8081/api/books</a></li>
+<li>POST <a href="http://localhost:8081/api/books">http://localhost:8081/api/books</a></li>
+<li>GET <a href="http://localhost:8081/api/books/{bookId}">http://localhost:8081/api/books/{bookId}</a></li>
+<li>PUT <a href="http://localhost:8081/api/books/{bookId}">http://localhost:8081/api/books/{bookId}</a></li>
+<li>DELETE <a href="http://localhost:8081/api/books/{bookId}">http://localhost:8081/api/books/{bookId}</a></li>
+</ul>
+
+
+<p>Learn more about <a href="http://httpstatus.es/">HTTP Status</a></p>
+
+<h2>Platforms and Tools</h2>
+
+<ul>
+<li><strong>Mulesoft</strong> provides an <a href="https://anypoint.mulesoft.com/#/signup">API Platform</a> and <a href="http://www.mulesoft.org/documentation/display/current/APIkit+Tutorial">APIkit</a>.</li>
+<li><a href="https://github.com/kevinrenskers/raml2html">raml2html</a>, transform raml file to html.</li>
+<li><a href="https://github.com/mulesoft/jaxrs-to-raml/">jaxrs-to-raml</a>, generate raml file to existing JAX-RS services. It has been updated today, JAX-RS 2.0 Asynchronous Responses is now supported!!!</li>
+</ul>
+
+
+<p>There are more RAML projects <a href="http://raml.org/projects.html">here</a>.</p>
+
+<h2>Resources</h2>
+
+<p>There are a lot of resources about REST, how to write a good API, some of them are:</p>
+
+<ul>
+<li><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf">Roy Thomas Fielding&rsquo;s Dissertation</a></li>
+<li><a href="http://blogs.mulesoft.org/designing-restful-api-longevity/">Designing your RESTful API for Longevity</a></li>
+<li><a href="https://spring.io/blog/2013/12/02/springone2gx-2013-replay-rest-ful-api-design">SpringOne2GX 2013 Replay: REST-ful API Design</a></li>
+<li><a href="http://spring.io/blog/2014/01/14/springone2gx-2013-replay-rest-ful-api-evolution">SpringOne2GX 2013 Replay: REST-Ful API Evolution</a></li>
+<li><a href="http://softwaregarden.io/rest-api-best-practices-reloaded/">Rest API Best(?) Practices Reloaded</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Learning Cypher Review]]></title>
