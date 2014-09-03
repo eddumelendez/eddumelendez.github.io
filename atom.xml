@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-09-02T21:42:41-05:00</updated>
+  <updated>2014-09-02T23:07:35-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -87,48 +87,68 @@ The profile approach will be useful in our integration.</p>
 
 <p>I am going to use <strong>Cloudbees</strong> (PaaS)</p>
 
-<ol>
-<li>First, you need to have an <a href="http://www.cloudbees.com/">Cloudbees</a> account.</li>
-<li>Click on <em>Databases</em> and then click <em>Add Database</em>.</li>
-<li>Create a liquibase_demo database.</li>
-<li>Click on <em>Builds</em>, Jenkins dashboard will be display.</li>
-<li>Create <em>New Job</em>.</li>
-<li>Put a name, choose <em>Build a free-style software project</em> option and then click <em>OK</em>.</li>
-<li><p>Now, let start to configure Jenkins&rsquo;s job. You will be able to see the image below
-<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-1.png" alt="" /></p></li>
-<li><p>Check <em>This build is parameterized</em> option. Then, click <em>Add Parameter</em>. Add the following parameters: <code>driver</code>, <code>url</code>, <code>username</code>, <code>password</code>, <code>changeLogFile</code>, <code>tag</code> and <code>action</code>.</p>
+<p><strong>1.</strong> First, you need to have an <a href="http://www.cloudbees.com/">Cloudbees</a> account.</p>
 
-<p> <code>driver</code>, <code>url</code>, <code>username</code>, <code>changeLogFile</code>, <code>tag</code> are <strong>String Parameter</strong>
- <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-2.png" alt="" /></p>
+<p><strong>2.</strong> Click on <em>Databases</em> and then click <em>Add Database</em>.</p>
 
-<p> <code>password</code> is a <strong>Password Parameter</strong>.
- <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-3.png" alt="" /></p>
+<p><strong>3.</strong> Create a liquibase_demo database.</p>
 
-<p> <code>action</code> is a <strong>Choice Parameter</strong> with the following options: <code>update</code>, <code>tag</code> and <code>rollback</code>
- <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-4.png" alt="" /></p></li>
-<li><p>Now, lets configure the Source Code Management. In this example, I have published the <a href="https://github.com/eddumelendez/liquibase-demo">demo</a> in GitHub.
-<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-5.png" alt="" /></p></li>
-<li><p>Now, go to <strong>Build</strong> section, click on <em>Add build step</em> and choose <em>Invoke top-level Maven targets</em>. Add the maven&rsquo;s goal and properties. Then, <em>Save</em>.</p>
+<p><strong>4.</strong> Click on <em>Builds</em>, Jenkins dashboard will be display.</p>
 
-<p>Maven Goal:
-     mvn install -P$action</p>
+<p><strong>5.</strong> Create <em>New Job</em>.</p>
 
-<p>Maven Properties:
-     liquibase.driver=$driver
-     liquibase.username=$username
-     liquibase.password=$password
-     liquibase.url=$url
-     liquibase.changeLogFile=$changeLogFile
-     liquibase.rollbackTag=$tag
-     liquibase.tag=$tag
-     liquibase.promptOnNonLocalDatabase=false</p>
+<p><strong>6.</strong> Put a name, choose <em>Build a free-style software project</em> option and then click <em>OK</em>.</p>
 
-<p>If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.
-<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p></li>
-<li><p>Finally, click <em>Build with parameters</em>, test your job and enjoy.
-<img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-7.png" alt="" /></p></li>
-</ol>
+<p><strong>7.</strong> Now, let start to configure Jenkins&rsquo;s job. You will be able to see the image below
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-1.png" alt="" /></p>
 
+<p><strong>8.</strong> Check <em>This build is parameterized</em> option. Then, click <em>Add Parameter</em>. Add the following parameters: <code>driver</code>, <code>url</code>, <code>username</code>, <code>password</code>, <code>changeLogFile</code>, <code>tag</code> and <code>action</code>.</p>
+
+<p>  <code>driver</code>, <code>url</code>, <code>username</code>, <code>changeLogFile</code>, <code>tag</code> are <strong>String Parameter</strong>
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-2.png" alt="" /></p>
+
+<p>  <code>password</code> is a <strong>Password Parameter</strong>.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-3.png" alt="" /></p>
+
+<p>  <code>action</code> is a <strong>Choice Parameter</strong> with the following options: <code>update</code>, <code>tag</code> and <code>rollback</code>
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-4.png" alt="" /></p>
+
+<p><strong>9.</strong> Now, lets configure the Source Code Management. In this example, I have published the <a href="https://github.com/eddumelendez/liquibase-demo">demo</a> in GitHub.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-5.png" alt="" /></p>
+
+<p><strong>10.</strong> Now, go to <strong>Build</strong> section, click on <em>Add build step</em> and choose <em>Invoke top-level Maven targets</em>. Add the maven&rsquo;s goal and properties. Then, <em>Save</em>.</p>
+
+<p>Maven Goal:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn install -P$action</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Maven Properties:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>liquibase.driver=$driver
+</span><span class='line'>liquibase.username=$username
+</span><span class='line'>liquibase.password=$password
+</span><span class='line'>liquibase.url=$url
+</span><span class='line'>liquibase.changeLogFile=$changeLogFile
+</span><span class='line'>liquibase.rollbackTag=$tag
+</span><span class='line'>liquibase.tag=$tag
+</span><span class='line'>liquibase.promptOnNonLocalDatabase=false</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p>
+
+<p><strong>11.</strong> Finally, click <em>Build with parameters</em>, test your job and enjoy.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-7.png" alt="" /></p>
 
 <p>Avoid risks and say good bye to manual tasks. For that reason, I love automation!</p>
 
@@ -243,10 +263,13 @@ and Zuul caught my attention.</p>
 
 <p><strong>3.</strong> Instal Mysql</p>
 
-<pre><code>    yum install-y mysql-server mysql-devel
-    chkconfig mysqld on
-    service mysqld start
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum install-y mysql-server mysql-devel
+</span><span class='line'>chkconfig mysqld on
+</span><span class='line'>service mysqld start</span></code></pre></td></tr></table></div></figure>
+
 
 <p><strong>4.</strong> Create zuul database.</p>
 
@@ -256,13 +279,15 @@ and Zuul caught my attention.</p>
 
 <p>   <strong>Unix:</strong> %TOMCAT_HOME%/bin/catalina.sh</p>
 
-<pre><code>   export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export JAVA_OPTS=-Dspring.profiles.active="security-ldap"</span></code></pre></td></tr></table></div></figure>
+
 
 <p>   <strong>Windows:</strong> %TOMCAT_HOME%/bin/catalina.bat</p>
 
-<pre><code>   set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>set JAVA_OPTS=-Dspring.profiles.active="security-ldap"</span></code></pre></td></tr></table></div></figure>
+
 
 <p><strong>7.</strong> Add database driver into <strong>%TOMCAT_HOME%/lib</strong>.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Zuul | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/zuul/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-09-02T21:42:41-05:00</updated>
+  <updated>2014-09-02T23:07:35-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -53,10 +53,11 @@ and Zuul caught my attention.</p>
 
 <p><strong>3.</strong> Instal Mysql</p>
 
-<pre><code>    yum install-y mysql-server mysql-devel
-    chkconfig mysqld on
-    service mysqld start
-</code></pre>
+<p><code>
+yum install-y mysql-server mysql-devel
+chkconfig mysqld on
+service mysqld start
+</code></p>
 
 <p><strong>4.</strong> Create zuul database.</p>
 
@@ -66,13 +67,15 @@ and Zuul caught my attention.</p>
 
 <p>   <strong>Unix:</strong> %TOMCAT_HOME%/bin/catalina.sh</p>
 
-<pre><code>   export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></pre>
+<p><code>
+export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></p>
 
 <p>   <strong>Windows:</strong> %TOMCAT_HOME%/bin/catalina.bat</p>
 
-<pre><code>   set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></pre>
+<p><code>
+set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></p>
 
 <p><strong>7.</strong> Add database driver into <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
