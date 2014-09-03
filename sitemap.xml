@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/</loc>
+    <lastmod>2014-08-30T21:35:39-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/08/30/jenkins-and-liquibase-working-together/</loc>
+    <lastmod>2014-08-30T02:03:53-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/</loc>
+    <lastmod>2014-08-11T14:23:31-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management/</loc>
+    <lastmod>2014-08-11T01:23:06-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials/</loc>
+    <lastmod>2014-07-01T00:36:56-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/04/27/continuous-inspection-with-sonarqube/</loc>
+    <lastmod>2014-04-27T23:28:37-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/04/27/cloudbees/</loc>
+    <lastmod>2014-04-27T21:49:32-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/03/27/database-change-management/</loc>
+    <lastmod>2014-03-27T22:15:11-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility/</loc>
+    <lastmod>2014-03-27T22:01:18-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/03/23/junit-and-mockito/</loc>
+    <lastmod>2014-03-23T20:55:45-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog/</loc>
+    <lastmod>2014-03-23T11:52:28-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://eddumelendez.github.io/blog/archives/</loc>
+    <lastmod>2014-09-02T21:36:21-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/</loc>
+    <lastmod>2014-09-02T21:36:21-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eddumelendez.github.io/about/</loc>
+    <lastmod>2014-09-02T21:36:21-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+</urlset>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sonarqube | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/sonarqube/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-09-02T21:36:21-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Continuous Inspection With SonarQube]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/04/27/continuous-inspection-with-sonarqube/"/>
+    <updated>2014-04-27T23:28:37-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/04/27/continuous-inspection-with-sonarqube</id>
+    <content type="html"><![CDATA[<h2>What is Continuous Inspection?</h2>
+
+<p>It is an Agile Practice which tell us inspect the source code in order to find bad habits avoiding issues and bad design in the future.</p>
+
+<h2>What is SonarQube?</h2>
+
+<p><a href="http://www.sonarqube.org/">SonarQube</a> is an Open Source Project based on seven axes:</p>
+
+<ol>
+<li>Potential bugs</li>
+<li>Coding rules</li>
+<li>Tests</li>
+<li>Duplications</li>
+<li>Comments</li>
+<li>Architecture and design</li>
+<li>Complexity</li>
+</ol>
+
+
+<p>Sonar (the firstname of this project) or SonarQube (current name) help us to identify points mentioned above.</p>
+
+<h4>Did you remember this phrase?</h4>
+
+<blockquote><p>Loose coupling and high cohesion.</p></blockquote>
+
+<p>Into the dashboard, you can see RFC (Response For Class) and LCOM4 (Lack of Cohesion Of Methods version 4). Those are related to Coupling and Cohesion respectively.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/sonarqube-RFC.png" alt="" /></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/sonarqube-LCOM4.png" alt="" /></p>
+
+<p><strong>Code Review</strong> and <strong>Pair Programming</strong> are practices that we need to do in order to support Continuous Inspection Process.</p>
+]]></content>
+  </entry>
+  
+</feed>
