@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rabbitmq | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/rabbitmq/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-10-06T00:57:40-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Review: RabbitMQ Essentials]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials/"/>
+    <updated>2014-07-01T00:36:56-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials</id>
+    <content type="html"><![CDATA[<p>I have had the opportunity to have acces to <strong>&ldquo;RabbitMQ Essentials&rdquo;</strong> book published by Packtpub.com. Thanks to the author David Dossot (@ddossot)</p>
+
+<p>Are you interested in Messaging or Message Queuing?</p>
+
+<p>This is a book that you should to read. It has a very good introduction about Messaging concepts, Advanced Message Queuing Protocol (AMQP) description and core concepts. Differences between AMQP and another protocols.</p>
+
+<p>Chapters:</p>
+
+<ul>
+<li>Chapter 1: A Rabbit Springs to Life</li>
+<li>Chapter 2: Creating an application Inbox</li>
+<li>Chapter 3: Switching to Server-push</li>
+<li>Chapter 4: Handling Application Logs</li>
+<li>Chapter 5: Tweaking Message Delivery</li>
+<li>Chapter 6: Smart Message Routing</li>
+<li>Chapter 7: Taking RabbitMQ to Production</li>
+<li>Chapter 8: Testing and Tracing Applications</li>
+<li>Appendix: Message Schemas</li>
+</ul>
+
+
+<p>The book has a lot of examples in different programming languages, most of them in java but also in ruby and python. It also has a section about load test. So, I think that all the topics are covered.</p>
+
+<p>Link: <a href="http://bit.ly/1mASQR1">RabbitMQ Essentials</a></p>
+]]></content>
+  </entry>
+  
+</feed>

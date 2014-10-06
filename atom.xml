@@ -1,111 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Eddú Meléndez</title>
-  <meta name="author" content="Eddú Meléndez">
-
-  
-  <meta name="description" content="This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me. In the JavaHub, I &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://eddumelendez.github.io">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Eddú Meléndez" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-49292682-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Eddú Meléndez</a></h1>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:eddumelendez.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-10-06T00:57:40-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/05/javaone-2014/">JavaOne 2014</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2014-10-05T19:39:37-05:00" pubdate data-updated="true">Oct 5<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me.</p>
+  <entry>
+    <title type="html"><![CDATA[JavaOne 2014]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/10/05/javaone-2014/"/>
+    <updated>2014-10-05T19:39:37-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/10/05/javaone-2014</id>
+    <content type="html"><![CDATA[<p>This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me.</p>
 
 <p>In the JavaHub, I could take a look about:</p>
 
@@ -196,42 +109,15 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Rei
 <p>Duke Awards<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-4.jpg" alt="" /></p>
 
 <p>Josh Long and me<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-5.jpg" alt="" /></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/02/raml-designing-an-api/">RAML: Designing an API</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-02T23:28:31-05:00" pubdate data-updated="true">Sep 2<sup>nd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As a developers, every day we are working coding many APIs.
+  <entry>
+    <title type="html"><![CDATA[RAML: Designing an API]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/09/02/raml-designing-an-api/"/>
+    <updated>2014-09-02T23:28:31-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/09/02/raml-designing-an-api</id>
+    <content type="html"><![CDATA[<p>As a developers, every day we are working coding many APIs.
 But, <em>what about design?</em> Sometimes due to the project schedule, too much requirements and even the lack of knowledge about what is <code>REST</code>; developers forget about the design of API.<br/>
 Months ago I was surfing on the internet, don&rsquo;t remember where but I read:</p>
 
@@ -550,42 +436,15 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
 <li><a href="http://softwaregarden.io/rest-api-best-practices-reloaded/">Rest API Best(?) Practices Reloaded</a></li>
 </ul>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-30T21:35:39-05:00" pubdate data-updated="true">Aug 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
+  <entry>
+    <title type="html"><![CDATA[Learning Cypher Review]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/"/>
+    <updated>2014-08-30T21:35:39-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review</id>
+    <content type="html"><![CDATA[<p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
 
 <p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
 
@@ -638,42 +497,15 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
 <p><strong>Note:</strong> The author mention to <em>spring-data-neo4j</em> module from springframework which make the configuration and integration easy.</p>
 
 <p>I really recommend this book if you want to dive into Neo4j world.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-30T02:03:53-05:00" pubdate data-updated="true">Aug 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have talked about <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase">Database Change Management using Liquibase</a>.
+  <entry>
+    <title type="html"><![CDATA[Jenkins and Liquibase Working Together]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/30/jenkins-and-liquibase-working-together/"/>
+    <updated>2014-08-30T02:03:53-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/30/jenkins-and-liquibase-working-together</id>
+    <content type="html"><![CDATA[<p>I have talked about <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase">Database Change Management using Liquibase</a>.
 Now, I will talk about the integration with Jenkins CI.</p>
 
 <p>As you can see in the example of my previous post. In the <code>pom.xml</code> there are 3 profiles: <code>update</code>,<code>tag</code> and <code>rollback</code> which will be used by Jenkins.
@@ -747,42 +579,15 @@ The profile approach will be useful in our integration.</p>
 <p>Avoid risks and say good bye to manual tasks. For that reason, I love automation!</p>
 
 <p><strong>Note:</strong> Liquibase can be used inside the java application using <a href="http://www.liquibase.org/documentation/spring.html">spring integration</a>.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-11T14:23:31-05:00" pubdate data-updated="true">Aug 11<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So now, we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
+  <entry>
+    <title type="html"><![CDATA[Database Change Management: Liquibase]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/"/>
+    <updated>2014-08-11T14:23:31-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase</id>
+    <content type="html"><![CDATA[<p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So now, we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
 
 <p>In this blog, I am using sql scripts but there are another ways to work with Liquibase such as XML, YAML, JSON and you have to consider which it is the best option for you.</p>
 
@@ -841,42 +646,15 @@ After that, add scripts into the project. Then you must to register the script a
 <p><strong>4.</strong> Run the ant task <strong>mvn_liquibase_update</strong> again, it will create t_role table.</p>
 
 <p>Now, the scripts execution can be automated using Jenkins.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/11/zuul-application-configuration-management/">Zuul: Application Configuration Management</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-11T01:23:06-05:00" pubdate data-updated="true">Aug 11<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Months ago I read the following blog <strong>Mule Meets Zuul</strong> <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-1/">Part I</a> | <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-2/">Part II</a> at <a href="http://blogs.mulesoft.org">Mulesoft&rsquo;s blog</a>
+  <entry>
+    <title type="html"><![CDATA[Zuul: Application Configuration Management]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management/"/>
+    <updated>2014-08-11T01:23:06-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/11/zuul-application-configuration-management</id>
+    <content type="html"><![CDATA[<p>Months ago I read the following blog <strong>Mule Meets Zuul</strong> <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-1/">Part I</a> | <a href="http://blogs.mulesoft.org/mule-meets-zuul-centralized-properties-management-part-2/">Part II</a> at <a href="http://blogs.mulesoft.org">Mulesoft&rsquo;s blog</a>
 and Zuul caught my attention.</p>
 
 <h2>What is the problem?</h2>
@@ -1010,42 +788,15 @@ and Zuul caught my attention.</p>
 
 <p>You can also create groups.
 <img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-10.png" alt="" /></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/01/review-rabbitmq-essentials/">Review: RabbitMQ Essentials</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-01T00:36:56-05:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have had the opportunity to have acces to <strong>&ldquo;RabbitMQ Essentials&rdquo;</strong> book published by Packtpub.com. Thanks to the author David Dossot (@ddossot)</p>
+  <entry>
+    <title type="html"><![CDATA[Review: RabbitMQ Essentials]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials/"/>
+    <updated>2014-07-01T00:36:56-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/07/01/review-rabbitmq-essentials</id>
+    <content type="html"><![CDATA[<p>I have had the opportunity to have acces to <strong>&ldquo;RabbitMQ Essentials&rdquo;</strong> book published by Packtpub.com. Thanks to the author David Dossot (@ddossot)</p>
 
 <p>Are you interested in Messaging or Message Queuing?</p>
 
@@ -1069,42 +820,15 @@ and Zuul caught my attention.</p>
 <p>The book has a lot of examples in different programming languages, most of them in java but also in ruby and python. It also has a section about load test. So, I think that all the topics are covered.</p>
 
 <p>Link: <a href="http://bit.ly/1mASQR1">RabbitMQ Essentials</a></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/27/continuous-inspection-with-sonarqube/">Continuous Inspection With SonarQube</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-27T23:28:37-05:00" pubdate data-updated="true">Apr 27<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>What is Continuous Inspection?</h2>
+  <entry>
+    <title type="html"><![CDATA[Continuous Inspection With SonarQube]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/04/27/continuous-inspection-with-sonarqube/"/>
+    <updated>2014-04-27T23:28:37-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/04/27/continuous-inspection-with-sonarqube</id>
+    <content type="html"><![CDATA[<h2>What is Continuous Inspection?</h2>
 
 <p>It is an Agile Practice which tell us inspect the source code in order to find bad habits avoiding issues and bad design in the future.</p>
 
@@ -1136,42 +860,15 @@ and Zuul caught my attention.</p>
 <p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/sonarqube-LCOM4.png" alt="" /></p>
 
 <p><strong>Code Review</strong> and <strong>Pair Programming</strong> are practices that we need to do in order to support Continuous Inspection Process.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/27/cloudbees/">Cloudbees</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-27T21:49:32-05:00" pubdate data-updated="true">Apr 27<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found <strong>Cloudbees</strong> and meets my expectation.</p>
+  <entry>
+    <title type="html"><![CDATA[Cloudbees]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/04/27/cloudbees/"/>
+    <updated>2014-04-27T21:49:32-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/04/27/cloudbees</id>
+    <content type="html"><![CDATA[<p>Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found <strong>Cloudbees</strong> and meets my expectation.</p>
 
 <h2>What is Paas?</h2>
 
@@ -1185,42 +882,15 @@ and Zuul caught my attention.</p>
 
 <p><strong>Note:</strong> We have to consider that Cloudbees provide a limit space, if you want more space you have to buy.
 Cloudbees, is a good service. And I hope you can use it.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/27/database-change-management/">Database Change Management</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-27T22:15:11-05:00" pubdate data-updated="true">Mar 27<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First, I have some questions to you:</p>
+  <entry>
+    <title type="html"><![CDATA[Database Change Management]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/"/>
+    <updated>2014-03-27T22:15:11-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/27/database-change-management</id>
+    <content type="html"><![CDATA[<p>First, I have some questions to you:</p>
 
 <ol>
 <li>Do you have scripts into the Source Control Management?</li>
@@ -1260,132 +930,232 @@ Another option is get a backup from production, is not a bad idea if you want to
 
 
 <p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[Embedded Database Compatibility]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility/"/>
+    <updated>2014-03-27T22:01:18-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility</id>
+    <content type="html"><![CDATA[<p>Some weeks ago I was watching a video about <a href="https://www.youtube.com/watch?v=LYVJ69h76nw">Spring Testing</a>, one thing that called my attention was one feature about embedded databases. It is about compatibility with other databases.</p>
+
+<p>From my side, this feature is really useful because when I started using embedded database in my tests I had to change some types or remove lines in my script due to there are not supported (At that time, I didn&rsquo;t know about it)</p>
+
+<p>Lines below you can see how to setup <strong>MYSQL</strong> compatibility into <strong>HSQL</strong> and <strong>H2</strong> databases, both for testing purpose. Also, you can see the dependencies if you are using maven projects.</p>
+
+<h2>HSQL</h2>
+
+<p>You can review this <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html">link</a> for more information.</p>
+
+<figure class='code'><figcaption><span>script.sql</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'>
+</span><span class='line'><span class="k">SET</span> <span class="k">DATABASE</span> <span class="k">SQL</span> <span class="n">SYNTAX</span> <span class="n">MYS</span> <span class="k">TRUE</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>pom.xml</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'>
+</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>org.hsqldb<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>hsqldb<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>2.2.8<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>H2</h2>
+
+<p>You can review this <a href="http://www.h2database.com/html/features.html#compatibility">link</a> for more information.</p>
+
+<figure class='code'><figcaption><span>script.sql</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SET</span> <span class="k">MODE</span> <span class="n">MySQL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>pom.xml</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.3.175<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[JUnit and Mockito]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/23/junit-and-mockito/"/>
+    <updated>2014-03-23T20:55:45-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/23/junit-and-mockito</id>
+    <content type="html"><![CDATA[<p>As you maybe know, <a href="http://junit.org/">JUnit</a> is a java testing framework.</p>
+
+<p>Before to talk about our mock framework, we need to be in the same page about what mock is?</p>
+
+<p>Marting Fowler in his article <a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks are not Stubs</a> said:</p>
+
+<blockquote><p>Mocks are  objects pre-programmed with expectations which form a specification of the calls they are expected to receive.</p></blockquote>
+
+<p><a href="https://code.google.com/p/mockito/">Mockito</a> is the mock framework which we will use.</p>
+
+<p>Lets start with the example, first of all we need to setup our Maven project.</p>
+
+<p><strong>1.</strong> Adding dependencies</p>
+
+<figure class='code'><figcaption><span>pom.xml</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>4.10<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>org.mockito<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>mockito-all<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>1.8.5<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependencies&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-    </article>
+<p><strong>2.</strong> In this example, we will use annotations so we have two ways to enable them.</p>
+
+<figure class='code'><figcaption><span>UserServiceImplTest.java</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RunWith</span><span class="o">(</span><span class="n">MockitoJUnitRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>               <span class="c1">//First method to enable mockito&#39;s annotations</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Before</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">MockitoAnnotations</span><span class="o">.</span><span class="na">initMocks</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>      <span class="c1">//Second method to enable mockito&#39;s annotations</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Note: You can use one of them.</strong></p>
+
+<p><strong>3.</strong> UserServiceImpl HAS-A UserRepository. For that reason, create a UserRepository mock and it will be injected in UserServiceImpl. Then, we can mock UserRepository methods as you can see in step 3.</p>
+
+<figure class='code'><figcaption><span>UserServiceImplTest.java</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Mock</span>                               <span class="c1">//1. Create UserRepository mock object</span>
+</span><span class='line'>  <span class="n">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@InjectMocks</span>                        <span class="c1">//2. Insert UserRepository mock object into UserService</span>
+</span><span class='line'>  <span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Before</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//MockitoAnnotations.initMocks(this);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSomething</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">&quot;emelendez&quot;</span><span class="o">;</span>
+</span><span class='line'>      <span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userRepository</span><span class="o">.</span><span class="na">getPassword</span><span class="o">(</span><span class="n">username</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="s">&quot;PasswordMock&quot;</span><span class="o">);</span> <span class="c1">//3. Mocking objects</span>
+</span><span class='line'>      <span class="n">userService</span><span class="o">.</span><span class="na">validateCredential</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userRepository</span><span class="o">).</span><span class="na">getPassword</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can download the source code <a href="https://github.com/eddumelendez/mockito">here</a></p>
+]]></content>
+  </entry>
   
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
+  <entry>
+    <title type="html"><![CDATA[Why Am I Writing This Blog?]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog/"/>
+    <updated>2014-03-23T11:52:28-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/23/why-am-i-writing-this-blog</id>
+    <content type="html"><![CDATA[<p>I am starting writing this blog because I want to share my knowledge and expertise with everyone. Also, I would like to get feedback from others.</p>
+
+<p>My favourite topics are related to:</p>
+
+<ul>
+<li>Agile Practices</li>
+<li>Maven</li>
+<li>Mule ESB</li>
+<li>Spring Framework</li>
+</ul>
+
+
+<p>Also, I will share some books that I have taken into consideration during my continuous improvement process.</p>
+]]></content>
+  </entry>
   
-    
-<section>
-	<span>
-		<img src="http://www.gravatar.com/avatar/cf9e8d46103d66657d9c6817a5aa35d3" alt="Gravatar of Eddú Meléndez " title="Gravatar of Eddú Meléndez" />
-	</span>
-</section>
-
-<section>
-  <h1>Follow Me</h1>
-  <div id="twitter-profile" style="margin-top:0.5em;">
-    <p>
-      <a href="https://twitter.com/eddumelendez" class="twitter-follow-button" data-show-count="false">Follow @eddumelendez</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    </p>
-  </div>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/10/05/javaone-2014/">JavaOne 2014</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/02/raml-designing-an-api/">RAML: Designing an API</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Eddú Meléndez -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'eddumelendez';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>

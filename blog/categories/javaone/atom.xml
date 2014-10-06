@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javaone | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/javaone/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-10-06T00:57:40-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JavaOne 2014]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/10/05/javaone-2014/"/>
+    <updated>2014-10-05T19:39:37-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/10/05/javaone-2014</id>
+    <content type="html"><![CDATA[<p>This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me.</p>
+
+<p>In the JavaHub, I could take a look about:</p>
+
+<ul>
+<li>Mission Control.</li>
+<li>3D Modeling and Printing, using Java FX.</li>
+<li>New features in Netbeans, which allow us to migrate from older java versions to java 8 and use Streams.</li>
+<li>Internet of Things, using Java Embedded and Raspberry Pi.</li>
+<li>Hackergarten, the place where you can contribute in open source projects talking with the experts.</li>
+</ul>
+
+
+<p>Some companies were present in this event such as:
+Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
+
+<p>Also, had the chance to meet:</p>
+
+<ul>
+<li>Anton Arhipov &ndash; <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
+<li>Arun Gupta &ndash; <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
+<li>Benjamin Muschko &ndash; <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
+<li>John Ferguson &ndash; <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
+<li>Josh Long &ndash; <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
+<li>Phill Weeb &ndash; <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
+</ul>
+
+
+<p>Below, are the sessions I found most interesting:</p>
+
+<p>Sunday</p>
+
+<ul>
+<li>Introduction to Java 8: JVM, Language, and Platform.</li>
+<li>Starting a JUGgernaut: How to Start and Rapidly Grow Your JUG.</li>
+<li>Java Strategy and Technical Keynotes.</li>
+</ul>
+
+
+<p>Monday</p>
+
+<ul>
+<li>Hadoop for Java Developers. <a href="http://goo.gl/f2CwNz">http://goo.gl/f2CwNz</a></li>
+<li>Next Step in Automation: Elastic Build Environment.</li>
+<li>Programming with Streams in Java 8.</li>
+</ul>
+
+
+<p>Tuesday</p>
+
+<ul>
+<li>Devoxx4Kids for Parents.</li>
+<li>Functional UIs with Java 8 and Vaadin.</li>
+<li>Building a Continuous Delivery Pipeline with Gradle and Jenkins.</li>
+</ul>
+
+
+<p>Wednesday</p>
+
+<ul>
+<li>Continuous Delivery and Zero Downtime: What Your Architecture Needs to Succeed.</li>
+<li>Apache TomEE, Java EE Web Profile, and More on Tomcat.</li>
+<li>REST Assured: Hypermedia APIs with Spring MVC.</li>
+</ul>
+
+
+<p>Tuesday</p>
+
+<ul>
+<li>The Deploy Factory: Open Source Tools for Java Deployment.</li>
+<li>Run Java Applications with Docker on the Raspberry Pi and Other Platforms.</li>
+</ul>
+
+
+<p><strong>Java 8</strong> was the star during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
+
+<blockquote><p>Java arrived later with lambdas but arrived with the desserts (Streams)</p></blockquote>
+
+<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC.</p>
+
+<p><strong>JavaOne</strong> is the best place to meet people, authors, learn new things, get stuff like raspberry pi, books and t-shirts and drink a beer.</p>
+
+<p>Duke and me<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-1.jpg" alt="" /></p>
+
+<p>Keynote<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-2.jpg" alt="" /></p>
+
+<p>Duke<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-3.jpg" alt="" /></p>
+
+<p>Duke Awards<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-4.jpg" alt="" /></p>
+
+<p>Josh Long and me<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-5.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Liquibase | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/liquibase/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-10-06T00:57:40-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Jenkins and Liquibase Working Together]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/30/jenkins-and-liquibase-working-together/"/>
+    <updated>2014-08-30T02:03:53-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/30/jenkins-and-liquibase-working-together</id>
+    <content type="html"><![CDATA[<p>I have talked about <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase">Database Change Management using Liquibase</a>.
+Now, I will talk about the integration with Jenkins CI.</p>
+
+<p>As you can see in the example of my previous post. In the <code>pom.xml</code> there are 3 profiles: <code>update</code>,<code>tag</code> and <code>rollback</code> which will be used by Jenkins.
+The profile approach will be useful in our integration.</p>
+
+<p>I am going to use <strong>Cloudbees</strong> (PaaS)</p>
+
+<p><strong>1.</strong> First, you need to have an <a href="http://www.cloudbees.com/">Cloudbees</a> account.</p>
+
+<p><strong>2.</strong> Click on <em>Databases</em> and then click <em>Add Database</em>.</p>
+
+<p><strong>3.</strong> Create a liquibase_demo database.</p>
+
+<p><strong>4.</strong> Click on <em>Builds</em>, Jenkins dashboard will be display.</p>
+
+<p><strong>5.</strong> Create <em>New Job</em>.</p>
+
+<p><strong>6.</strong> Put a name, choose <em>Build a free-style software project</em> option and then click <em>OK</em>.</p>
+
+<p><strong>7.</strong> Now, let start to configure Jenkins&rsquo;s job. You will be able to see the image below
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-1.png" alt="" /></p>
+
+<p><strong>8.</strong> Check <em>This build is parameterized</em> option. Then, click <em>Add Parameter</em>. Add the following parameters: <code>driver</code>, <code>url</code>, <code>username</code>, <code>password</code>, <code>changeLogFile</code>, <code>tag</code> and <code>action</code>.</p>
+
+<p>  <code>driver</code>, <code>url</code>, <code>username</code>, <code>changeLogFile</code>, <code>tag</code> are <strong>String Parameter</strong>
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-2.png" alt="" /></p>
+
+<p>  <code>password</code> is a <strong>Password Parameter</strong>.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-3.png" alt="" /></p>
+
+<p>  <code>action</code> is a <strong>Choice Parameter</strong> with the following options: <code>update</code>, <code>tag</code> and <code>rollback</code>
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-4.png" alt="" /></p>
+
+<p><strong>9.</strong> Now, lets configure the Source Code Management. In this example, I have published the <a href="https://github.com/eddumelendez/liquibase-demo">demo</a> in GitHub.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-5.png" alt="" /></p>
+
+<p><strong>10.</strong> Now, go to <strong>Build</strong> section, click on <em>Add build step</em> and choose <em>Invoke top-level Maven targets</em>. Add the maven&rsquo;s goal and properties. Then, <em>Save</em>.</p>
+
+<p>Maven Goal:</p>
+
+<p><code>
+mvn install -P$action
+</code></p>
+
+<p>Maven Properties:</p>
+
+<p><code>
+liquibase.driver=$driver
+liquibase.username=$username
+liquibase.password=$password
+liquibase.url=$url
+liquibase.changeLogFile=$changeLogFile
+liquibase.rollbackTag=$tag
+liquibase.tag=$tag
+liquibase.promptOnNonLocalDatabase=false
+</code></p>
+
+<p>  If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p>
+
+<p><strong>11.</strong> Finally, click <em>Build with parameters</em>, test your job and enjoy.
+  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-7.png" alt="" /></p>
+
+<p>Avoid risks and say good bye to manual tasks. For that reason, I love automation!</p>
+
+<p><strong>Note:</strong> Liquibase can be used inside the java application using <a href="http://www.liquibase.org/documentation/spring.html">spring integration</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Database Change Management: Liquibase]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/"/>
+    <updated>2014-08-11T14:23:31-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase</id>
+    <content type="html"><![CDATA[<p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So now, we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
+
+<p>In this blog, I am using sql scripts but there are another ways to work with Liquibase such as XML, YAML, JSON and you have to consider which it is the best option for you.</p>
+
+<h2>What is Liquibase?</h2>
+
+<p>It is an open source project which help us to manage the scripts execution into the database avoiding headaches during the SDLC.</p>
+
+<h2>How liquibase works?</h2>
+
+<p>First of all, you need to add the liquibase dependency and the database dependency (mysql in this post) into the pom.xml
+After that, add scripts into the project. Then you must to register the script added into the liquibase configuration xml.</p>
+
+<p>Take into account that if your script is not registered into the liquibase configuration xml, script will not be executed automatically.</p>
+
+<p>Finally you can run the following maven goal <strong>liquibase:update</strong>, which will create two tables into the database. All the scripts executed against the database will be stored into the <strong>databasechangelog</strong> table.</p>
+
+<h2>Pre-requisites</h2>
+
+<ul>
+<li>Java</li>
+<li>Ant</li>
+<li>Maven</li>
+</ul>
+
+
+<h2>Liquibase&rsquo;s Goals</h2>
+
+<p>I will mention just some of them, the list below are the most used by me:</p>
+
+<ul>
+<li><code>rollback</code>: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
+<li><code>tag</code>: mark the last script executed.</li>
+<li><code>update</code>: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
+<li><code>updateTestingRollback</code>: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
+</ul>
+
+
+<blockquote><p><strong>Note:</strong> See all the liquibase&rsquo;s goals <a href="http://www.liquibase.org/documentation/maven/">here</a>.</p></blockquote>
+
+<h2>Demo</h2>
+
+<p>You can download the example <a href="https://github.com/eddumelendez/liquibase-demo">here</a>.</p>
+
+<p>As you can see, there are <strong>param.properties</strong> which have the database connection and another values.</p>
+
+<p><strong>1.</strong> Lets explain some key properties:</p>
+
+<p><strong>changeLogFile</strong>, filename which contains scripts to be executed.</p>
+
+<p><strong>tag</strong>, the name of tag.</p>
+
+<p><strong>2.</strong> Run the ant task <strong>mvn_liquibase_update</strong>, it will create t_user table. Also, script executed will be registered into the <strong>databasechangelog</strong> table.</p>
+
+<p><strong>3.</strong> Now, lets change <strong>changeLogFile</strong> value into the <strong>params.properties</strong> by db.changelog-1.1.0.xml</p>
+
+<p><strong>4.</strong> Run the ant task <strong>mvn_liquibase_update</strong> again, it will create t_role table.</p>
+
+<p>Now, the scripts execution can be automated using Jenkins.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Database Change Management]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/"/>
+    <updated>2014-03-27T22:15:11-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/03/27/database-change-management</id>
+    <content type="html"><![CDATA[<p>First, I have some questions to you:</p>
+
+<ol>
+<li>Do you have scripts into the Source Control Management?</li>
+<li>Do you know which scripts have been executed into the database?</li>
+<li>Do you write scripts for rollback?</li>
+<li>Are DBAs involve in your development process?</li>
+<li>Tell me, how do you manage your database changes?</li>
+</ol>
+
+
+<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
+Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
+
+<h2>What it is my point?</h2>
+
+<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
+
+<h2>Which is involve?</h2>
+
+<ol>
+<li>Every database modification should be written as a delta script.</li>
+<li>Add rollback section to your scripts.</li>
+<li>Use a naming conventions for your scripts.</li>
+<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
+<li>Version Control your scripts.</li>
+<li>Maintain a database changelog.</li>
+</ol>
+
+
+<h2>Advantages</h2>
+
+<ol>
+<li>Reduce risks during deployments.</li>
+<li>Ensure you are executing the right scripts.</li>
+<li>You can build a new database.</li>
+</ol>
+
+
+<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+]]></content>
+  </entry>
+  
+</feed>
