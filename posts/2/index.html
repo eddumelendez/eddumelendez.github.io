@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Some weeks ago I was watching a video about Spring Testing, one thing that called my attention was one feature about embedded databases. It is about &hellip;">
+  <meta name="description" content="Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,130 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/27/cloudbees/">Cloudbees</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-27T21:49:32-05:00" pubdate data-updated="true">Apr 27<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found <strong>Cloudbees</strong> and meets my expectation.</p>
+
+<h2>What is Paas?</h2>
+
+<p>Nowadays, we should know about <em>Platform as a Service</em>. But, it doesn&rsquo;t matter if you don&rsquo;t know it. You can learn something new everyday. Briefly, PaaS is a environment on cloud based on products from the providers. So, Cloudbees is a <strong>PaaS</strong>. In this case, Cloudbees was built using Sonar, Jenkins, Subversion, Git, MySQL, Tomcat and many other tools.</p>
+
+<h2>What can you find on Cloudbees?</h2>
+
+<p>You can find several products such as I have mentioned before, besides JFrog, SendGrid, AppDynamics, New Relic, Mongo HQ.</p>
+
+<p>I suggest to use it at university projects. Sometimes we need to application server, and using Cloudbees we can have source control management, database, application server, maven repository. It is a good place to start teaching about <em>Continuous Integration</em>, <em>Continuous Delivery</em>.</p>
+
+<p><strong>Note:</strong> We have to consider that Cloudbees provide a limit space, if you want more space you have to buy.
+Cloudbees, is a good service. And I hope you can use it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/27/database-change-management/">Database Change Management</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-27T22:15:11-05:00" pubdate data-updated="true">Mar 27<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First, I have some questions to you:</p>
+
+<ol>
+<li>Do you have scripts into the Source Control Management?</li>
+<li>Do you know which scripts have been executed into the database?</li>
+<li>Do you write scripts for rollback?</li>
+<li>Are DBAs involve in your development process?</li>
+<li>Tell me, how do you manage your database changes?</li>
+</ol>
+
+
+<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
+Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
+
+<h2>What it is my point?</h2>
+
+<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
+
+<h2>Which is involve?</h2>
+
+<ol>
+<li>Every database modification should be written as a delta script.</li>
+<li>Add rollback section to your scripts.</li>
+<li>Use a naming conventions for your scripts.</li>
+<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
+<li>Version Control your scripts.</li>
+<li>Maintain a database changelog.</li>
+</ol>
+
+
+<h2>Advantages</h2>
+
+<ol>
+<li>Reduce risks during deployments.</li>
+<li>Ensure you are executing the right scripts.</li>
+<li>You can build a new database.</li>
+</ol>
+
+
+<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -414,6 +538,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/18/introduction-to-gradle/">Introduction to Gradle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/08/news-about-java-8/">News About Java 8</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/05/javaone-2014/">JavaOne 2014</a>
       </li>
     
@@ -423,14 +555,6 @@
     
       <li class="post">
         <a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a>
       </li>
     
   </ul>

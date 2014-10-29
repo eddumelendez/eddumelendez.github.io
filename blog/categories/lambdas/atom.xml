@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Lambdas | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/lambdas/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-10-29T02:07:06-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[News About Java 8]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/10/08/news-about-java-8/"/>
+    <updated>2014-10-08T22:09:19-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/10/08/news-about-java-8</id>
+    <content type="html"><![CDATA[<h2>Lambdas</h2>
+
+<p>  It&rsquo;s the new way to call anonymous classes.</p>
+
+<p>  () &ndash;> System.out.println(&ldquo;Hello world&rdquo;);
+  customer &ndash;> customer.getLastname();</p>
+
+<h2>Streams API</h2>
+
+<p>  Return friend list greater than 18 years old.</p>
+
+<p>  Old fashionable way:</p>
+
+<p>  Now:
+  friends.stream()</p>
+
+<pre><code>      .filter(friend -&gt; friend.getAge() &gt; 18)
+      .map(Friend::getName)
+      .collect(Collectors.toList());
+</code></pre>
+
+<p>  There are <code>eager</code> and <code>lazy</code> methods inside of Streams API.</p>
+
+<ul>
+<li><p>Eager, return some value or void.</p></li>
+<li><p>Lazy, return another stream.</p></li>
+</ul>
+
+
+<h2>Default Methods</h2>
+
+<p>  public default void welcome() {</p>
+
+<pre><code>System.out.println("Hi, I am a default method")
+</code></pre>
+
+<p>  }</p>
+
+<h2>Method References</h2>
+
+<p>  Customer::getFirstname
+  Customer::new</p>
+
+<h2>Date and Time API</h2>
+]]></content>
+  </entry>
+  
+</feed>

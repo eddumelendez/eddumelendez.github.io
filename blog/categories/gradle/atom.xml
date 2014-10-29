@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gradle | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/gradle/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2014-10-29T02:07:06-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Introduction to Gradle]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/10/18/introduction-to-gradle/"/>
+    <updated>2014-10-18T08:57:01-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/10/18/introduction-to-gradle</id>
+    <content type="html"><![CDATA[<p><code>Gradle</code> is called the next generation of <strong>build automation</strong> and <strong>dependency management</strong>. If you have used <code>Ant</code> or <code>Maven</code> you know what that mean.</p>
+
+<p><code>Gradle</code> is based on <code>Groovy</code>. It has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
+
+<p>The company behind this project is <strong>Gradleware</strong>.</p>
+
+<h6>Build Automation</h6>
+
+<p>  As you know, manual tasks are error-prone and tedious. Take in mind that you are working in a project and you have to compile your code&hellip; manually!!! It&rsquo;s boring and you are spending time if you are doing this, Can you imaging running <code>javac</code> command for all your project and dependencies? and after that you need to package the artifact in a <code>jar</code> or <code>war</code>. <code>Ant</code> is the first tool which help developers to write a xml file with all the step to compile, copy, package artifacts. Currently, <code>Maven</code> have standardized all of this and it is charge of to run all the previous tasks and manage the dependendencies.</p>
+
+<h6>Dependency Management</h6>
+
+<p>All the projects have dependencies with other projects, years ago and even now is a headache when you are copying and pasting jars inside your projects. To avoid this pain <code>maven</code> and <code>ivy</code> are tools to manage this.</p>
+
+<h2>Getting Started</h2>
+
+<p>It is really cool to see what amazing things you can do with <code>Gradle</code>. It allow us to work with <code>java</code>, <code>groovy</code> and <code>scala</code> projects too.</p>
+
+<p>I really like the easy way to add tasks and manage the dependencies between them. Another good thing is the capability to extend the functionality in <code>Java</code> or <code>Groovy</code>.</p>
+
+<p><code>Gradle</code> have the power run tasks in a new way: Gradle task name abbreviation. For example, if you have created a task called deployInLocalhost&hellip; run <code>gradle dIL</code> instead of<code>gradle deployInLocalhost</code> but make sure you have not another task with the same abbreviation.</p>
+
+<h2>Gradle Wrapper</h2>
+
+<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper to the rescue!!!</p>
+
+<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compabilities troubles o any other issue. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
+
+<h2>Gradle Daemon</h2>
+
+<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &mdash;daemon</strong> and finalize the process <strong>gradle &mdash;stop</strong>. This is useful when you run unit test many times.</p>
+
+<p><strong>Note:</strong> expire after 3 hours.</p>
+
+<h2>Moving from Maven to Gradle</h2>
+
+<p>Currently, you may are working with <code>maven</code> so if you want to try <code>gradle</code> without lost all your maven configuration you can run this command <strong>gradle maven2gradle</strong>. It will create the <code>build.gradle</code> and <code>settings.gradle</code> files with all the dependencies and configuration. Looks great, right? but as a new build automation tool, <code>gradle</code> is growing so if you have additional plugin configuration in your <code>pom.xml</code> this will not be migrated. Your project can live with both.</p>
+
+<h2>Gradle Commands</h2>
+
+<p>I will describe some useful commands but to get more information visit <a href="http://www.gradle.org/docs/current/userguide/gradle_command_line.html">online documentation</a>.</p>
+
+<p>All those commands start with <code>gradle</code>: <code>gradle &lt;command&gt;</code></p>
+
+<p>Commands:</p>
+
+<p><strong>-v or &mdash;version</strong> &ndash;> display gradle version.</p>
+
+<p><strong>tasks</strong> &ndash;> display tasks related to the project.</p>
+
+<p><strong>-q</strong> &ndash;> show tasks output.</p>
+
+<p><strong>-x</strong> or <strong>gradle &mdash;exclude-task</strong> &ndash;> exclude the execution of tasks defined.</p>
+
+<p><strong>dependencies</strong> &ndash;> display project dependencies and how dependencies were solved.</p>
+
+<p><strong>projects</strong> &ndash;> list all the project and subprojects.</p>
+
+<p><strong>properties</strong> &ndash;> list all available properties in the project.</p>
+
+<p><strong>-a</strong> or <strong>&mdash;no-rebuild</strong> &ndash;> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. it works if you are only changing files in a single project.</p>
+
+<p><strong>&mdash;refresh-dependencies</strong> &ndash;> refresh project dependenciees</p>
+
+<p><strong>-b</strong> or <strong>&mdash;build-file</strong> &ndash;> give the option to choose another build script.</p>
+
+<p><strong>-Dtest.debug test</strong> &ndash;> debug test in port 5005</p>
+]]></content>
+  </entry>
+  
+</feed>

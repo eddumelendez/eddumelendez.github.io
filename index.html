@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me. In the JavaHub, I &hellip;">
+  <meta name="description" content="Gradle is called the next generation of build automation and dependency management. If you have used Ant or Maven you know what that mean. Gradle is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,187 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/18/introduction-to-gradle/">Introduction to Gradle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-18T08:57:01-05:00" pubdate data-updated="true">Oct 18<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Gradle</code> is called the next generation of <strong>build automation</strong> and <strong>dependency management</strong>. If you have used <code>Ant</code> or <code>Maven</code> you know what that mean.</p>
+
+<p><code>Gradle</code> is based on <code>Groovy</code>. It has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
+
+<p>The company behind this project is <strong>Gradleware</strong>.</p>
+
+<h6>Build Automation</h6>
+
+<p>  As you know, manual tasks are error-prone and tedious. Take in mind that you are working in a project and you have to compile your code&hellip; manually!!! It&rsquo;s boring and you are spending time if you are doing this, Can you imaging running <code>javac</code> command for all your project and dependencies? and after that you need to package the artifact in a <code>jar</code> or <code>war</code>. <code>Ant</code> is the first tool which help developers to write a xml file with all the step to compile, copy, package artifacts. Currently, <code>Maven</code> have standardized all of this and it is charge of to run all the previous tasks and manage the dependendencies.</p>
+
+<h6>Dependency Management</h6>
+
+<p>All the projects have dependencies with other projects, years ago and even now is a headache when you are copying and pasting jars inside your projects. To avoid this pain <code>maven</code> and <code>ivy</code> are tools to manage this.</p>
+
+<h2>Getting Started</h2>
+
+<p>It is really cool to see what amazing things you can do with <code>Gradle</code>. It allow us to work with <code>java</code>, <code>groovy</code> and <code>scala</code> projects too.</p>
+
+<p>I really like the easy way to add tasks and manage the dependencies between them. Another good thing is the capability to extend the functionality in <code>Java</code> or <code>Groovy</code>.</p>
+
+<p><code>Gradle</code> have the power run tasks in a new way: Gradle task name abbreviation. For example, if you have created a task called deployInLocalhost&hellip; run <code>gradle dIL</code> instead of<code>gradle deployInLocalhost</code> but make sure you have not another task with the same abbreviation.</p>
+
+<h2>Gradle Wrapper</h2>
+
+<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper to the rescue!!!</p>
+
+<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compabilities troubles o any other issue. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
+
+<h2>Gradle Daemon</h2>
+
+<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &mdash;daemon</strong> and finalize the process <strong>gradle &mdash;stop</strong>. This is useful when you run unit test many times.</p>
+
+<p><strong>Note:</strong> expire after 3 hours.</p>
+
+<h2>Moving from Maven to Gradle</h2>
+
+<p>Currently, you may are working with <code>maven</code> so if you want to try <code>gradle</code> without lost all your maven configuration you can run this command <strong>gradle maven2gradle</strong>. It will create the <code>build.gradle</code> and <code>settings.gradle</code> files with all the dependencies and configuration. Looks great, right? but as a new build automation tool, <code>gradle</code> is growing so if you have additional plugin configuration in your <code>pom.xml</code> this will not be migrated. Your project can live with both.</p>
+
+<h2>Gradle Commands</h2>
+
+<p>I will describe some useful commands but to get more information visit <a href="http://www.gradle.org/docs/current/userguide/gradle_command_line.html">online documentation</a>.</p>
+
+<p>All those commands start with <code>gradle</code>: <code>gradle &lt;command&gt;</code></p>
+
+<p>Commands:</p>
+
+<p><strong>-v or &mdash;version</strong> &ndash;> display gradle version.</p>
+
+<p><strong>tasks</strong> &ndash;> display tasks related to the project.</p>
+
+<p><strong>-q</strong> &ndash;> show tasks output.</p>
+
+<p><strong>-x</strong> or <strong>gradle &mdash;exclude-task</strong> &ndash;> exclude the execution of tasks defined.</p>
+
+<p><strong>dependencies</strong> &ndash;> display project dependencies and how dependencies were solved.</p>
+
+<p><strong>projects</strong> &ndash;> list all the project and subprojects.</p>
+
+<p><strong>properties</strong> &ndash;> list all available properties in the project.</p>
+
+<p><strong>-a</strong> or <strong>&mdash;no-rebuild</strong> &ndash;> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. it works if you are only changing files in a single project.</p>
+
+<p><strong>&mdash;refresh-dependencies</strong> &ndash;> refresh project dependenciees</p>
+
+<p><strong>-b</strong> or <strong>&mdash;build-file</strong> &ndash;> give the option to choose another build script.</p>
+
+<p><strong>-Dtest.debug test</strong> &ndash;> debug test in port 5005</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/08/news-about-java-8/">News About Java 8</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-08T22:09:19-05:00" pubdate data-updated="true">Oct 8<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Lambdas</h2>
+
+<p>  It&rsquo;s the new way to call anonymous classes.</p>
+
+<p>  () &ndash;> System.out.println(&ldquo;Hello world&rdquo;);
+  customer &ndash;> customer.getLastname();</p>
+
+<h2>Streams API</h2>
+
+<p>  Return friend list greater than 18 years old.</p>
+
+<p>  Old fashionable way:</p>
+
+<p>  Now:
+  friends.stream()</p>
+
+<pre><code>      .filter(friend -&gt; friend.getAge() &gt; 18)
+      .map(Friend::getName)
+      .collect(Collectors.toList());
+</code></pre>
+
+<p>  There are <code>eager</code> and <code>lazy</code> methods inside of Streams API.</p>
+
+<ul>
+<li><p>Eager, return some value or void.</p></li>
+<li><p>Lazy, return another stream.</p></li>
+</ul>
+
+
+<h2>Default Methods</h2>
+
+<p>  public default void welcome() {</p>
+
+<pre><code>System.out.println("Hi, I am a default method")
+</code></pre>
+
+<p>  }</p>
+
+<h2>Method References</h2>
+
+<p>  Customer::getFirstname
+  Customer::new</p>
+
+<h2>Date and Time API</h2>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1143,130 +1324,6 @@ and Zuul caught my attention.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/27/cloudbees/">Cloudbees</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-27T21:49:32-05:00" pubdate data-updated="true">Apr 27<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found <strong>Cloudbees</strong> and meets my expectation.</p>
-
-<h2>What is Paas?</h2>
-
-<p>Nowadays, we should know about <em>Platform as a Service</em>. But, it doesn&rsquo;t matter if you don&rsquo;t know it. You can learn something new everyday. Briefly, PaaS is a environment on cloud based on products from the providers. So, Cloudbees is a <strong>PaaS</strong>. In this case, Cloudbees was built using Sonar, Jenkins, Subversion, Git, MySQL, Tomcat and many other tools.</p>
-
-<h2>What can you find on Cloudbees?</h2>
-
-<p>You can find several products such as I have mentioned before, besides JFrog, SendGrid, AppDynamics, New Relic, Mongo HQ.</p>
-
-<p>I suggest to use it at university projects. Sometimes we need to application server, and using Cloudbees we can have source control management, database, application server, maven repository. It is a good place to start teaching about <em>Continuous Integration</em>, <em>Continuous Delivery</em>.</p>
-
-<p><strong>Note:</strong> We have to consider that Cloudbees provide a limit space, if you want more space you have to buy.
-Cloudbees, is a good service. And I hope you can use it.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/27/database-change-management/">Database Change Management</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-27T22:15:11-05:00" pubdate data-updated="true">Mar 27<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First, I have some questions to you:</p>
-
-<ol>
-<li>Do you have scripts into the Source Control Management?</li>
-<li>Do you know which scripts have been executed into the database?</li>
-<li>Do you write scripts for rollback?</li>
-<li>Are DBAs involve in your development process?</li>
-<li>Tell me, how do you manage your database changes?</li>
-</ol>
-
-
-<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
-Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
-
-<h2>What it is my point?</h2>
-
-<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
-
-<h2>Which is involve?</h2>
-
-<ol>
-<li>Every database modification should be written as a delta script.</li>
-<li>Add rollback section to your scripts.</li>
-<li>Use a naming conventions for your scripts.</li>
-<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
-<li>Version Control your scripts.</li>
-<li>Maintain a database changelog.</li>
-</ol>
-
-
-<h2>Advantages</h2>
-
-<ol>
-<li>Reduce risks during deployments.</li>
-<li>Ensure you are executing the right scripts.</li>
-<li>You can build a new database.</li>
-</ol>
-
-
-<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1298,6 +1355,14 @@ Another option is get a backup from production, is not a bad idea if you want to
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/18/introduction-to-gradle/">Introduction to Gradle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/08/news-about-java-8/">News About Java 8</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/05/javaone-2014/">JavaOne 2014</a>
       </li>
     
@@ -1307,14 +1372,6 @@ Another option is get a backup from production, is not a bad idea if you want to
     
       <li class="post">
         <a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a>
       </li>
     
   </ul>
