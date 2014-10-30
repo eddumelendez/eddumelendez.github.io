@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-10-29T02:07:06-05:00</updated>
+  <updated>2014-10-30T01:52:57-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,158 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[News About Java 8]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/10/30/news-about-java-8/"/>
+    <updated>2014-10-30T22:09:19-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/10/30/news-about-java-8</id>
+    <content type="html"><![CDATA[<p>Java 8 was released in March and many cool features have arrived in a functional programming style.</p>
+
+<h2>Lambdas</h2>
+
+<p>Lambdas has been used in other programming languages. In <code>java</code>, it&rsquo;s the new way to call <code>anonymous classes</code>.</p>
+
+<p>If you have been Swing developer, you may have seen lot of this code. Example of <code>anonymous class</code>:</p>
+
+<p>```java
+File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;)).listFiles(new FileFilter() {</p>
+
+<pre><code>       @Override
+       public boolean accept(File pathname) {
+           return pathname.isDirectory();
+       }
+   });
+</code></pre>
+
+<p>```</p>
+
+<p>Below, you can see three approaches to use lambdas:</p>
+
+<p>```java
+() &ndash;> System.out.println(&ldquo;Hello lamdba&rdquo;);</p>
+
+<p>//pass an object
+customer &ndash;> customer.getLastname();</p>
+
+<p>//using blocks
+() &ndash;> {
+  String greeting = &ldquo;Hello lambda block&rdquo;;
+  System.out.println(greeting);
+}
+```</p>
+
+<p>Now, let write our first example using lambdas:</p>
+
+<p>```java
+File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;))</p>
+
+<pre><code>            .listFiles((File pathname) -&gt; pathname.isDirectory());
+</code></pre>
+
+<p>```</p>
+
+<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (&ndash;>) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
+
+<h2>Streams API</h2>
+
+<p>The power to manage collections with readable code is here.</p>
+
+<p>I will work in this example with my favourite books. So, we will print in the console only books that contains <em>&ldquo;o&rdquo;</em></p>
+
+<p>Old fashionable way:</p>
+
+<p>```java
+List<Book> books = new ArrayList&lt;>();
+books.add(BookBuilder.defaultValues().withId(1l).withTitle(&ldquo;Angel &amp; Demons&rdquo;).withIsbn(&ldquo;0-671-02735-2&rdquo;).build());</p>
+
+<p>books.add(BookBuilder.defaultValues().withId(2l).withTitle(&ldquo;The Da Vinci Code&rdquo;).withIsbn(&ldquo;0-385-50420-9&rdquo;).build());</p>
+
+<p>books.add(BookBuilder.defaultValues().withId(3l).withTitle(&ldquo;The Lost Symbol&rdquo;).withIsbn(&ldquo;978-0-385-50422-5&rdquo;).build());</p>
+
+<p>books.add(BookBuilder.defaultValues().withId(4l).withTitle(&ldquo;Inferno&rdquo;).withIsbn(&ldquo;978-0-385-53785-8&rdquo;).build());</p>
+
+<p>for(Book book : books){
+  if (book.getTitle().contains(&ldquo;o&rdquo;)) {</p>
+
+<pre><code>System.out.println(book.getTitle());
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<p>Now we will use Stream API to rewrite the last part:</p>
+
+<p><code>java
+List&lt;String&gt; bookNames = books.stream()
+.filter(book -&gt; book.getTitle().contains("o"))
+.map(Book::getTitle).collect(Collectors.toList());
+System.out.println(bookNames);
+</code></p>
+
+<p>Both are doing the same thing but stream offers another great cool features like parallelStream or group function. Additionally, it is readable code and the <code>ciclomatic complexity</code> is reduced.</p>
+
+<p>There are <code>eager</code> and <code>lazy</code> methods inside of Streams API.</p>
+
+<ul>
+<li>Eager, return some value or void. Ex: foreach, collect.</li>
+<li>Lazy, return another stream. Ex: filter, map.</li>
+</ul>
+
+
+<p><strong>Note:</strong> Streams can be read just once. If you try to work with the same stream twice you will se an exception.</p>
+
+<p>For more infomation about Streams visit the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html">official documentation</a>.</p>
+
+<h2>Default Methods</h2>
+
+<p>In java 8, there are big changes like this. Do you remember interfaces? The place where you define what to do and the class implementation define how.</p>
+
+<p>Default methods has been used in the Java 8 API in order to add new functionality without break existing code. Take a look inside <code>Collection.java</code> you will se that <code>stream()</code> method is a default method.</p>
+
+<p>If you have take a look inside of the API you can see that default method has body or define an action.</p>
+
+<p>```java
+public interface Greeting {</p>
+
+<p>  public default void welcome() {</p>
+
+<pre><code>System.out.println("Hi, I am a default method.")
+</code></pre>
+
+<p>  }</p>
+
+<p>}</p>
+
+<p>class SpanishGreeting implements Greeting {</p>
+
+<p>  @Override
+  public void welcome() {</p>
+
+<pre><code>System.out.println("Hola, soy un método por defecto.")
+</code></pre>
+
+<p>  }</p>
+
+<p>}</p>
+
+<p>class EnglishGreeting implements Greeting {</p>
+
+<p>}
+```</p>
+
+<p>If we call welcome method from SpanishGreeting &ldquo;Hola, soy un método por defecto.&rdquo; will be printed but if you call the method from EnglishGreeting &ldquo;Hi, I am a default method.&rdquo; will be printed.</p>
+
+<h2>Method References</h2>
+
+<p>Everything can be well used or not, in the case of lambdas does nothing, just call the method you can use method references as a easy-to-read approach.</p>
+
+<p><code>java
+Customer::getFirstname //instead  customer -&gt; customer.getFirstname()
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JavaOne 2014]]></title>

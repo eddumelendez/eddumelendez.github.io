@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Gradle | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/gradle/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-10-29T02:07:06-05:00</updated>
+  <updated>2014-10-30T01:52:57-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -26,7 +26,7 @@
 
 <h6>Build Automation</h6>
 
-<p>  As you know, manual tasks are error-prone and tedious. Take in mind that you are working in a project and you have to compile your code&hellip; manually!!! It&rsquo;s boring and you are spending time if you are doing this, Can you imaging running <code>javac</code> command for all your project and dependencies? and after that you need to package the artifact in a <code>jar</code> or <code>war</code>. <code>Ant</code> is the first tool which help developers to write a xml file with all the step to compile, copy, package artifacts. Currently, <code>Maven</code> have standardized all of this and it is charge of to run all the previous tasks and manage the dependendencies.</p>
+<p>As you know, manual tasks are error-prone and tedious. Take in mind that you are working in a project and you have to compile your code&hellip; manually!!! It&rsquo;s boring and you are spending time if you are doing this, Can you imaging running <code>javac</code> command for all your project and dependencies? and after that you need to package the artifact in a <code>jar</code> or <code>war</code>. <code>Ant</code> is the first tool which help developers to write a xml file with all the step to compile, copy, package artifacts. Currently, <code>Maven</code> have standardized all of this and it is charge of to run all the previous tasks and manage the dependencies.</p>
 
 <h6>Dependency Management</h6>
 
@@ -78,9 +78,9 @@
 
 <p><strong>properties</strong> &ndash;> list all available properties in the project.</p>
 
-<p><strong>-a</strong> or <strong>&mdash;no-rebuild</strong> &ndash;> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. it works if you are only changing files in a single project.</p>
+<p><strong>-a</strong> or <strong>&mdash;no-rebuild</strong> &ndash;> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. It works if you are only changing files in a single project.</p>
 
-<p><strong>&mdash;refresh-dependencies</strong> &ndash;> refresh project dependenciees</p>
+<p><strong>&mdash;refresh-dependencies</strong> &ndash;> refresh project dependencies.</p>
 
 <p><strong>-b</strong> or <strong>&mdash;build-file</strong> &ndash;> give the option to choose another build script.</p>
 
