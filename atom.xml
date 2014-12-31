@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2014-10-30T01:52:57-05:00</updated>
+  <updated>2014-12-31T01:05:31-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,232 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Start With Mule ESB]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/12/31/how-to-start-with-mule-esb/"/>
+    <updated>2014-12-31T20:22:57-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2014/12/31/how-to-start-with-mule-esb</id>
+    <content type="html"><![CDATA[<h2>What is an ESB?</h2>
+
+<p>It&rsquo;s an architecture. ESB or Enterprise Service Bus is a Enterprise Integration Pattern (EIP) solves the <code>spaghetti integration</code> pattern.</p>
+
+<h2>What is Mule ESB?</h2>
+
+<p>It is a Open Source Enterprise Service Bus (ESB), which allow to integrate lot of technologies.</p>
+
+<p>Mule main parts:</p>
+
+<ul>
+<li>Component</li>
+<li>Transport</li>
+<li>Transformers</li>
+<li>Inbound/Outbound Routers</li>
+</ul>
+
+
+<p>Mule also provide rich set of:</p>
+
+<ul>
+<li>Routers</li>
+<li>Transformers</li>
+<li>Filters</li>
+</ul>
+
+
+<h2>Using Maven</h2>
+
+<p>Make sure you have set the Mulesoft&rsquo;s repository in <code>settings.xml</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;repositories&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;repository&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;id&gt;</span>mulesoft-release<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;name&gt;</span>Mulesoft Release Repository<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;url&gt;</span>https://repository.mulesoft.org/nexus/content/repositories/public/<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/repository&gt;</span>
+</span><span class='line'><span class="nt">&lt;/repositories&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, you are able to run the following command your terminal:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Using Gradle</h2>
+
+<p>Make sure you have a build.gradle file inside the folder with the following content:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>buildscript {
+</span><span class='line'>    dependencies {
+</span><span class='line'>        classpath group: &#39;org.mulesoft.build&#39;, name: &#39;mule-gradle-plugin&#39;, version: &#39;1.1.0&#39;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    repositories {
+</span><span class='line'>        maven {
+</span><span class='line'>            url &#39;http://repository.mulesoft.org/releases&#39;
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>apply plugin: &#39;mule&#39;
+</span><span class='line'>
+</span><span class='line'>mule.version = &#39;3.5.0&#39;
+</span><span class='line'>
+</span><span class='line'>mule.muleEnterprise = false
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After that you can execute:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>gradle initMuleProject
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By default, <code>mule.muleEnterprise</code> is set to <code>true</code>.</p>
+
+<p>For more information you can visit <a href="https://github.com/mulesoft-labs/mule-gradle-plugin">mule-gradle-plguin</a> documentation.</p>
+
+<p>Using maven or gradle you will be able to see the project like this</p>
+
+<p>Project generated by Gradle<img src="https://dl.dropboxusercontent.com/u/15671111/blog/mule-gradle.png" alt="" /></p>
+
+<h2>Differences between maven and gradle plugin</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Maven        </th>
+<th> Gradle      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Provide <code>mule</code> packaging      </td>
+<td> Provide <code>mule</code> plugin |</td>
+</tr>
+<tr>
+<td></td>
+<td> Allow to deploy in local mule standalone </td>
+<td> Allow to deploy in local mule standalone, Mule Management Console and Cloudhub|</td>
+</tr>
+<tr>
+<td></td>
+<td>&ndash;</td>
+<td>Allow to run application with a simple command|</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>Testing</h1>
+
+<p><code>mule-config.xml</code> is placed inside of <code>src/main/app</code>. Here you will find a http service which will return <code>Hello Wodld!</code> message.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- created by the gradle mule plugin --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;mule</span> <span class="na">xmlns:http=</span><span class="s">&quot;http://www.mulesoft.org/schema/mule/http&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.mulesoft.org/schema/mule/core&quot;</span> <span class="na">xmlns:doc=</span><span class="s">&quot;http://www.mulesoft.org/schema/mule/documentation&quot;</span> <span class="na">xmlns:spring=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span> <span class="na">version=</span><span class="s">&quot;EE-3.4.2&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd</span>
+</span><span class='line'><span class="s">  http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd</span>
+</span><span class='line'><span class="s">  http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;flow</span> <span class="na">name=</span><span class="s">&quot;mule-configFlow1&quot;</span> <span class="na">doc:name=</span><span class="s">&quot;mule-configFlow1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;http:inbound-endpoint</span> <span class="na">exchange-pattern=</span><span class="s">&quot;request-response&quot;</span> <span class="na">host=</span><span class="s">&quot;localhost&quot;</span> <span class="na">port=</span><span class="s">&quot;8081&quot;</span> <span class="na">doc:name=</span><span class="s">&quot;HTTP&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;set-payload</span> <span class="na">doc:name=</span><span class="s">&quot;Set Payload&quot;</span> <span class="na">value=</span><span class="s">&quot;Hello World!&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/flow&gt;</span>
+</span><span class='line'><span class="nt">&lt;/mule&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, proceed to write a test for the existing flow. As you can see response will be validated.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.hamcrest.core.Is</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Assert</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.mule.api.MuleMessage</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.mule.api.client.MuleClient</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.mule.tck.junit4.FunctionalTestCase</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MuleTest</span> <span class="kd">extends</span> <span class="n">FunctionalTestCase</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getConfigFile</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="s">&quot;src/main/app/mule-config.xml&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMuleConfigFlow1</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">MuleClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">muleContext</span><span class="o">.</span><span class="na">getClient</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">MuleMessage</span> <span class="n">message</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">request</span><span class="o">(</span><span class="s">&quot;http://localhost:8081&quot;</span><span class="o">,</span> <span class="mi">3000L</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getPayloadAsString</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">Assert</span><span class="o">.</span><span class="na">assertThat</span><span class="o">(</span><span class="n">payload</span><span class="o">,</span> <span class="n">Is</span><span class="o">.</span><span class="na">is</span><span class="o">(</span><span class="s">&quot;Hello World!&quot;</span><span class="o">));</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[News About Java 8]]></title>
