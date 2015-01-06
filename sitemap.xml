@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://eddumelendez.github.io/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version/</loc>
+    <lastmod>2015-01-06T00:43:59-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://eddumelendez.github.io/blog/2014/12/31/how-to-start-with-mule-esb/</loc>
     <lastmod>2014-12-31T20:22:57-05:00</lastmod>
     <priority>0.8</priority>
@@ -101,21 +107,21 @@
   
   <url>
     <loc>http://eddumelendez.github.io/blog/archives/</loc>
-    <lastmod>2014-12-31T02:01:01-05:00</lastmod>
+    <lastmod>2015-01-06T00:43:36-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://eddumelendez.github.io/</loc>
-    <lastmod>2014-12-31T02:01:01-05:00</lastmod>
+    <lastmod>2015-01-06T00:43:36-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://eddumelendez.github.io/about/</loc>
-    <lastmod>2014-12-31T02:01:01-05:00</lastmod>
+    <lastmod>2015-01-06T00:43:36-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
