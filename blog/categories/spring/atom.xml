@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -53,11 +53,10 @@ and Zuul caught my attention.</p>
 
 <p><strong>3.</strong> Instal Mysql</p>
 
-<p><code>
-yum install-y mysql-server mysql-devel
+<pre><code>yum install-y mysql-server mysql-devel
 chkconfig mysqld on
 service mysqld start
-</code></p>
+</code></pre>
 
 <p><strong>4.</strong> Create zuul database.</p>
 
@@ -67,22 +66,20 @@ service mysqld start
 
 <p>   <strong>Unix:</strong> %TOMCAT_HOME%/bin/catalina.sh</p>
 
-<p><code>
-export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></p>
+<pre><code>export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
 
 <p>   <strong>Windows:</strong> %TOMCAT_HOME%/bin/catalina.bat</p>
 
-<p><code>
-set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></p>
+<pre><code>set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
 
 <p><strong>7.</strong> Add database driver into <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
 <p><strong>8.</strong> Copy ldap.properties and zuul-data-config.properties from <strong>zuul/WEB-INF/classes/examples</strong> to <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
 <p><strong>9.</strong> Modify ldap.properties
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ldap.properties</span></figcaption>
+<figure class='code'><figcaption><span>ldap.properties</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -105,7 +102,7 @@ set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
 </span><span class='line'><span class="na">ldap.group.filter</span><span class="o">=</span><span class="s">member={0}</span>
 </span><span class='line'><span class="na">ldap.user.search.base</span><span class="o">=</span><span class="s">OU=Users,DC=acme,DC=com</span>
 </span><span class='line'><span class="na">ldap.user.search.filter</span><span class="o">=</span><span class="s">uid={0}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p><strong>10.</strong> Start tomcat and zuul application will create the database tables using <a href="http://www.liquibase.org">liquibase</a>.</p>
 

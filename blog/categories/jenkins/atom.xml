@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jenkins | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -59,14 +59,12 @@ The profile approach will be useful in our integration.</p>
 
 <p>Maven Goal:</p>
 
-<p><code>
-mvn install -P$action
-</code></p>
+<pre><code>mvn install -P$action
+</code></pre>
 
 <p>Maven Properties:</p>
 
-<p><code>
-liquibase.driver=$driver
+<pre><code>liquibase.driver=$driver
 liquibase.username=$username
 liquibase.password=$password
 liquibase.url=$url
@@ -74,7 +72,7 @@ liquibase.changeLogFile=$changeLogFile
 liquibase.rollbackTag=$tag
 liquibase.tag=$tag
 liquibase.promptOnNonLocalDatabase=false
-</code></p>
+</code></pre>
 
 <p>  If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.
   <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p>

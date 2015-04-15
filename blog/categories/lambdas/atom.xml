@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Lambdas | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/lambdas/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -26,44 +26,35 @@
 
 <p>If you have been Swing developer, you may have seen lot of this code. Example of <code>anonymous class</code>:</p>
 
-<p>```java
-File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;)).listFiles(new FileFilter() {</p>
-
-<pre><code>       @Override
-       public boolean accept(File pathname) {
-           return pathname.isDirectory();
-       }
-   });
+<pre><code class="java">File[] directories = new File(System.getProperty("user.home")).listFiles(new FileFilter() {
+           @Override
+           public boolean accept(File pathname) {
+               return pathname.isDirectory();
+           }
+       });
 </code></pre>
-
-<p>```</p>
 
 <p>Below, you can see three approaches to use lambdas:</p>
 
-<p>```java
-() &ndash;> System.out.println(&ldquo;Hello lamdba&rdquo;);</p>
+<pre><code class="java">() -&gt; System.out.println("Hello lamdba");
 
-<p>//pass an object
-customer &ndash;> customer.getLastname();</p>
+//pass an object
+customer -&gt; customer.getLastname();
 
-<p>//using blocks
-() &ndash;> {
-  String greeting = &ldquo;Hello lambda block&rdquo;;
+//using blocks
+() -&gt; {
+  String greeting = "Hello lambda block";
   System.out.println(greeting);
 }
-```</p>
+</code></pre>
 
 <p>Now, let write our first example using lambdas:</p>
 
-<p>```java
-File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;))</p>
-
-<pre><code>            .listFiles((File pathname) -&gt; pathname.isDirectory());
+<pre><code class="java">File[] directories = new File(System.getProperty("user.home"))
+                .listFiles((File pathname) -&gt; pathname.isDirectory());
 </code></pre>
 
-<p>```</p>
-
-<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (&ndash;>) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
+<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (->) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
 
 <h2>Streams API</h2>
 
@@ -73,34 +64,29 @@ File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;))</p>
 
 <p>Old fashionable way:</p>
 
-<p>```java
-List<Book> books = new ArrayList&lt;>();
-books.add(BookBuilder.defaultValues().withId(1l).withTitle(&ldquo;Angel &amp; Demons&rdquo;).withIsbn(&ldquo;0-671-02735-2&rdquo;).build());</p>
+<pre><code class="java">List&lt;Book&gt; books = new ArrayList&lt;&gt;();
+books.add(BookBuilder.defaultValues().withId(1l).withTitle("Angel &amp; Demons").withIsbn("0-671-02735-2").build());
 
-<p>books.add(BookBuilder.defaultValues().withId(2l).withTitle(&ldquo;The Da Vinci Code&rdquo;).withIsbn(&ldquo;0-385-50420-9&rdquo;).build());</p>
+books.add(BookBuilder.defaultValues().withId(2l).withTitle("The Da Vinci Code").withIsbn("0-385-50420-9").build());
 
-<p>books.add(BookBuilder.defaultValues().withId(3l).withTitle(&ldquo;The Lost Symbol&rdquo;).withIsbn(&ldquo;978-0-385-50422-5&rdquo;).build());</p>
+books.add(BookBuilder.defaultValues().withId(3l).withTitle("The Lost Symbol").withIsbn("978-0-385-50422-5").build());
 
-<p>books.add(BookBuilder.defaultValues().withId(4l).withTitle(&ldquo;Inferno&rdquo;).withIsbn(&ldquo;978-0-385-53785-8&rdquo;).build());</p>
+books.add(BookBuilder.defaultValues().withId(4l).withTitle("Inferno").withIsbn("978-0-385-53785-8").build());
 
-<p>for(Book book : books){
-  if (book.getTitle().contains(&ldquo;o&rdquo;)) {</p>
-
-<pre><code>System.out.println(book.getTitle());
-</code></pre>
-
-<p>  }
+for(Book book : books){
+  if (book.getTitle().contains("o")) {
+    System.out.println(book.getTitle());
+  }
 }
-```</p>
+</code></pre>
 
 <p>Now we will use Stream API to rewrite the last part:</p>
 
-<p><code>java
-List&lt;String&gt; bookNames = books.stream()
+<pre><code class="java">List&lt;String&gt; bookNames = books.stream()
 .filter(book -&gt; book.getTitle().contains("o"))
 .map(Book::getTitle).collect(Collectors.toList());
 System.out.println(bookNames);
-</code></p>
+</code></pre>
 
 <p>Both are doing the same thing but stream offers another great cool features like parallelStream or group function. Additionally, it is readable code and the <code>ciclomatic complexity</code> is reduced.</p>
 
@@ -124,34 +110,27 @@ System.out.println(bookNames);
 
 <p>If you have take a look inside of the API you can see that default method has body or define an action.</p>
 
-<p>```java
-public interface Greeting {</p>
+<pre><code class="java">public interface Greeting {
 
-<p>  public default void welcome() {</p>
+  public default void welcome() {
+    System.out.println("Hi, I am a default method.")
+  }
 
-<pre><code>System.out.println("Hi, I am a default method.")
+}
+
+class SpanishGreeting implements Greeting {
+
+  @Override
+  public void welcome() {
+    System.out.println("Hola, soy un método por defecto.")
+  }
+
+}
+
+class EnglishGreeting implements Greeting {
+
+}
 </code></pre>
-
-<p>  }</p>
-
-<p>}</p>
-
-<p>class SpanishGreeting implements Greeting {</p>
-
-<p>  @Override
-  public void welcome() {</p>
-
-<pre><code>System.out.println("Hola, soy un método por defecto.")
-</code></pre>
-
-<p>  }</p>
-
-<p>}</p>
-
-<p>class EnglishGreeting implements Greeting {</p>
-
-<p>}
-```</p>
 
 <p>If we call welcome method from SpanishGreeting &ldquo;Hola, soy un método por defecto.&rdquo; will be printed but if you call the method from EnglishGreeting &ldquo;Hi, I am a default method.&rdquo; will be printed.</p>
 
@@ -159,9 +138,8 @@ public interface Greeting {</p>
 
 <p>Everything can be well used or not, in the case of lambdas does nothing, just call the method you can use method references as a easy-to-read approach.</p>
 
-<p><code>java
-Customer::getFirstname //instead  customer -&gt; customer.getFirstname()
-</code></p>
+<pre><code class="java">Customer::getFirstname //instead  customer -&gt; customer.getFirstname()
+</code></pre>
 ]]></content>
   </entry>
   

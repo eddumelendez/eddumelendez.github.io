@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Maven | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/maven/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,158 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Improving Maven Projects]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/"/>
+    <updated>2015-04-14T22:17:16-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects</id>
+    <content type="html"><![CDATA[<p>During long time <strong>maven</strong> has been the defacto build tool and dependency management for java projects. Since previous version some cool things has been added by plugins but now maven has been enriched with new features learning from the others.</p>
+
+<ul>
+<li><a href="#lifecycle">Maven Lifecycle</a></li>
+<li><a href="#polyglot">Maven Polyglot</a></li>
+<li><a href="#wrapper">Maven Wrapper</a></li>
+</ul>
+
+
+<p>All these new stuff is thanks to <a href="http://takari.io/">Takiri</a> which is lead by Jason van Zyl (<a href="https://twitter.com/jvanzyl">@jvanzyl</a>) the maven&rsquo;s father.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Maven 3.3.1</li>
+<li>Java 7</li>
+</ul>
+
+
+<p><a name="lifecycle"></a></p>
+
+<h2>Maven Lifecycle</h2>
+
+<p>Avoid the re-compilation if there are no changes in the source code. Just is needed two simple steps to enable this awesome feature. Save your time!!!</p>
+
+<p><strong>1.</strong> Add plugin below:</p>
+
+<pre><code class="xml">&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;io.takari.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;takari-lifecycle-plugin&lt;/artifactId&gt;
+      &lt;extensions&gt;true&lt;/extensions&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+
+<p><strong>2.</strong> Switch your current <code>packaging</code> from <code>jar</code> to <code>takari-jar</code>.</p>
+
+<p>You can see the log to see if the plugin take effect. If you have compiled previously and you do again with after these configuration then no compilation will be done but if there are any change in your source code then it will compile again.</p>
+
+<p><a name="polyglot"></a></p>
+
+<h2>Maven Polyglot</h2>
+
+<p>Build <code>pom</code> file in xml format is verbose. Now, you can build your pom in different languages: atom, clojure, groovy, ruby, scala, yaml. And take advantage of each one.</p>
+
+<p>Pre-requisite:</p>
+
+<ol>
+<li>Inside the project create <code>.mvn/extensions.xml</code> file, where language dependency will take place:</li>
+</ol>
+
+
+<h3>Atom</h3>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;extensions&gt;
+    &lt;extension&gt;
+        &lt;groupId&gt;io.takari.polyglot&lt;/groupId&gt;
+        &lt;artifactId&gt;polyglot-atom&lt;/artifactId&gt;
+        &lt;version&gt;0.1.6&lt;/version&gt;
+    &lt;/extension&gt;
+&lt;/extensions&gt;
+</code></pre>
+
+<h3>Clojure:</h3>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;extensions&gt;
+    &lt;extension&gt;
+        &lt;groupId&gt;io.takari.polyglot&lt;/groupId&gt;
+        &lt;artifactId&gt;polyglot-clojure&lt;/artifactId&gt;
+        &lt;version&gt;0.1.6&lt;/version&gt;
+    &lt;/extension&gt;
+&lt;/extensions&gt;
+</code></pre>
+
+<h3>Groovy</h3>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;extensions&gt;
+  &lt;extension&gt;
+        &lt;groupId&gt;io.takari.polyglot&lt;/groupId&gt;
+        &lt;artifactId&gt;polyglot-groovy&lt;/artifactId&gt;
+        &lt;version&gt;0.1.6&lt;/version&gt;
+    &lt;/extension&gt;
+&lt;/extensions&gt;
+</code></pre>
+
+<h3>Ruby</h3>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;extensions&gt;
+    &lt;extension&gt;
+        &lt;groupId&gt;io.takari.polyglot&lt;/groupId&gt;
+        &lt;artifactId&gt;polyglot-ruby&lt;/artifactId&gt;
+        &lt;version&gt;0.1.6&lt;/version&gt;
+    &lt;/extension&gt;
+&lt;/extensions&gt;
+</code></pre>
+
+<h3>Scala</h3>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;extensions&gt;
+    &lt;extension&gt;
+        &lt;groupId&gt;io.takari.polyglot&lt;/groupId&gt;
+        &lt;artifactId&gt;polyglot-scala&lt;/artifactId&gt;
+        &lt;version&gt;0.1.6&lt;/version&gt;
+    &lt;/extension&gt;
+&lt;/extensions&gt;
+</code></pre>
+
+<h3>Yaml</h3>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;extensions&gt;
+    &lt;extension&gt;
+        &lt;groupId&gt;io.takari.polyglot&lt;/groupId&gt;
+        &lt;artifactId&gt;polyglot-yaml&lt;/artifactId&gt;
+        &lt;version&gt;0.1.6&lt;/version&gt;
+    &lt;/extension&gt;
+&lt;/extensions&gt;
+</code></pre>
+
+<p>Would you like to migrate your xml to any other language? You can do it running the command below:</p>
+
+<pre><code>mvn io.takari.polyglot:polyglot-translate-plugin:translate -Dinput=pom.xml -Doutput=pom.{format}
+</code></pre>
+
+<p>Where <code>format</code> could be <code>atom</code>, <code>clj</code>, <code>groovy</code>, <code>rb</code>, <code>scala</code> and <code>yml</code>.</p>
+
+<p><a name="wrapper"></a></p>
+
+<h2>Maven Wrapper</h2>
+
+<p>Share projects is common and sometimes we have specific version from our build tool. Now, you don&rsquo;t need to ask to your friend which maven version you need if the maven project use <code>maven-wrapper</code>. To do that, you just need to run:</p>
+
+<pre><code>mvn -N io.takari:maven:wrapper
+</code></pre>
+
+<p>Now you can make a build <code>mvnw clean install</code>. If you like to see which maven version you will download take a look at <code>.mvn/wrapper/maven-wrapper.properties</code> inside your project.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Start With Mule ESB]]></title>
@@ -49,57 +201,47 @@
 
 <p>Make sure you have set the Mulesoft&rsquo;s repository in <code>settings.xml</code></p>
 
-<p>```xml
-<repositories>
-  <repository></p>
-
-<pre><code>&lt;id&gt;mulesoft-release&lt;/id&gt;
-&lt;name&gt;Mulesoft Release Repository&lt;/name&gt;
-&lt;url&gt;https://repository.mulesoft.org/nexus/content/repositories/public/&lt;/url&gt;
+<pre><code class="xml">&lt;repositories&gt;
+  &lt;repository&gt;
+    &lt;id&gt;mulesoft-release&lt;/id&gt;
+    &lt;name&gt;Mulesoft Release Repository&lt;/name&gt;
+    &lt;url&gt;https://repository.mulesoft.org/nexus/content/repositories/public/&lt;/url&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
 </code></pre>
-
-<p>  </repository>
-</repositories>
-```</p>
 
 <p>Now, you are able to run the following command your terminal:</p>
 
-<p><code>
-mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
-</code></p>
+<pre><code>mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
+</code></pre>
 
 <h2>Using Gradle</h2>
 
 <p>Make sure you have a build.gradle file inside the folder with the following content:</p>
 
-<p>```
-buildscript {</p>
+<pre><code>buildscript {
+    dependencies {
+        classpath group: 'org.mulesoft.build', name: 'mule-gradle-plugin', version: '1.1.0'
+    }
 
-<pre><code>dependencies {
-    classpath group: 'org.mulesoft.build', name: 'mule-gradle-plugin', version: '1.1.0'
-}
-
-repositories {
-    maven {
-        url 'http://repository.mulesoft.org/releases'
+    repositories {
+        maven {
+            url 'http://repository.mulesoft.org/releases'
+        }
     }
 }
+
+apply plugin: 'mule'
+
+mule.version = '3.5.0'
+
+mule.muleEnterprise = false
 </code></pre>
-
-<p>}</p>
-
-<p>apply plugin: &lsquo;mule&rsquo;</p>
-
-<p>mule.version = &lsquo;3.5.0&rsquo;</p>
-
-<p>mule.muleEnterprise = false
-```</p>
 
 <p>After that you can execute:</p>
 
-<p><code>
-gradle initMuleProject
-</code></p>
+<pre><code>gradle initMuleProject
+</code></pre>
 
 <p>By default, <code>mule.muleEnterprise</code> is set to <code>true</code>.</p>
 
@@ -114,25 +256,21 @@ gradle initMuleProject
 <table>
 <thead>
 <tr>
-<th></th>
 <th> Maven        </th>
 <th> Gradle      </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td> Provide <code>mule</code> packaging      </td>
 <td> Provide <code>mule</code> plugin</td>
 </tr>
 <tr>
-<td></td>
 <td> Allow to deploy in local mule standalone </td>
 <td> Allow to deploy in local mule standalone, Mule Management Console and Cloudhub</td>
 </tr>
 <tr>
-<td></td>
-<td>&ndash;</td>
+<td>-</td>
 <td>Allow to run application with a simple command</td>
 </tr>
 </tbody>
@@ -143,7 +281,7 @@ gradle initMuleProject
 
 <p><code>mule-config.xml</code> is placed inside of <code>src/main/app</code>. Here you will find a http service which will return <code>Hello World!</code> message.</p>
 
-<p>```xml
+<p>&#8220;`xml
 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?></p>
 
 <!-- created by the gradle mule plugin -->
@@ -152,49 +290,38 @@ gradle initMuleProject
 <p><mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
   http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
   http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-  <flow name="mule-configFlow1" doc:name="mule-configFlow1"></p>
-
-<pre><code>&lt;http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/&gt;
-&lt;set-payload doc:name="Set Payload" value="Hello World!"/&gt;
-</code></pre>
-
-<p>  </flow>
+  <flow name="mule-configFlow1" doc:name="mule-configFlow1">
+    &lt;<a href="http:inbound-endpoint">http:inbound-endpoint</a> exchange-pattern=&ldquo;request-response&rdquo; host=&ldquo;localhost&rdquo; port=&ldquo;8081&rdquo; doc:name=&ldquo;HTTP&rdquo;/>
+    <set-payload doc:name="Set Payload" value="Hello World!"/>
+  </flow>
 </mule>
-```</p>
+&#8220;`</p>
 
 <p>Then, proceed to write a test for the existing flow. As you can see response will be validated.</p>
 
-<p>```java
-import org.hamcrest.core.Is;
+<pre><code class="java">import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
-import org.mule.tck.junit4.FunctionalTestCase;</p>
+import org.mule.tck.junit4.FunctionalTestCase;
 
-<p>public class MuleTest extends FunctionalTestCase {</p>
+public class MuleTest extends FunctionalTestCase {
 
-<p>  @Override
-  protected String getConfigFile() {</p>
+  @Override
+  protected String getConfigFile() {
+    return "src/main/app/mule-config.xml";
+  }
 
-<pre><code>return "src/main/app/mule-config.xml";
+  @Test
+  public void testMuleConfigFlow1() throws Exception {
+    MuleClient client = muleContext.getClient();
+    MuleMessage message = client.request("http://localhost:8081", 3000L);
+    String payload = message.getPayloadAsString();
+    Assert.assertThat(payload, Is.is("Hello World!"));
+  }
+}
 </code></pre>
-
-<p>  }</p>
-
-<p>  @Test
-  public void testMuleConfigFlow1() throws Exception {</p>
-
-<pre><code>MuleClient client = muleContext.getClient();
-MuleMessage message = client.request("http://localhost:8081", 3000L);
-String payload = message.getPayloadAsString();
-Assert.assertThat(payload, Is.is("Hello World!"));
-</code></pre>
-
-<p>  }
-}</p>
-
-<p>```</p>
 ]]></content>
   </entry>
   
@@ -244,14 +371,12 @@ The profile approach will be useful in our integration.</p>
 
 <p>Maven Goal:</p>
 
-<p><code>
-mvn install -P$action
-</code></p>
+<pre><code>mvn install -P$action
+</code></pre>
 
 <p>Maven Properties:</p>
 
-<p><code>
-liquibase.driver=$driver
+<pre><code>liquibase.driver=$driver
 liquibase.username=$username
 liquibase.password=$password
 liquibase.url=$url
@@ -259,7 +384,7 @@ liquibase.changeLogFile=$changeLogFile
 liquibase.rollbackTag=$tag
 liquibase.tag=$tag
 liquibase.promptOnNonLocalDatabase=false
-</code></p>
+</code></pre>
 
 <p>  If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.
   <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p>
@@ -380,11 +505,10 @@ and Zuul caught my attention.</p>
 
 <p><strong>3.</strong> Instal Mysql</p>
 
-<p><code>
-yum install-y mysql-server mysql-devel
+<pre><code>yum install-y mysql-server mysql-devel
 chkconfig mysqld on
 service mysqld start
-</code></p>
+</code></pre>
 
 <p><strong>4.</strong> Create zuul database.</p>
 
@@ -394,22 +518,20 @@ service mysqld start
 
 <p>   <strong>Unix:</strong> %TOMCAT_HOME%/bin/catalina.sh</p>
 
-<p><code>
-export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></p>
+<pre><code>export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
 
 <p>   <strong>Windows:</strong> %TOMCAT_HOME%/bin/catalina.bat</p>
 
-<p><code>
-set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></p>
+<pre><code>set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
 
 <p><strong>7.</strong> Add database driver into <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
 <p><strong>8.</strong> Copy ldap.properties and zuul-data-config.properties from <strong>zuul/WEB-INF/classes/examples</strong> to <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
 <p><strong>9.</strong> Modify ldap.properties
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ldap.properties</span></figcaption>
+<figure class='code'><figcaption><span>ldap.properties</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -432,7 +554,7 @@ set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
 </span><span class='line'><span class="na">ldap.group.filter</span><span class="o">=</span><span class="s">member={0}</span>
 </span><span class='line'><span class="na">ldap.user.search.base</span><span class="o">=</span><span class="s">OU=Users,DC=acme,DC=com</span>
 </span><span class='line'><span class="na">ldap.user.search.filter</span><span class="o">=</span><span class="s">uid={0}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p><strong>10.</strong> Start tomcat and zuul application will create the database tables using <a href="http://www.liquibase.org">liquibase</a>.</p>
 
@@ -475,79 +597,6 @@ set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
 
 <p>You can also create groups.
 <img src="https://dl.dropboxusercontent.com/u/15671111/blog/zuul-10.png" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Embedded Database Compatibility]]></title>
-    <link href="http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility/"/>
-    <updated>2014-03-27T22:01:18-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility</id>
-    <content type="html"><![CDATA[<p>Some weeks ago I was watching a video about <a href="https://www.youtube.com/watch?v=LYVJ69h76nw">Spring Testing</a>, one thing that called my attention was one feature about embedded databases. It is about compatibility with other databases.</p>
-
-<p>From my side, this feature is really useful because when I started using embedded database in my tests I had to change some types or remove lines in my script due to there are not supported (At that time, I didn&rsquo;t know about it)</p>
-
-<p>Lines below you can see how to setup <strong>MYSQL</strong> compatibility into <strong>HSQL</strong> and <strong>H2</strong> databases, both for testing purpose. Also, you can see the dependencies if you are using maven projects.</p>
-
-<h2>HSQL</h2>
-
-<p>You can review this <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html">link</a> for more information.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>script.sql</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SET</span> <span class="k">DATABASE</span> <span class="k">SQL</span> <span class="n">SYNTAX</span> <span class="n">MYS</span> <span class="k">TRUE</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>pom.xml</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependency&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>groupId<span class="ni">&amp;gt;</span>org.hsqldb<span class="ni">&amp;lt;</span>/groupId<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>artifactId<span class="ni">&amp;gt;</span>hsqldb<span class="ni">&amp;lt;</span>/artifactId<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>version<span class="ni">&amp;gt;</span>2.2.8<span class="ni">&amp;lt;</span>/version<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>scope<span class="ni">&amp;gt;</span>test<span class="ni">&amp;lt;</span>/scope<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h2>H2</h2>
-
-<p>You can review this <a href="http://www.h2database.com/html/features.html#compatibility">link</a> for more information.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>script.sql</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SET</span> <span class="k">MODE</span> <span class="n">MySQL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>pom.xml</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependency&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>groupId<span class="ni">&amp;gt;</span>com.h2database<span class="ni">&amp;lt;</span>/groupId<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>artifactId<span class="ni">&amp;gt;</span>h2<span class="ni">&amp;lt;</span>/artifactId<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>version<span class="ni">&amp;gt;</span>1.3.175<span class="ni">&amp;lt;</span>/version<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>scope<span class="ni">&amp;gt;</span>test<span class="ni">&amp;lt;</span>/scope<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   

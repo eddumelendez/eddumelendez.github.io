@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -26,44 +26,35 @@
 
 <p>If you have been Swing developer, you may have seen lot of this code. Example of <code>anonymous class</code>:</p>
 
-<p>```java
-File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;)).listFiles(new FileFilter() {</p>
-
-<pre><code>       @Override
-       public boolean accept(File pathname) {
-           return pathname.isDirectory();
-       }
-   });
+<pre><code class="java">File[] directories = new File(System.getProperty("user.home")).listFiles(new FileFilter() {
+           @Override
+           public boolean accept(File pathname) {
+               return pathname.isDirectory();
+           }
+       });
 </code></pre>
-
-<p>```</p>
 
 <p>Below, you can see three approaches to use lambdas:</p>
 
-<p>```java
-() &ndash;> System.out.println(&ldquo;Hello lamdba&rdquo;);</p>
+<pre><code class="java">() -&gt; System.out.println("Hello lamdba");
 
-<p>//pass an object
-customer &ndash;> customer.getLastname();</p>
+//pass an object
+customer -&gt; customer.getLastname();
 
-<p>//using blocks
-() &ndash;> {
-  String greeting = &ldquo;Hello lambda block&rdquo;;
+//using blocks
+() -&gt; {
+  String greeting = "Hello lambda block";
   System.out.println(greeting);
 }
-```</p>
+</code></pre>
 
 <p>Now, let write our first example using lambdas:</p>
 
-<p>```java
-File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;))</p>
-
-<pre><code>            .listFiles((File pathname) -&gt; pathname.isDirectory());
+<pre><code class="java">File[] directories = new File(System.getProperty("user.home"))
+                .listFiles((File pathname) -&gt; pathname.isDirectory());
 </code></pre>
 
-<p>```</p>
-
-<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (&ndash;>) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
+<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (->) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
 
 <h2>Streams API</h2>
 
@@ -73,34 +64,29 @@ File[] directories = new File(System.getProperty(&ldquo;user.home&rdquo;))</p>
 
 <p>Old fashionable way:</p>
 
-<p>```java
-List<Book> books = new ArrayList&lt;>();
-books.add(BookBuilder.defaultValues().withId(1l).withTitle(&ldquo;Angel &amp; Demons&rdquo;).withIsbn(&ldquo;0-671-02735-2&rdquo;).build());</p>
+<pre><code class="java">List&lt;Book&gt; books = new ArrayList&lt;&gt;();
+books.add(BookBuilder.defaultValues().withId(1l).withTitle("Angel &amp; Demons").withIsbn("0-671-02735-2").build());
 
-<p>books.add(BookBuilder.defaultValues().withId(2l).withTitle(&ldquo;The Da Vinci Code&rdquo;).withIsbn(&ldquo;0-385-50420-9&rdquo;).build());</p>
+books.add(BookBuilder.defaultValues().withId(2l).withTitle("The Da Vinci Code").withIsbn("0-385-50420-9").build());
 
-<p>books.add(BookBuilder.defaultValues().withId(3l).withTitle(&ldquo;The Lost Symbol&rdquo;).withIsbn(&ldquo;978-0-385-50422-5&rdquo;).build());</p>
+books.add(BookBuilder.defaultValues().withId(3l).withTitle("The Lost Symbol").withIsbn("978-0-385-50422-5").build());
 
-<p>books.add(BookBuilder.defaultValues().withId(4l).withTitle(&ldquo;Inferno&rdquo;).withIsbn(&ldquo;978-0-385-53785-8&rdquo;).build());</p>
+books.add(BookBuilder.defaultValues().withId(4l).withTitle("Inferno").withIsbn("978-0-385-53785-8").build());
 
-<p>for(Book book : books){
-  if (book.getTitle().contains(&ldquo;o&rdquo;)) {</p>
-
-<pre><code>System.out.println(book.getTitle());
-</code></pre>
-
-<p>  }
+for(Book book : books){
+  if (book.getTitle().contains("o")) {
+    System.out.println(book.getTitle());
+  }
 }
-```</p>
+</code></pre>
 
 <p>Now we will use Stream API to rewrite the last part:</p>
 
-<p><code>java
-List&lt;String&gt; bookNames = books.stream()
+<pre><code class="java">List&lt;String&gt; bookNames = books.stream()
 .filter(book -&gt; book.getTitle().contains("o"))
 .map(Book::getTitle).collect(Collectors.toList());
 System.out.println(bookNames);
-</code></p>
+</code></pre>
 
 <p>Both are doing the same thing but stream offers another great cool features like parallelStream or group function. Additionally, it is readable code and the <code>ciclomatic complexity</code> is reduced.</p>
 
@@ -124,34 +110,27 @@ System.out.println(bookNames);
 
 <p>If you have take a look inside of the API you can see that default method has body or define an action.</p>
 
-<p>```java
-public interface Greeting {</p>
+<pre><code class="java">public interface Greeting {
 
-<p>  public default void welcome() {</p>
+  public default void welcome() {
+    System.out.println("Hi, I am a default method.")
+  }
 
-<pre><code>System.out.println("Hi, I am a default method.")
+}
+
+class SpanishGreeting implements Greeting {
+
+  @Override
+  public void welcome() {
+    System.out.println("Hola, soy un método por defecto.")
+  }
+
+}
+
+class EnglishGreeting implements Greeting {
+
+}
 </code></pre>
-
-<p>  }</p>
-
-<p>}</p>
-
-<p>class SpanishGreeting implements Greeting {</p>
-
-<p>  @Override
-  public void welcome() {</p>
-
-<pre><code>System.out.println("Hola, soy un método por defecto.")
-</code></pre>
-
-<p>  }</p>
-
-<p>}</p>
-
-<p>class EnglishGreeting implements Greeting {</p>
-
-<p>}
-```</p>
 
 <p>If we call welcome method from SpanishGreeting &ldquo;Hola, soy un método por defecto.&rdquo; will be printed but if you call the method from EnglishGreeting &ldquo;Hi, I am a default method.&rdquo; will be printed.</p>
 
@@ -159,9 +138,8 @@ public interface Greeting {</p>
 
 <p>Everything can be well used or not, in the case of lambdas does nothing, just call the method you can use method references as a easy-to-read approach.</p>
 
-<p><code>java
-Customer::getFirstname //instead  customer -&gt; customer.getFirstname()
-</code></p>
+<pre><code class="java">Customer::getFirstname //instead  customer -&gt; customer.getFirstname()
+</code></pre>
 ]]></content>
   </entry>
   
@@ -184,17 +162,17 @@ Customer::getFirstname //instead  customer -&gt; customer.getFirstname()
 
 
 <p>Some companies were present in this event such as:
-Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
+Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
 
 <p>Also, had the chance to meet:</p>
 
 <ul>
-<li>Anton Arhipov &ndash; <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
-<li>Arun Gupta &ndash; <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
-<li>Benjamin Muschko &ndash; <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
-<li>John Ferguson &ndash; <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
-<li>Josh Long &ndash; <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
-<li>Phill Weeb &ndash; <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
+<li>Anton Arhipov - <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
+<li>Arun Gupta - <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
+<li>Benjamin Muschko - <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
+<li>John Ferguson - <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
+<li>Josh Long - <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
+<li>Phill Weeb - <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
 </ul>
 
 
@@ -244,11 +222,11 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, P
 </ul>
 
 
-<p><strong>Java 8</strong> was the star during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
+<p><strong>Java 8</strong> was the main topic during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
 
 <blockquote><p>Java arrived later with lambdas but arrived with the desserts (Streams)</p></blockquote>
 
-<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC.</p>
+<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC but good to know that good things have been adopted.</p>
 
 <p><strong>JavaOne</strong> is the best place to meet people, authors, learn new things, get stuff like raspberry pi, books and t-shirts and drink a beer.</p>
 
@@ -304,11 +282,10 @@ and Zuul caught my attention.</p>
 
 <p><strong>3.</strong> Instal Mysql</p>
 
-<p><code>
-yum install-y mysql-server mysql-devel
+<pre><code>yum install-y mysql-server mysql-devel
 chkconfig mysqld on
 service mysqld start
-</code></p>
+</code></pre>
 
 <p><strong>4.</strong> Create zuul database.</p>
 
@@ -318,22 +295,20 @@ service mysqld start
 
 <p>   <strong>Unix:</strong> %TOMCAT_HOME%/bin/catalina.sh</p>
 
-<p><code>
-export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></p>
+<pre><code>export JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
 
 <p>   <strong>Windows:</strong> %TOMCAT_HOME%/bin/catalina.bat</p>
 
-<p><code>
-set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
-</code></p>
+<pre><code>set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
+</code></pre>
 
 <p><strong>7.</strong> Add database driver into <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
 <p><strong>8.</strong> Copy ldap.properties and zuul-data-config.properties from <strong>zuul/WEB-INF/classes/examples</strong> to <strong>%TOMCAT_HOME%/lib</strong>.</p>
 
 <p><strong>9.</strong> Modify ldap.properties
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ldap.properties</span></figcaption>
+<figure class='code'><figcaption><span>ldap.properties</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -356,7 +331,7 @@ set JAVA_OPTS=-Dspring.profiles.active="security-ldap"
 </span><span class='line'><span class="na">ldap.group.filter</span><span class="o">=</span><span class="s">member={0}</span>
 </span><span class='line'><span class="na">ldap.user.search.base</span><span class="o">=</span><span class="s">OU=Users,DC=acme,DC=com</span>
 </span><span class='line'><span class="na">ldap.user.search.filter</span><span class="o">=</span><span class="s">uid={0}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p><strong>10.</strong> Start tomcat and zuul application will create the database tables using <a href="http://www.liquibase.org">liquibase</a>.</p>
 

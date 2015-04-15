@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -14,7 +14,227 @@
 
   
   <entry>
-    <title type="html"><![CDATA[My Advice to (Junior) Developers About Their Career (Spanish Version)]]></title>
+    <title type="html"><![CDATA[Improving Maven Projects]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/"/>
+    <updated>2015-04-14T22:17:16-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects</id>
+    <content type="html"><![CDATA[<p>During long time <strong>maven</strong> has been the defacto build tool and dependency management for java projects. Since previous version some cool things has been added by plugins but now maven has been enriched with new features learning from the others.</p>
+
+<ul>
+<li><a href="#lifecycle">Maven Lifecycle</a></li>
+<li><a href="#polyglot">Maven Polyglot</a></li>
+<li><a href="#wrapper">Maven Wrapper</a></li>
+</ul>
+
+
+<p>All these new stuff is thanks to <a href="http://takari.io/">Takiri</a> which is lead by Jason van Zyl (<a href="https://twitter.com/jvanzyl">@jvanzyl</a>) the maven&rsquo;s father.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Maven 3.3.1</li>
+<li>Java 7</li>
+</ul>
+
+
+<p><a name="lifecycle"></a></p>
+
+<h2>Maven Lifecycle</h2>
+
+<p>Avoid the re-compilation if there are no changes in the source code. Just is needed two simple steps to enable this awesome feature. Save your time!!!</p>
+
+<p><strong>1.</strong> Add plugin below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>takari-lifecycle-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;extensions&gt;</span>true<span class="nt">&lt;/extensions&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>2.</strong> Switch your current <code>packaging</code> from <code>jar</code> to <code>takari-jar</code>.</p>
+
+<p>You can see the log to see if the plugin take effect. If you have compiled previously and you do again with after these configuration then no compilation will be done but if there are any change in your source code then it will compile again.</p>
+
+<p><a name="polyglot"></a></p>
+
+<h2>Maven Polyglot</h2>
+
+<p>Build <code>pom</code> file in xml format is verbose. Now, you can build your pom in different languages: atom, clojure, groovy, ruby, scala, yaml. And take advantage of each one.</p>
+
+<p>Pre-requisite:</p>
+
+<ol>
+<li>Inside the project create <code>.mvn/extensions.xml</code> file, where language dependency will take place:</li>
+</ol>
+
+
+<h3>Atom</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-atom<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Clojure:</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-clojure<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Groovy</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-groovy<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ruby</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-ruby<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Scala</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-scala<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Yaml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-yaml<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Would you like to migrate your xml to any other language? You can do it running the command below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn io.takari.polyglot:polyglot-translate-plugin:translate -Dinput=pom.xml -Doutput=pom.{format}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Where <code>format</code> could be <code>atom</code>, <code>clj</code>, <code>groovy</code>, <code>rb</code>, <code>scala</code> and <code>yml</code>.</p>
+
+<p><a name="wrapper"></a></p>
+
+<h2>Maven Wrapper</h2>
+
+<p>Share projects is common and sometimes we have specific version from our build tool. Now, you don&rsquo;t need to ask to your friend which maven version you need if the maven project use <code>maven-wrapper</code>. To do that, you just need to run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn -N io.takari:maven:wrapper
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you can make a build <code>mvnw clean install</code>. If you like to see which maven version you will download take a look at <code>.mvn/wrapper/maven-wrapper.properties</code> inside your project.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My Advice to (Junior) Developers About Their Career]]></title>
     <link href="http://eddumelendez.github.io/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version/"/>
     <updated>2015-01-06T00:43:59-05:00</updated>
     <id>http://eddumelendez.github.io/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version</id>
@@ -38,7 +258,8 @@
 
 <p>Y unas cosa mas&hellip; <strong>Nunca pares de aprender nuevas cosas</strong>. Tu decidiste ser un Ingeniero de Software. Este es tu destino. Aprender nuevas cosas constantemente.&#8221;</p>
 
-<p><strong>Source:</strong> <a href="http://softwaregarden.io/my-advice-to-junior-developers-about-their-career/">http://softwaregarden.io/my-advice-to-junior-developers-about-their-career/</a></p>
+<p>  <strong>Source:</strong>
+<a href='http://softwaregarden.io/my-advice-to-junior-developers-about-their-career/' class='article-link linkpost'>My Advice to (Junior) Developers About Their&nbsp;Career&nbsp;<span class='post-marker post-marker-after'>→</span></a></p>
 ]]></content>
   </entry>
   
@@ -163,25 +384,21 @@
 <table>
 <thead>
 <tr>
-<th></th>
 <th> Maven        </th>
 <th> Gradle      </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td> Provide <code>mule</code> packaging      </td>
 <td> Provide <code>mule</code> plugin</td>
 </tr>
 <tr>
-<td></td>
 <td> Allow to deploy in local mule standalone </td>
 <td> Allow to deploy in local mule standalone, Mule Management Console and Cloudhub</td>
 </tr>
 <tr>
-<td></td>
-<td>&ndash;</td>
+<td>-</td>
 <td>Allow to run application with a simple command</td>
 </tr>
 </tbody>
@@ -330,7 +547,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (&ndash;>) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
+<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (->) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
 
 <h2>Streams API</h2>
 
@@ -469,7 +686,7 @@
     <id>http://eddumelendez.github.io/blog/2014/10/18/introduction-to-gradle</id>
     <content type="html"><![CDATA[<p><code>Gradle</code> is called the next generation of <strong>build automation</strong> and <strong>dependency management</strong>. If you have used <code>Ant</code> or <code>Maven</code> you know what that mean.</p>
 
-<p><code>Gradle</code> is based on <code>Groovy</code>. It has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
+<p><code>Gradle</code> is based on <code>Groovy</code> and has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
 
 <p>The company behind this project is <strong>Gradleware</strong>.</p>
 
@@ -491,13 +708,13 @@
 
 <h2>Gradle Wrapper</h2>
 
-<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper to the rescue!!!</p>
+<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper has arrived to the rescue!!!</p>
 
-<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compabilities troubles o any other issue. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
+<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compatibility troubles or any other issues. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
 
 <h2>Gradle Daemon</h2>
 
-<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &mdash;daemon</strong> and finalize the process <strong>gradle &mdash;stop</strong>. This is useful when you run unit test many times.</p>
+<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &ndash;daemon</strong> and finalize the process <strong>gradle &ndash;stop</strong>. This is useful when you run unit test many times.</p>
 
 <p><strong>Note:</strong> expire after 3 hours.</p>
 
@@ -513,27 +730,34 @@
 
 <p>Commands:</p>
 
-<p><strong>-v or &mdash;version</strong> &ndash;> display gradle version.</p>
+<p><strong>-v or &ndash;version</strong> -> display gradle version.</p>
 
-<p><strong>tasks</strong> &ndash;> display tasks related to the project.</p>
+<p><strong>tasks</strong> -> display tasks related to the project.</p>
 
-<p><strong>-q</strong> &ndash;> show tasks output.</p>
+<p><strong>-q</strong> -> show tasks output.</p>
 
-<p><strong>-x</strong> or <strong>gradle &mdash;exclude-task</strong> &ndash;> exclude the execution of tasks defined.</p>
+<p><strong>-x</strong> or <strong>gradle &ndash;exclude-task</strong> -> exclude the execution of tasks defined.</p>
 
-<p><strong>dependencies</strong> &ndash;> display project dependencies and how dependencies were solved.</p>
+<p><strong>dependencies</strong> -> display project dependencies and how dependencies were solved.</p>
 
-<p><strong>projects</strong> &ndash;> list all the project and subprojects.</p>
+<p><strong>projects</strong> -> list all the project and subprojects.</p>
 
-<p><strong>properties</strong> &ndash;> list all available properties in the project.</p>
+<p><strong>properties</strong> -> list all available properties in the project.</p>
 
-<p><strong>-a</strong> or <strong>&mdash;no-rebuild</strong> &ndash;> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. It works if you are only changing files in a single project.</p>
+<p><strong>-a</strong> or <strong>&ndash;no-rebuild</strong> -> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. It works if you are only changing files in a single project.</p>
 
-<p><strong>&mdash;refresh-dependencies</strong> &ndash;> refresh project dependencies.</p>
+<p><strong>&ndash;refresh-dependencies</strong> -> refresh project dependencies.</p>
 
-<p><strong>-b</strong> or <strong>&mdash;build-file</strong> &ndash;> give the option to choose another build script.</p>
+<p><strong>-b</strong> or <strong>&ndash;build-file</strong> -> give the option to choose another build script.</p>
 
-<p><strong>-Dtest.debug test</strong> &ndash;> debug test in port 5005</p>
+<p><strong>-Dtest.debug test</strong> -> debug test in port 5005</p>
+
+<h2>Recommended Books</h2>
+
+<ul>
+<li><a href="http://www.manning.com/muschko/">Gradle in Action</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -561,12 +785,12 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Rei
 <p>Also, had the chance to meet:</p>
 
 <ul>
-<li>Anton Arhipov &ndash; <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
-<li>Arun Gupta &ndash; <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
-<li>Benjamin Muschko &ndash; <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
-<li>John Ferguson &ndash; <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
-<li>Josh Long &ndash; <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
-<li>Phill Weeb &ndash; <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
+<li>Anton Arhipov - <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
+<li>Arun Gupta - <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
+<li>Benjamin Muschko - <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
+<li>John Ferguson - <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
+<li>Josh Long - <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
+<li>Phill Weeb - <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
 </ul>
 
 
@@ -616,11 +840,11 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Rei
 </ul>
 
 
-<p><strong>Java 8</strong> was the star during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
+<p><strong>Java 8</strong> was the main topic during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
 
 <blockquote><p>Java arrived later with lambdas but arrived with the desserts (Streams)</p></blockquote>
 
-<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC.</p>
+<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC but good to know that good things have been adopted.</p>
 
 <p><strong>JavaOne</strong> is the best place to meet people, authors, learn new things, get stuff like raspberry pi, books and t-shirts and drink a beer.</p>
 
@@ -1358,7 +1582,7 @@ and Zuul caught my attention.</p>
 
 <h2>What is SonarQube?</h2>
 
-<p><a href="http://www.sonarqube.org/">SonarQube</a> is an Open Source Project based on seven axes:</p>
+<p><a href="http://www.sonarqube.org/">SonarQube</a> is an Open Source Project based on seven axes of quality:</p>
 
 <ol>
 <li>Potential bugs</li>
@@ -1474,9 +1698,7 @@ Another option is get a backup from production, is not a bad idea if you want to
 
 <figure class='code'><figcaption><span>script.sql</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'>
-</span><span class='line'><span class="k">SET</span> <span class="k">DATABASE</span> <span class="k">SQL</span> <span class="n">SYNTAX</span> <span class="n">MYS</span> <span class="k">TRUE</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SET</span> <span class="k">DATABASE</span> <span class="k">SQL</span> <span class="n">SYNTAX</span> <span class="n">MYS</span> <span class="k">TRUE</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1489,9 +1711,7 @@ Another option is get a backup from production, is not a bad idea if you want to
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'>
-</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependency&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>org.hsqldb<span class="nt">&lt;/groupId&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>hsqldb<span class="nt">&lt;/artifactId&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;version&gt;</span>2.2.8<span class="nt">&lt;/version&gt;</span>
@@ -1672,7 +1892,8 @@ Another option is get a backup from production, is not a bad idea if you want to
 
 <ul>
 <li>Agile Practices</li>
-<li>Maven</li>
+<li>Java</li>
+<li>Build Tools (Gradle, Maven)</li>
 <li>Mule ESB</li>
 <li>Spring Framework</li>
 </ul>

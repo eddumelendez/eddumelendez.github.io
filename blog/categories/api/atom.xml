@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Api | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -77,131 +77,118 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
 </table>
 
 
-<p>```</p>
-
-<h1>%RAML 0.8</h1>
-
-<hr />
-
-<p>title: Book Store API
+<pre><code>#%RAML 0.8
+---
+title: Book Store API
 version: 1.0
-baseUri: <a href="http://localhost:8081/api">http://localhost:8081/api</a>
+baseUri: http://localhost:8081/api
 /books:
   displayName: Books Catalog
-  get:</p>
-
-<pre><code>responses:
-  200:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+                {
+                  "bookId": 1,
+                  "title": "Angel &amp; Demons",
+                  "isbn": "0-671-02735-2",
+                  "authors": [
+                    "Dan Brown"
+                  ]
+                },
+                {
+                  "bookId": 2,
+                  "title": "The Da Vinci Code",
+                  "isbn": "0-385-50420-9",
+                  "authors": [
+                    "Dan Brown"
+                  ]
+                },
+                {
+                  "bookId": 3,
+                  "title": "The Lost Symbol",
+                  "isbn": "978-0-385-50422-5",
+                  "authors": [
+                    "Dan Brown"
+                  ]
+                },
+                {
+                  "bookId": 4,
+                  "title": "Inferno",
+                  "isbn": "978-0-385-53785-8",
+                  "authors": [
+                    "Dan Brown"
+                  ]
+                }
+  post:
     body:
       application/json:
-        example: |
+        example: |  
             {
-              "bookId": 1,
-              "title": "Angel &amp; Demons",
-              "isbn": "0-671-02735-2",
-              "authors": [
-                "Dan Brown"
-              ]
-            },
-            {
-              "bookId": 2,
-              "title": "The Da Vinci Code",
-              "isbn": "0-385-50420-9",
-              "authors": [
-                "Dan Brown"
-              ]
-            },
-            {
-              "bookId": 3,
-              "title": "The Lost Symbol",
-              "isbn": "978-0-385-50422-5",
-              "authors": [
-                "Dan Brown"
-              ]
-            },
-            {
-              "bookId": 4,
-              "title": "Inferno",
-              "isbn": "978-0-385-53785-8",
-              "authors": [
-                "Dan Brown"
-              ]
+             "title": "Deception Point",
+             "isbn": "0-671-02738-7",
+             "authors": [
+              "Dan Brown"
+             ]
             }
-</code></pre>
-
-<p>  post:</p>
-
-<pre><code>body:
-  application/json:
-    example: |  
-        {
-         "title": "Deception Point",
-         "isbn": "0-671-02738-7",
-         "authors": [
-          "Dan Brown"
-         ]
-        }
-responses:
-  201:
-    description: Book has been successfully created.
-  409:
-    description: Book already exists.
-</code></pre>
-
-<p>  /{bookId}:</p>
-
-<pre><code>displayName: Book
-uriParameters:
-  bookId:
-    description: |
-      Book Identifier
-    required: true
-get:
-  description: Retrieve book-related information.
-  responses:
-    200:
+    responses:
+      201:
+        description: Book has been successfully created.
+      409:
+        description: Book already exists.
+  /{bookId}:
+    displayName: Book
+    uriParameters:
+      bookId:
+        description: |
+          Book Identifier
+        required: true
+    get:
+      description: Retrieve book-related information.
+      responses:
+        200:
+          body:
+            application/json:
+              example:  |
+                {
+                  "bookId": 1,
+                  "title": "Angel &amp; Demons",
+                  "isbn": "0-671-02735-2",
+                  "authors": [
+                    "Dan Brown"
+                  ]  
+                }
+    put:
+      description: Update book information.
       body:
-        application/json:
-          example:  |
+         application/json:
+          example: |  
             {
-              "bookId": 1,
-              "title": "Angel &amp; Demons",
-              "isbn": "0-671-02735-2",
-              "authors": [
-                "Dan Brown"
-              ]  
+             "title": "Inferno",
+             "isbn": "978-0-385-53785-8",
+             "authors": [
+              "Dan Brown"
+             ]
             }
-put:
-  description: Update book information.
-  body:
-     application/json:
-      example: |  
-        {
-         "title": "Inferno",
-         "isbn": "978-0-385-53785-8",
-         "authors": [
-          "Dan Brown"
-         ]
-        }
-  responses:
-    204:
-      description: |
-        The book has been successfully updated.
-    404:
-      description: |
-        Unable to find book with that identifier.
-delete:
-  description: Remove book from the catalog.
-  responses:
-    204:
-      description: |
-        The book has been successfully removed.
-    404:
-      description: |
-        Unable to find book with that identifier.
+      responses:
+        204:
+          description: |
+            The book has been successfully updated.
+        404:
+          description: |
+            Unable to find book with that identifier.
+    delete:
+      description: Remove book from the catalog.
+      responses:
+        204:
+          description: |
+            The book has been successfully removed.
+        404:
+          description: |
+            Unable to find book with that identifier.
 </code></pre>
-
-<p>```</p>
 
 <p>As you can see, the Book Store API have five services:</p>
 

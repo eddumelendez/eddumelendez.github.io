@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Gradle | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/gradle/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -49,57 +49,47 @@
 
 <p>Make sure you have set the Mulesoft&rsquo;s repository in <code>settings.xml</code></p>
 
-<p>```xml
-<repositories>
-  <repository></p>
-
-<pre><code>&lt;id&gt;mulesoft-release&lt;/id&gt;
-&lt;name&gt;Mulesoft Release Repository&lt;/name&gt;
-&lt;url&gt;https://repository.mulesoft.org/nexus/content/repositories/public/&lt;/url&gt;
+<pre><code class="xml">&lt;repositories&gt;
+  &lt;repository&gt;
+    &lt;id&gt;mulesoft-release&lt;/id&gt;
+    &lt;name&gt;Mulesoft Release Repository&lt;/name&gt;
+    &lt;url&gt;https://repository.mulesoft.org/nexus/content/repositories/public/&lt;/url&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
 </code></pre>
-
-<p>  </repository>
-</repositories>
-```</p>
 
 <p>Now, you are able to run the following command your terminal:</p>
 
-<p><code>
-mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
-</code></p>
+<pre><code>mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
+</code></pre>
 
 <h2>Using Gradle</h2>
 
 <p>Make sure you have a build.gradle file inside the folder with the following content:</p>
 
-<p>```
-buildscript {</p>
+<pre><code>buildscript {
+    dependencies {
+        classpath group: 'org.mulesoft.build', name: 'mule-gradle-plugin', version: '1.1.0'
+    }
 
-<pre><code>dependencies {
-    classpath group: 'org.mulesoft.build', name: 'mule-gradle-plugin', version: '1.1.0'
-}
-
-repositories {
-    maven {
-        url 'http://repository.mulesoft.org/releases'
+    repositories {
+        maven {
+            url 'http://repository.mulesoft.org/releases'
+        }
     }
 }
+
+apply plugin: 'mule'
+
+mule.version = '3.5.0'
+
+mule.muleEnterprise = false
 </code></pre>
-
-<p>}</p>
-
-<p>apply plugin: &lsquo;mule&rsquo;</p>
-
-<p>mule.version = &lsquo;3.5.0&rsquo;</p>
-
-<p>mule.muleEnterprise = false
-```</p>
 
 <p>After that you can execute:</p>
 
-<p><code>
-gradle initMuleProject
-</code></p>
+<pre><code>gradle initMuleProject
+</code></pre>
 
 <p>By default, <code>mule.muleEnterprise</code> is set to <code>true</code>.</p>
 
@@ -114,25 +104,21 @@ gradle initMuleProject
 <table>
 <thead>
 <tr>
-<th></th>
 <th> Maven        </th>
 <th> Gradle      </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td> Provide <code>mule</code> packaging      </td>
 <td> Provide <code>mule</code> plugin</td>
 </tr>
 <tr>
-<td></td>
 <td> Allow to deploy in local mule standalone </td>
 <td> Allow to deploy in local mule standalone, Mule Management Console and Cloudhub</td>
 </tr>
 <tr>
-<td></td>
-<td>&ndash;</td>
+<td>-</td>
 <td>Allow to run application with a simple command</td>
 </tr>
 </tbody>
@@ -143,7 +129,7 @@ gradle initMuleProject
 
 <p><code>mule-config.xml</code> is placed inside of <code>src/main/app</code>. Here you will find a http service which will return <code>Hello World!</code> message.</p>
 
-<p>```xml
+<p>&#8220;`xml
 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?></p>
 
 <!-- created by the gradle mule plugin -->
@@ -152,49 +138,38 @@ gradle initMuleProject
 <p><mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
   http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
   http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-  <flow name="mule-configFlow1" doc:name="mule-configFlow1"></p>
-
-<pre><code>&lt;http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/&gt;
-&lt;set-payload doc:name="Set Payload" value="Hello World!"/&gt;
-</code></pre>
-
-<p>  </flow>
+  <flow name="mule-configFlow1" doc:name="mule-configFlow1">
+    &lt;<a href="http:inbound-endpoint">http:inbound-endpoint</a> exchange-pattern=&ldquo;request-response&rdquo; host=&ldquo;localhost&rdquo; port=&ldquo;8081&rdquo; doc:name=&ldquo;HTTP&rdquo;/>
+    <set-payload doc:name="Set Payload" value="Hello World!"/>
+  </flow>
 </mule>
-```</p>
+&#8220;`</p>
 
 <p>Then, proceed to write a test for the existing flow. As you can see response will be validated.</p>
 
-<p>```java
-import org.hamcrest.core.Is;
+<pre><code class="java">import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
-import org.mule.tck.junit4.FunctionalTestCase;</p>
+import org.mule.tck.junit4.FunctionalTestCase;
 
-<p>public class MuleTest extends FunctionalTestCase {</p>
+public class MuleTest extends FunctionalTestCase {
 
-<p>  @Override
-  protected String getConfigFile() {</p>
+  @Override
+  protected String getConfigFile() {
+    return "src/main/app/mule-config.xml";
+  }
 
-<pre><code>return "src/main/app/mule-config.xml";
+  @Test
+  public void testMuleConfigFlow1() throws Exception {
+    MuleClient client = muleContext.getClient();
+    MuleMessage message = client.request("http://localhost:8081", 3000L);
+    String payload = message.getPayloadAsString();
+    Assert.assertThat(payload, Is.is("Hello World!"));
+  }
+}
 </code></pre>
-
-<p>  }</p>
-
-<p>  @Test
-  public void testMuleConfigFlow1() throws Exception {</p>
-
-<pre><code>MuleClient client = muleContext.getClient();
-MuleMessage message = client.request("http://localhost:8081", 3000L);
-String payload = message.getPayloadAsString();
-Assert.assertThat(payload, Is.is("Hello World!"));
-</code></pre>
-
-<p>  }
-}</p>
-
-<p>```</p>
 ]]></content>
   </entry>
   
@@ -205,7 +180,7 @@ Assert.assertThat(payload, Is.is("Hello World!"));
     <id>http://eddumelendez.github.io/blog/2014/10/18/introduction-to-gradle</id>
     <content type="html"><![CDATA[<p><code>Gradle</code> is called the next generation of <strong>build automation</strong> and <strong>dependency management</strong>. If you have used <code>Ant</code> or <code>Maven</code> you know what that mean.</p>
 
-<p><code>Gradle</code> is based on <code>Groovy</code>. It has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
+<p><code>Gradle</code> is based on <code>Groovy</code> and has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
 
 <p>The company behind this project is <strong>Gradleware</strong>.</p>
 
@@ -227,13 +202,13 @@ Assert.assertThat(payload, Is.is("Hello World!"));
 
 <h2>Gradle Wrapper</h2>
 
-<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper to the rescue!!!</p>
+<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper has arrived to the rescue!!!</p>
 
-<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compabilities troubles o any other issue. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
+<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compatibility troubles or any other issues. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
 
 <h2>Gradle Daemon</h2>
 
-<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &mdash;daemon</strong> and finalize the process <strong>gradle &mdash;stop</strong>. This is useful when you run unit test many times.</p>
+<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &ndash;daemon</strong> and finalize the process <strong>gradle &ndash;stop</strong>. This is useful when you run unit test many times.</p>
 
 <p><strong>Note:</strong> expire after 3 hours.</p>
 
@@ -249,27 +224,34 @@ Assert.assertThat(payload, Is.is("Hello World!"));
 
 <p>Commands:</p>
 
-<p><strong>-v or &mdash;version</strong> &ndash;> display gradle version.</p>
+<p><strong>-v or &ndash;version</strong> -> display gradle version.</p>
 
-<p><strong>tasks</strong> &ndash;> display tasks related to the project.</p>
+<p><strong>tasks</strong> -> display tasks related to the project.</p>
 
-<p><strong>-q</strong> &ndash;> show tasks output.</p>
+<p><strong>-q</strong> -> show tasks output.</p>
 
-<p><strong>-x</strong> or <strong>gradle &mdash;exclude-task</strong> &ndash;> exclude the execution of tasks defined.</p>
+<p><strong>-x</strong> or <strong>gradle &ndash;exclude-task</strong> -> exclude the execution of tasks defined.</p>
 
-<p><strong>dependencies</strong> &ndash;> display project dependencies and how dependencies were solved.</p>
+<p><strong>dependencies</strong> -> display project dependencies and how dependencies were solved.</p>
 
-<p><strong>projects</strong> &ndash;> list all the project and subprojects.</p>
+<p><strong>projects</strong> -> list all the project and subprojects.</p>
 
-<p><strong>properties</strong> &ndash;> list all available properties in the project.</p>
+<p><strong>properties</strong> -> list all available properties in the project.</p>
 
-<p><strong>-a</strong> or <strong>&mdash;no-rebuild</strong> &ndash;> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. It works if you are only changing files in a single project.</p>
+<p><strong>-a</strong> or <strong>&ndash;no-rebuild</strong> -> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. It works if you are only changing files in a single project.</p>
 
-<p><strong>&mdash;refresh-dependencies</strong> &ndash;> refresh project dependencies.</p>
+<p><strong>&ndash;refresh-dependencies</strong> -> refresh project dependencies.</p>
 
-<p><strong>-b</strong> or <strong>&mdash;build-file</strong> &ndash;> give the option to choose another build script.</p>
+<p><strong>-b</strong> or <strong>&ndash;build-file</strong> -> give the option to choose another build script.</p>
 
-<p><strong>-Dtest.debug test</strong> &ndash;> debug test in port 5005</p>
+<p><strong>-Dtest.debug test</strong> -> debug test in port 5005</p>
+
+<h2>Recommended Books</h2>
+
+<ul>
+<li><a href="http://www.manning.com/muschko/">Gradle in Action</a></li>
+</ul>
+
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javaone | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/javaone/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -32,17 +32,17 @@
 
 
 <p>Some companies were present in this event such as:
-Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
+Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
 
 <p>Also, had the chance to meet:</p>
 
 <ul>
-<li>Anton Arhipov &ndash; <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
-<li>Arun Gupta &ndash; <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
-<li>Benjamin Muschko &ndash; <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
-<li>John Ferguson &ndash; <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
-<li>Josh Long &ndash; <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
-<li>Phill Weeb &ndash; <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
+<li>Anton Arhipov - <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
+<li>Arun Gupta - <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
+<li>Benjamin Muschko - <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
+<li>John Ferguson - <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
+<li>Josh Long - <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
+<li>Phill Weeb - <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
 </ul>
 
 
@@ -92,11 +92,11 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, P
 </ul>
 
 
-<p><strong>Java 8</strong> was the star during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
+<p><strong>Java 8</strong> was the main topic during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
 
 <blockquote><p>Java arrived later with lambdas but arrived with the desserts (Streams)</p></blockquote>
 
-<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC.</p>
+<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC but good to know that good things have been adopted.</p>
 
 <p><strong>JavaOne</strong> is the best place to meet people, authors, learn new things, get stuff like raspberry pi, books and t-shirts and drink a beer.</p>
 

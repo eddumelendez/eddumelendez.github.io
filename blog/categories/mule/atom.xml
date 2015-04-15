@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mule | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/mule/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -49,57 +49,47 @@
 
 <p>Make sure you have set the Mulesoft&rsquo;s repository in <code>settings.xml</code></p>
 
-<p>```xml
-<repositories>
-  <repository></p>
-
-<pre><code>&lt;id&gt;mulesoft-release&lt;/id&gt;
-&lt;name&gt;Mulesoft Release Repository&lt;/name&gt;
-&lt;url&gt;https://repository.mulesoft.org/nexus/content/repositories/public/&lt;/url&gt;
+<pre><code class="xml">&lt;repositories&gt;
+  &lt;repository&gt;
+    &lt;id&gt;mulesoft-release&lt;/id&gt;
+    &lt;name&gt;Mulesoft Release Repository&lt;/name&gt;
+    &lt;url&gt;https://repository.mulesoft.org/nexus/content/repositories/public/&lt;/url&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
 </code></pre>
-
-<p>  </repository>
-</repositories>
-```</p>
 
 <p>Now, you are able to run the following command your terminal:</p>
 
-<p><code>
-mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
-</code></p>
+<pre><code>mvn mule-project-archetype:create -DartifactId=helloWorld -DmuleVersion=3.5.0
+</code></pre>
 
 <h2>Using Gradle</h2>
 
 <p>Make sure you have a build.gradle file inside the folder with the following content:</p>
 
-<p>```
-buildscript {</p>
+<pre><code>buildscript {
+    dependencies {
+        classpath group: 'org.mulesoft.build', name: 'mule-gradle-plugin', version: '1.1.0'
+    }
 
-<pre><code>dependencies {
-    classpath group: 'org.mulesoft.build', name: 'mule-gradle-plugin', version: '1.1.0'
-}
-
-repositories {
-    maven {
-        url 'http://repository.mulesoft.org/releases'
+    repositories {
+        maven {
+            url 'http://repository.mulesoft.org/releases'
+        }
     }
 }
+
+apply plugin: 'mule'
+
+mule.version = '3.5.0'
+
+mule.muleEnterprise = false
 </code></pre>
-
-<p>}</p>
-
-<p>apply plugin: &lsquo;mule&rsquo;</p>
-
-<p>mule.version = &lsquo;3.5.0&rsquo;</p>
-
-<p>mule.muleEnterprise = false
-```</p>
 
 <p>After that you can execute:</p>
 
-<p><code>
-gradle initMuleProject
-</code></p>
+<pre><code>gradle initMuleProject
+</code></pre>
 
 <p>By default, <code>mule.muleEnterprise</code> is set to <code>true</code>.</p>
 
@@ -114,25 +104,21 @@ gradle initMuleProject
 <table>
 <thead>
 <tr>
-<th></th>
 <th> Maven        </th>
 <th> Gradle      </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td> Provide <code>mule</code> packaging      </td>
 <td> Provide <code>mule</code> plugin</td>
 </tr>
 <tr>
-<td></td>
 <td> Allow to deploy in local mule standalone </td>
 <td> Allow to deploy in local mule standalone, Mule Management Console and Cloudhub</td>
 </tr>
 <tr>
-<td></td>
-<td>&ndash;</td>
+<td>-</td>
 <td>Allow to run application with a simple command</td>
 </tr>
 </tbody>
@@ -143,7 +129,7 @@ gradle initMuleProject
 
 <p><code>mule-config.xml</code> is placed inside of <code>src/main/app</code>. Here you will find a http service which will return <code>Hello World!</code> message.</p>
 
-<p>```xml
+<p>&#8220;`xml
 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?></p>
 
 <!-- created by the gradle mule plugin -->
@@ -152,49 +138,38 @@ gradle initMuleProject
 <p><mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
   http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
   http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-  <flow name="mule-configFlow1" doc:name="mule-configFlow1"></p>
-
-<pre><code>&lt;http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/&gt;
-&lt;set-payload doc:name="Set Payload" value="Hello World!"/&gt;
-</code></pre>
-
-<p>  </flow>
+  <flow name="mule-configFlow1" doc:name="mule-configFlow1">
+    &lt;<a href="http:inbound-endpoint">http:inbound-endpoint</a> exchange-pattern=&ldquo;request-response&rdquo; host=&ldquo;localhost&rdquo; port=&ldquo;8081&rdquo; doc:name=&ldquo;HTTP&rdquo;/>
+    <set-payload doc:name="Set Payload" value="Hello World!"/>
+  </flow>
 </mule>
-```</p>
+&#8220;`</p>
 
 <p>Then, proceed to write a test for the existing flow. As you can see response will be validated.</p>
 
-<p>```java
-import org.hamcrest.core.Is;
+<pre><code class="java">import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
-import org.mule.tck.junit4.FunctionalTestCase;</p>
+import org.mule.tck.junit4.FunctionalTestCase;
 
-<p>public class MuleTest extends FunctionalTestCase {</p>
+public class MuleTest extends FunctionalTestCase {
 
-<p>  @Override
-  protected String getConfigFile() {</p>
+  @Override
+  protected String getConfigFile() {
+    return "src/main/app/mule-config.xml";
+  }
 
-<pre><code>return "src/main/app/mule-config.xml";
+  @Test
+  public void testMuleConfigFlow1() throws Exception {
+    MuleClient client = muleContext.getClient();
+    MuleMessage message = client.request("http://localhost:8081", 3000L);
+    String payload = message.getPayloadAsString();
+    Assert.assertThat(payload, Is.is("Hello World!"));
+  }
+}
 </code></pre>
-
-<p>  }</p>
-
-<p>  @Test
-  public void testMuleConfigFlow1() throws Exception {</p>
-
-<pre><code>MuleClient client = muleContext.getClient();
-MuleMessage message = client.request("http://localhost:8081", 3000L);
-String payload = message.getPayloadAsString();
-Assert.assertThat(payload, Is.is("Hello World!"));
-</code></pre>
-
-<p>  }
-}</p>
-
-<p>```</p>
 ]]></content>
   </entry>
   

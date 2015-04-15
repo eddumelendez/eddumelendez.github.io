@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sonar | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/sonar/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-01-06T00:43:36-05:00</updated>
+  <updated>2015-04-14T23:39:16-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -24,7 +24,7 @@
 
 <h2>What is SonarQube?</h2>
 
-<p><a href="http://www.sonarqube.org/">SonarQube</a> is an Open Source Project based on seven axes:</p>
+<p><a href="http://www.sonarqube.org/">SonarQube</a> is an Open Source Project based on seven axes of quality:</p>
 
 <ol>
 <li>Potential bugs</li>

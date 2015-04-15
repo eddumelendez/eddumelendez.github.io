@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Improving Maven Projects - Eddú Meléndez</title>
+  <meta name="author" content="Eddú Meléndez">
+
+  
+  <meta name="description" content="During long time maven has been the defacto build tool and dependency management for java projects. Since previous version some cool things has been &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Eddú Meléndez" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-49292682-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Eddú Meléndez</a></h1>
+  
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="eddumelendez.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  <header>
+    
+      <h1 class="entry-title">Improving Maven Projects</h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-04-14T22:17:16-05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:17 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>During long time <strong>maven</strong> has been the defacto build tool and dependency management for java projects. Since previous version some cool things has been added by plugins but now maven has been enriched with new features learning from the others.</p>
+
+<ul>
+<li><a href="#lifecycle">Maven Lifecycle</a></li>
+<li><a href="#polyglot">Maven Polyglot</a></li>
+<li><a href="#wrapper">Maven Wrapper</a></li>
+</ul>
+
+
+<p>All these new stuff is thanks to <a href="http://takari.io/">Takiri</a> which is lead by Jason van Zyl (<a href="https://twitter.com/jvanzyl">@jvanzyl</a>) the maven&rsquo;s father.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Maven 3.3.1</li>
+<li>Java 7</li>
+</ul>
+
+
+<p><a name="lifecycle"></a></p>
+
+<h2>Maven Lifecycle</h2>
+
+<p>Avoid the re-compilation if there are no changes in the source code. Just is needed two simple steps to enable this awesome feature. Save your time!!!</p>
+
+<p><strong>1.</strong> Add plugin below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>takari-lifecycle-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;extensions&gt;</span>true<span class="nt">&lt;/extensions&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>2.</strong> Switch your current <code>packaging</code> from <code>jar</code> to <code>takari-jar</code>.</p>
+
+<p>You can see the log to see if the plugin take effect. If you have compiled previously and you do again with after these configuration then no compilation will be done but if there are any change in your source code then it will compile again.</p>
+
+<p><a name="polyglot"></a></p>
+
+<h2>Maven Polyglot</h2>
+
+<p>Build <code>pom</code> file in xml format is verbose. Now, you can build your pom in different languages: atom, clojure, groovy, ruby, scala, yaml. And take advantage of each one.</p>
+
+<p>Pre-requisite:</p>
+
+<ol>
+<li>Inside the project create <code>.mvn/extensions.xml</code> file, where language dependency will take place:</li>
+</ol>
+
+
+<h3>Atom</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-atom<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Clojure:</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-clojure<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Groovy</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-groovy<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ruby</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-ruby<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Scala</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-scala<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Yaml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;extensions&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;extension&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>io.takari.polyglot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>polyglot-yaml<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>0.1.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/extension&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extensions&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Would you like to migrate your xml to any other language? You can do it running the command below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn io.takari.polyglot:polyglot-translate-plugin:translate -Dinput=pom.xml -Doutput=pom.{format}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Where <code>format</code> could be <code>atom</code>, <code>clj</code>, <code>groovy</code>, <code>rb</code>, <code>scala</code> and <code>yml</code>.</p>
+
+<p><a name="wrapper"></a></p>
+
+<h2>Maven Wrapper</h2>
+
+<p>Share projects is common and sometimes we have specific version from our build tool. Now, you don&rsquo;t need to ask to your friend which maven version you need if the maven project use <code>maven-wrapper</code>. To do that, you just need to run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn -N io.takari:maven:wrapper
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you can make a build <code>mvnw clean install</code>. If you like to see which maven version you will download take a look at <code>.mvn/wrapper/maven-wrapper.properties</code> inside your project.</p>
+</div>
+  <footer>
+    <p class="meta">
+      <span class="byline author vcard">Posted by <span class="fn">Eddú Meléndez</span></span>
+      <time class='entry-date' datetime='2015-04-14T22:17:16-05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:17 pm</span></time>
+      <span class="categories">
+  
+    <a class='category' href='/blog/categories/maven/'>maven</a>, <a class='category' href='/blog/categories/maven-plugins/'>maven-plugins</a>, <a class='category' href='/blog/categories/takari/'>takari</a>
+  
+</span>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/" data-via="eddumelendez" data-counturl="http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/12/31/how-to-start-with-mule-esb/" title="Next Post: How to Start With Mule ESB">How to Start With Mule ESB &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/cf9e8d46103d66657d9c6817a5aa35d3" alt="Gravatar of Eddú Meléndez " title="Gravatar of Eddú Meléndez" />
+	</span>
+</section>
+
+<section>
+  <h1>Follow Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <a href="https://twitter.com/eddumelendez" class="twitter-follow-button" data-show-count="false">Follow @eddumelendez</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </p>
+  </div>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version/">My Advice to (Junior) Developers About Their Career</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/31/how-to-start-with-mule-esb/">How to Start With Mule ESB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/30/news-about-java-8/">News About Java 8</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/18/introduction-to-gradle/">Introduction to Gradle</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eddú Meléndez -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></footer>
+  <script type="text/javascript">
+      var disqus_shortname = 'eddumelendez';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/';
+        var disqus_url = 'http://eddumelendez.github.io/blog/2015/04/14/improving-maven-projects/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+</body>
+</html>
