@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="During long time maven has been the defacto build tool and dependency management for java projects. Since previous version some cool things has been &hellip;">
+  <meta name="description" content="Code Analysis is a really important stage in our projects, we need to take a look the software healthy every day. In this blog, JArchitect is the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +67,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/27/code-analysis-with-jarchitect/">Code Analysis With JArchitect</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-05-27T00:02:29-05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:02 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Code Analysis is a really important stage in our projects, we need to take a look the software healthy every day. In this blog, <code>JArchitect</code> is the Code Analysis tool for Java projects that we are going to talk about.</p>
+
+<p>Months ago I have the chance to get a JArchitect&rsquo;s license- thanks to the <code>CodeGears</code> team for this license. Then, I started taking a look how it works.</p>
+
+<ul>
+<li>Code Quality Metrics</li>
+<li>Graph Dependency</li>
+<li>Dependency Cycle</li>
+</ul>
+
+
+<h2>Features</h2>
+
+<p>A really nice feature is that you can use <code>CQLinq</code> to build query over Java code. To learn more about <code>CQLinq</code> syntax check <a href="http://www.jarchitect.com/Doc_CQLinq_Syntax">here</a>. Also, allow you to create your own rules.</p>
+
+<p>Modern projects use build tools to package their artifacts (jar, war, etc) So the integration with modern build tools such as <code>gradle</code> and <code>maven</code> is possible, you can follow the online documentation to set up.</p>
+
+<ul>
+<li><a href="http://www.jarchitect.com/Doc_Ant">Ant Integration</a></li>
+<li><a href="http://www.jarchitect.com/Doc_Maven">Maven Integration</a></li>
+<li><a href="http://www.jarchitect.com/Doc_Gradle">Gradle Integration</a></li>
+</ul>
+
+
+<p>Also, Continuous Integration process is real using JArchitect.</p>
+
+<ul>
+<li><a href="http://www.jarchitect.com/Doc_CI_Jenkins">Jenkins Integration</a></li>
+<li><a href="http://www.jarchitect.com/Doc_CI_TeamCity">TeamCity Integration</a></li>
+</ul>
+
+
+<p>About <code>Code Coverage</code>, <code>cobertura</code> is the only technology supported by JArchitect at this moment. These metrics can be getting from xml files, but we need to generate reports previous to the code analysis.</p>
+
+<p>Another great integration is that we can enrich our analysis with existing tools in the market like <code>CheckStyle</code>, <code>FindBugs</code>, <code>PMD</code>.</p>
+
+<p>Languages that already run in the JVM can be analyze by JArchitect like <code>scala</code>, <code>groovy</code>, <code>clojure</code>.</p>
+
+<p>Analysis Bar<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20analysis.png" alt="" /></p>
+
+<p>Graph Dependency<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20graph%20dependency.png" alt="" /></p>
+
+<p>Report- Metrics<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20metrics.png" alt="" /></p>
+
+<p>Report- Rules Violated<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20rules%20violated.png" alt="" /></p>
+
+<p>CQLinq sentence<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect-%20cqlinq.png" alt="" /></p>
+</div>
+    </article>
   
   
     <article>
@@ -1475,83 +1540,6 @@ The profile approach will be useful in our integration.</p>
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/11/database-change-management-liquibase/">Database Change Management: Liquibase</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-08-11T14:23:31-05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:23 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Months ago, I published my first post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management">Database Change Management</a>. So now, we will review <a href="http://www.liquibase.org">liquibase</a>.</p>
-
-<p>In this blog, I am using sql scripts but there are another ways to work with Liquibase such as XML, YAML, JSON and you have to consider which it is the best option for you.</p>
-
-<h2>What is Liquibase?</h2>
-
-<p>It is an open source project which help us to manage the scripts execution into the database avoiding headaches during the SDLC.</p>
-
-<h2>How liquibase works?</h2>
-
-<p>First of all, you need to add the liquibase dependency and the database dependency (mysql in this post) into the pom.xml
-After that, add scripts into the project. Then you must to register the script added into the liquibase configuration xml.</p>
-
-<p>Take into account that if your script is not registered into the liquibase configuration xml, script will not be executed automatically.</p>
-
-<p>Finally you can run the following maven goal <strong>liquibase:update</strong>, which will create two tables into the database. All the scripts executed against the database will be stored into the <strong>databasechangelog</strong> table.</p>
-
-<h2>Pre-requisites</h2>
-
-<ul>
-<li>Java</li>
-<li>Ant</li>
-<li>Maven</li>
-</ul>
-
-
-<h2>Liquibase&rsquo;s Goals</h2>
-
-<p>I will mention just some of them, the list below are the most used by me:</p>
-
-<ul>
-<li><code>rollback</code>: run all the scripts in the <strong>rollback</strong> section inside of dbchangelog configuration file.</li>
-<li><code>tag</code>: mark the last script executed.</li>
-<li><code>update</code>: run all the scripts in the <strong>sqlFile</strong> section inside of dbchangelog configuration file.</li>
-<li><code>updateTestingRollback</code>: allow to test all the scripts. First, do the update and then rollback task. Make sure that all your scripts has a rollback section inside of dbchangelog configuration file. Otherwise, it doesn&rsquo;t work.</li>
-</ul>
-
-
-<blockquote><p><strong>Note:</strong> See all the liquibase&rsquo;s goals <a href="http://www.liquibase.org/documentation/maven/">here</a>.</p></blockquote>
-
-<h2>Demo</h2>
-
-<p>You can download the example <a href="https://github.com/eddumelendez/liquibase-demo">here</a>.</p>
-
-<p>As you can see, there are <strong>param.properties</strong> which have the database connection and another values.</p>
-
-<p><strong>1.</strong> Lets explain some key properties:</p>
-
-<p><strong>changeLogFile</strong>, filename which contains scripts to be executed.</p>
-
-<p><strong>tag</strong>, the name of tag.</p>
-
-<p><strong>2.</strong> Run the ant task <strong>mvn_liquibase_update</strong>, it will create t_user table. Also, script executed will be registered into the <strong>databasechangelog</strong> table.</p>
-
-<p><strong>3.</strong> Now, lets change <strong>changeLogFile</strong> value into the <strong>params.properties</strong> by db.changelog-1.1.0.xml</p>
-
-<p><strong>4.</strong> Run the ant task <strong>mvn_liquibase_update</strong> again, it will create t_role table.</p>
-
-<p>Now, the scripts execution can be automated using Jenkins.</p>
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1583,6 +1571,10 @@ After that, add scripts into the project. Then you must to register the script a
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/05/27/code-analysis-with-jarchitect/">Code Analysis With JArchitect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a>
       </li>
     
@@ -1596,10 +1588,6 @@ After that, add scripts into the project. Then you must to register the script a
     
       <li class="post">
         <a href="/blog/2014/10/30/news-about-java-8/">News About Java 8</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/18/introduction-to-gradle/">Introduction to Gradle</a>
       </li>
     
   </ul>
