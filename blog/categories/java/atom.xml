@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-01T22:53:30-05:00</updated>
+  <updated>2015-06-01T22:59:46-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JEE: MVC 1.0]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/05/01/jee-mvc-1-0/"/>
+    <updated>2015-05-01T22:16:32-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/05/01/jee-mvc-1-0</id>
+    <content type="html"><![CDATA[<p>JEE is evolving and there are a lot of news coming in JEE8. JEE is constantly adopting standards and now is time to the new spec
+<code>MVC 1.0</code> (JSR-371) is part of JEE8 which will be released in 2016.</p>
+
+<p>If you are thinking on a new concept, let me tell that you are wrong MVC is Model, View, Controller the pattern for web frameworks and you already knew it.</p>
+
+<p>Now, UI frameworks has been categorized in:</p>
+
+<ul>
+<li>Action-based, like MVC.</li>
+<li>Component-based, like JSF.</li>
+</ul>
+
+
+<p>But, I am pretty sure that you have the following question <a href="http://www.oracle.com/technetwork/articles/java/mvc-2280472.html">Why another MVC framework?</a>.</p>
+
+<p>Complete integration with Jersey (JAX-RS) and obviously with all JEE ecosystem.</p>
+
+<p>You can see in <a href="https://github.com/spericas/ozark">ozark</a> github repository the RI (Reference Implementation) to the frameworks below:</p>
+
+<ul>
+<li>Freemaker</li>
+<li>Handlebars</li>
+<li>Mustache</li>
+<li>Thymeleaf</li>
+<li>Velocity</li>
+</ul>
+
+
+<p><strong>Note:</strong> Glassfish 4.1, is the only Server Application which support this specification at the time I am writing this post.</p>
+
+<p>To use it in your projects add the this dependency in your pom.xml (if you are using maven)</p>
+
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;javax.mvc&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.mvc-api&lt;/artifactId&gt;
+    &lt;version&gt;1.0-edr1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>JSP&rsquo;s are located at <code>src/main/webapp/WEB-INF/views</code> folder.</p>
+
+<p>There are 4 ways to return a view:</p>
+
+<ol>
+<li>Void method with <code>@View</code> and the jsp name.</li>
+<li>Return <code>String</code> with the jsp name.</li>
+<li>Return <code>Viewable</code> class with the jsp name.</li>
+<li>Return <code>Response</code> class from JAX-RS to return the jsp name as a entity.</li>
+</ol>
+
+
+<pre><code class="java">@Controller
+@Path("book")
+@Produces("text/html")
+public class BookController {
+
+  @GET
+    @View("books.jsp")
+    public void viewBooks() {
+
+    }
+
+    @GET
+    public String viewBookInfo() {
+        return "book.jsp";
+    }
+
+    @GET
+    public Viewable viewBookDetail() {
+        return new Viewable("bookDetail.jsp");
+    }
+
+    @GET
+    public Response viewBook() {
+        return Response.status(Response.Status.OK).entity("book.jsp").build();
+    }
+
+}
+</code></pre>
+
+<p>If you can check the code of this API take a look the github repository <a href="https://github.com/spericas/mvc-spec">MVC 1.0</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[News About Java 8]]></title>

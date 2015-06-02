@@ -240,6 +240,139 @@
     <article>
       <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/05/01/jee-mvc-1-0/">JEE: MVC 1.0</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-05-01T22:16:32-05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:16 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JEE is evolving and there are a lot of news coming in JEE8. JEE is constantly adopting standards and now is time to the new spec
+<code>MVC 1.0</code> (JSR-371) is part of JEE8 which will be released in 2016.</p>
+
+<p>If you are thinking on a new concept, let me tell that you are wrong MVC is Model, View, Controller the pattern for web frameworks and you already knew it.</p>
+
+<p>Now, UI frameworks has been categorized in:</p>
+
+<ul>
+<li>Action-based, like MVC.</li>
+<li>Component-based, like JSF.</li>
+</ul>
+
+
+<p>But, I am pretty sure that you have the following question <a href="http://www.oracle.com/technetwork/articles/java/mvc-2280472.html">Why another MVC framework?</a>.</p>
+
+<p>Complete integration with Jersey (JAX-RS) and obviously with all JEE ecosystem.</p>
+
+<p>You can see in <a href="https://github.com/spericas/ozark">ozark</a> github repository the RI (Reference Implementation) to the frameworks below:</p>
+
+<ul>
+<li>Freemaker</li>
+<li>Handlebars</li>
+<li>Mustache</li>
+<li>Thymeleaf</li>
+<li>Velocity</li>
+</ul>
+
+
+<p><strong>Note:</strong> Glassfish 4.1, is the only Server Application which support this specification at the time I am writing this post.</p>
+
+<p>To use it in your projects add the this dependency in your pom.xml (if you are using maven)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>javax.mvc<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>javax.mvc-api<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.0-edr1<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JSP&rsquo;s are located at <code>src/main/webapp/WEB-INF/views</code> folder.</p>
+
+<p>There are 4 ways to return a view:</p>
+
+<ol>
+<li>Void method with <code>@View</code> and the jsp name.</li>
+<li>Return <code>String</code> with the jsp name.</li>
+<li>Return <code>Viewable</code> class with the jsp name.</li>
+<li>Return <code>Response</code> class from JAX-RS to return the jsp name as a entity.</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Controller</span>
+</span><span class='line'><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;book&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="nd">@Produces</span><span class="o">(</span><span class="s">&quot;text/html&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BookController</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@GET</span>
+</span><span class='line'>  <span class="nd">@View</span><span class="o">(</span><span class="s">&quot;books.jsp&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">viewBooks</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@GET</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">viewBookInfo</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="s">&quot;book.jsp&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@GET</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Viewable</span> <span class="nf">viewBookDetail</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">new</span> <span class="nf">Viewable</span><span class="o">(</span><span class="s">&quot;bookDetail.jsp&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@GET</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Response</span> <span class="nf">viewBook</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">Response</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">Response</span><span class="o">.</span><span class="na">Status</span><span class="o">.</span><span class="na">OK</span><span class="o">).</span><span class="na">entity</span><span class="o">(</span><span class="s">&quot;book.jsp&quot;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you can check the code of this API take a look the github repository <a href="https://github.com/spericas/mvc-spec">MVC 1.0</a></p>
+</div>
+    </article>
+  
+  
+    <article>
+      <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a></h1>
     
     
@@ -1480,77 +1613,6 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-08-30T21:35:39-05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:35 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
-
-<p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
-
-<p><strong>What is Cypher?</strong> It is the Query Language used in Neo4j database.</p>
-
-<p>It has a good introduction about Neo4j using embedded database and using the Java API provided by Neo4j.</p>
-
-<p>For example: Imagine that we would like to get all the Users from the graph database. User must be an Node.</p>
-
-<p>First, create an User node:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE (a:User {username: "jroe", firstname: "Jane", lastname: "Roe"}),
-</span><span class='line'>(b:User {username: "cgarcia", firstname: "Carlos", lastname: "Garcia"}),
-</span><span class='line'>(c:User {username: "mweng", firstname: "Mei", lastname: "Weng"})</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Using the query below you will get all the user information:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
-</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But, if we want some fields:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
-</span><span class='line'>RETURN u.username, u.firstname, u.lastname</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There are another example, using WHERE clause</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
-</span><span class='line'>WHERE u.username = 'cgarcia'
-</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There are more topics using Regex, Join, Sorting and so on. Another interesting topics are:
-* Profiling
-* Migraton from SQL</p>
-
-<p><strong>Note:</strong> The author mention to <em>spring-data-neo4j</em> module from springframework which make the configuration and integration easy.</p>
-
-<p>I really recommend this book if you want to dive into Neo4j world.</p>
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1590,15 +1652,15 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
       </li>
     
       <li class="post">
+        <a href="/blog/2015/05/01/jee-mvc-1-0/">JEE: MVC 1.0</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version/">My Advice to (Junior) Developers About Their Career</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/31/how-to-start-with-mule-esb/">How to Start With Mule ESB</a>
       </li>
     
   </ul>

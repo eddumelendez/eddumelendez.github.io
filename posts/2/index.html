@@ -9,8 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="I have talked about Database Change Management using Liquibase.
-Now, I will talk about the integration with Jenkins CI. As you can see in the example &hellip;">
+  <meta name="description" content="I have had the change to review another book from Packtpub.com. Now, it&rsquo;s time to take a look inside the Learning Cypher. Maybe you have heard &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +67,77 @@ Now, I will talk about the integration with Jenkins CI. As you can see in the ex
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/30/learning-cypher-review/">Learning Cypher Review</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2014-08-30T21:35:39-05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
+
+<p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
+
+<p><strong>What is Cypher?</strong> It is the Query Language used in Neo4j database.</p>
+
+<p>It has a good introduction about Neo4j using embedded database and using the Java API provided by Neo4j.</p>
+
+<p>For example: Imagine that we would like to get all the Users from the graph database. User must be an Node.</p>
+
+<p>First, create an User node:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE (a:User {username: "jroe", firstname: "Jane", lastname: "Roe"}),
+</span><span class='line'>(b:User {username: "cgarcia", firstname: "Carlos", lastname: "Garcia"}),
+</span><span class='line'>(c:User {username: "mweng", firstname: "Mei", lastname: "Weng"})</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using the query below you will get all the user information:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But, if we want some fields:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>RETURN u.username, u.firstname, u.lastname</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are another example, using WHERE clause</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MATCH (u:User)
+</span><span class='line'>WHERE u.username = 'cgarcia'
+</span><span class='line'>RETURN u</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are more topics using Regex, Join, Sorting and so on. Another interesting topics are:
+* Profiling
+* Migraton from SQL</p>
+
+<p><strong>Note:</strong> The author mention to <em>spring-data-neo4j</em> module from springframework which make the configuration and integration easy.</p>
+
+<p>I really recommend this book if you want to dive into Neo4j world.</p>
+</div>
+    </article>
   
   
     <article>
@@ -792,39 +862,9 @@ Another option is get a backup from production, is not a bad idea if you want to
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/23/why-am-i-writing-this-blog/">Why Am I Writing This Blog?</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-03-23T11:52:28-05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:52 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am starting writing this blog because I want to share my knowledge and expertise with everyone. Also, I would like to get feedback from others.</p>
-
-<p>My favourite topics are related to:</p>
-
-<ul>
-<li>Agile Practices</li>
-<li>Java</li>
-<li>Build Tools (Gradle, Maven)</li>
-<li>Mule ESB</li>
-<li>Spring Framework</li>
-</ul>
-
-
-<p>Also, I will share some books that I have taken into consideration during my continuous improvement process.</p>
-</div>
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/3">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -863,15 +903,15 @@ Another option is get a backup from production, is not a bad idea if you want to
       </li>
     
       <li class="post">
+        <a href="/blog/2015/05/01/jee-mvc-1-0/">JEE: MVC 1.0</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version/">My Advice to (Junior) Developers About Their Career</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/31/how-to-start-with-mule-esb/">How to Start With Mule ESB</a>
       </li>
     
   </ul>
