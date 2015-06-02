@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jarchitect | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/jarchitect/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-05-27T01:16:47-05:00</updated>
+  <updated>2015-06-01T22:48:23-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -55,6 +55,8 @@
 <p>Another great integration is that we can enrich our analysis with existing tools in the market like <code>CheckStyle</code>, <code>FindBugs</code>, <code>PMD</code>.</p>
 
 <p>Languages that already run in the JVM can be analyze by JArchitect like <code>scala</code>, <code>groovy</code>, <code>clojure</code>.</p>
+
+<p>For <code>Open Source</code> contributor there are good news. You can get your own free copy of <code>JArchitect</code>. How to apply? Check this <a href="http://www.jarchitect.com/JArchitectForOSS">link</a> for more information.</p>
 
 <p>Analysis Bar<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20analysis.png" alt="" /></p>
 

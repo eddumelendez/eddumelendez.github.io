@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Code Analysis is a really important stage in our projects, we need to take a look the software healthy every day. In this blog, JArchitect is the &hellip;">
+  <meta name="description" content="Git is the most popular Version Control System at this time. There are several benefits like Distributed Version Control System, manage commits by &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -29,17 +29,7 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-49292682-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+  
 </head>
 <body   >
   <header role="banner"><hgroup>
@@ -67,6 +57,107 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/27/git-useful-commands/">Git: Useful Commands</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-05-27T01:18:55-05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:18 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Git</code> is the most popular Version Control System at this time. There are several benefits like Distributed Version Control System, manage commits by references, save space and so on. And to be honest make my job easy in the software development.</p>
+
+<p>In this post I will share some <code>git</code> useful commands.</p>
+
+<h3>View cool log</h3>
+
+<p>Sometimes we don&rsquo;t need to much detail in our log and it is enough reading the commit&rsquo;s title. Also we would like to know ref names of commits. Additionally, we would like to display branching graph.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --oneline --decorate --graph
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As a result, you can see the commit hash towards to the commit&rsquo;s title. Also, you can see branches graph.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/git-comman%20-%20log%20oneline%20decorate%20graph.png" alt="" /></p>
+
+<h3>View pending commits to push</h3>
+
+<p>Sometimes, I thought that have been sent my commits to the central repository. An easy way to know how many commits are in your local repository and ready to push them is with the command below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --oneline origin/master.. master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Rebase</h3>
+
+<p>Put your local commits to the top and pull all the changes in the repository avoiding conflicts with the central repository.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull --rebase origin master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also rebase in interactive mode, which allow to choose actions like <code>pick</code>, <code>reword</code>, <code>edit</code>, <code>squash</code>, <code>fixup</code>, <code>exec</code>. To know about this command check this <a href="https://help.github.com/articles/about-git-rebase/#commands-available-while-rebasing">link</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rebase -i origin/master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Push specific commit</h3>
+
+<p>If you have one pending commit and start in a new feature you maybe wondering how to push your commit without revert all the changes you started. You just need the commit hash and execute the command below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git push origin <span class="nb">hash</span>:master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Get commit from another branch</h3>
+
+<p>Imagine you are working in a new feature with your team in a different branch than master. Then, a team member add a cool functionality which will be util in production right now. You can not wait and want to deploy this functionality in production tonight.</p>
+
+<p>Using the command below you just need to know the commit hash and all changes in that commit will be copy in your current branch. Awesome, isn&rsquo;t it?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git cherry-pick <span class="nb">hash</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ammend</h3>
+
+<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>ammend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit --amend --reuse-message<span class="o">=</span>HEAD
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Building git command alias</h1>
+
+<p>All commands mentioned above can be too large or complex to remember them but you can use <code>alias</code> to give a easy name for you.</p>
+
+<p>Command below will store <code>log --oneline --decorate --graph</code> in the alias <code>logd</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global alias.lodg <span class="sb">`</span>log --oneline --decorate --graph<span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After setup your new alias. You can use <code>git lodg</code> instead <code>git log --oneline --decorate --graph</code> and the result will be the same.</p>
+</div>
+    </article>
   
   
     <article>
@@ -120,6 +211,8 @@
 <p>Another great integration is that we can enrich our analysis with existing tools in the market like <code>CheckStyle</code>, <code>FindBugs</code>, <code>PMD</code>.</p>
 
 <p>Languages that already run in the JVM can be analyze by JArchitect like <code>scala</code>, <code>groovy</code>, <code>clojure</code>.</p>
+
+<p>For <code>Open Source</code> contributor there are good news. You can get your own free copy of <code>JArchitect</code>. How to apply? Check this <a href="http://www.jarchitect.com/JArchitectForOSS">link</a> for more information.</p>
 
 <p>Analysis Bar<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20analysis.png" alt="" /></p>
 
@@ -1448,98 +1541,6 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/30/jenkins-and-liquibase-working-together/">Jenkins and Liquibase Working Together</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-08-30T02:03:53-05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:03 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have talked about <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase">Database Change Management using Liquibase</a>.
-Now, I will talk about the integration with Jenkins CI.</p>
-
-<p>As you can see in the example of my previous post. In the <code>pom.xml</code> there are 3 profiles: <code>update</code>,<code>tag</code> and <code>rollback</code> which will be used by Jenkins.
-The profile approach will be useful in our integration.</p>
-
-<p>I am going to use <strong>Cloudbees</strong> (PaaS)</p>
-
-<p><strong>1.</strong> First, you need to have an <a href="http://www.cloudbees.com/">Cloudbees</a> account.</p>
-
-<p><strong>2.</strong> Click on <em>Databases</em> and then click <em>Add Database</em>.</p>
-
-<p><strong>3.</strong> Create a liquibase_demo database.</p>
-
-<p><strong>4.</strong> Click on <em>Builds</em>, Jenkins dashboard will be display.</p>
-
-<p><strong>5.</strong> Create <em>New Job</em>.</p>
-
-<p><strong>6.</strong> Put a name, choose <em>Build a free-style software project</em> option and then click <em>OK</em>.</p>
-
-<p><strong>7.</strong> Now, let start to configure Jenkins&rsquo;s job. You will be able to see the image below
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-1.png" alt="" /></p>
-
-<p><strong>8.</strong> Check <em>This build is parameterized</em> option. Then, click <em>Add Parameter</em>. Add the following parameters: <code>driver</code>, <code>url</code>, <code>username</code>, <code>password</code>, <code>changeLogFile</code>, <code>tag</code> and <code>action</code>.</p>
-
-<p>  <code>driver</code>, <code>url</code>, <code>username</code>, <code>changeLogFile</code>, <code>tag</code> are <strong>String Parameter</strong>
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-2.png" alt="" /></p>
-
-<p>  <code>password</code> is a <strong>Password Parameter</strong>.
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-3.png" alt="" /></p>
-
-<p>  <code>action</code> is a <strong>Choice Parameter</strong> with the following options: <code>update</code>, <code>tag</code> and <code>rollback</code>
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-4.png" alt="" /></p>
-
-<p><strong>9.</strong> Now, lets configure the Source Code Management. In this example, I have published the <a href="https://github.com/eddumelendez/liquibase-demo">demo</a> in GitHub.
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-5.png" alt="" /></p>
-
-<p><strong>10.</strong> Now, go to <strong>Build</strong> section, click on <em>Add build step</em> and choose <em>Invoke top-level Maven targets</em>. Add the maven&rsquo;s goal and properties. Then, <em>Save</em>.</p>
-
-<p>Maven Goal:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn install -P$action</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Maven Properties:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>liquibase.driver=$driver
-</span><span class='line'>liquibase.username=$username
-</span><span class='line'>liquibase.password=$password
-</span><span class='line'>liquibase.url=$url
-</span><span class='line'>liquibase.changeLogFile=$changeLogFile
-</span><span class='line'>liquibase.rollbackTag=$tag
-</span><span class='line'>liquibase.tag=$tag
-</span><span class='line'>liquibase.promptOnNonLocalDatabase=false</span></code></pre></td></tr></table></div></figure>
-
-
-<p>  If you remember, we have created parameters at the beginning of this post which are reusing in this part using <code>$</code> in order to do a dynamic job.
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-6.png" alt="" /></p>
-
-<p><strong>11.</strong> Finally, click <em>Build with parameters</em>, test your job and enjoy.
-  <img src="https://dl.dropboxusercontent.com/u/15671111/blog/liquibase-jenkins-7.png" alt="" /></p>
-
-<p>Avoid risks and say good bye to manual tasks. For that reason, I love automation!</p>
-
-<p><strong>Note:</strong> Liquibase can be used inside the java application using <a href="http://www.liquibase.org/documentation/spring.html">spring integration</a>.</p>
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1571,6 +1572,10 @@ The profile approach will be useful in our integration.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/05/27/git-useful-commands/">Git: Useful Commands</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/05/27/code-analysis-with-jarchitect/">Code Analysis With JArchitect</a>
       </li>
     
@@ -1584,10 +1589,6 @@ The profile approach will be useful in our integration.</p>
     
       <li class="post">
         <a href="/blog/2014/12/31/how-to-start-with-mule-esb/">How to Start With Mule ESB</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/30/news-about-java-8/">News About Java 8</a>
       </li>
     
   </ul>
