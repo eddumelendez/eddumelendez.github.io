@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jee | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/jee/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-01T22:59:46-05:00</updated>
+  <updated>2015-06-01T23:03:37-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[JEE: MVC 1.0]]></title>
-    <link href="http://eddumelendez.github.io/blog/2015/05/01/jee-mvc-1-0/"/>
-    <updated>2015-05-01T22:16:32-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2015/05/01/jee-mvc-1-0</id>
+    <link href="http://eddumelendez.github.io/blog/2015/06/01/jee-mvc-1-0/"/>
+    <updated>2015-06-01T22:16:32-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/06/01/jee-mvc-1-0</id>
     <content type="html"><![CDATA[<p>JEE is evolving and there are a lot of news coming in JEE8. JEE is constantly adopting standards and now is time to the new spec
 <code>MVC 1.0</code> (JSR-371) is part of JEE8 which will be released in 2016.</p>
 

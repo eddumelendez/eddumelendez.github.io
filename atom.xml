@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-01T22:59:46-05:00</updated>
+  <updated>2015-06-01T23:03:37-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -105,67 +105,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Code Analysis With JArchitect]]></title>
-    <link href="http://eddumelendez.github.io/blog/2015/05/27/code-analysis-with-jarchitect/"/>
-    <updated>2015-05-27T00:02:29-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2015/05/27/code-analysis-with-jarchitect</id>
-    <content type="html"><![CDATA[<p>Code Analysis is a really important stage in our projects, we need to take a look the software healthy every day. In this blog, <code>JArchitect</code> is the Code Analysis tool for Java projects that we are going to talk about.</p>
-
-<p>Months ago I have the chance to get a JArchitect&rsquo;s license- thanks to the <code>CodeGears</code> team for this license. Then, I started taking a look how it works.</p>
-
-<ul>
-<li>Code Quality Metrics</li>
-<li>Graph Dependency</li>
-<li>Dependency Cycle</li>
-</ul>
-
-
-<h2>Features</h2>
-
-<p>A really nice feature is that you can use <code>CQLinq</code> to build query over Java code. To learn more about <code>CQLinq</code> syntax check <a href="http://www.jarchitect.com/Doc_CQLinq_Syntax">here</a>. Also, allow you to create your own rules.</p>
-
-<p>Modern projects use build tools to package their artifacts (jar, war, etc) So the integration with modern build tools such as <code>gradle</code> and <code>maven</code> is possible, you can follow the online documentation to set up.</p>
-
-<ul>
-<li><a href="http://www.jarchitect.com/Doc_Ant">Ant Integration</a></li>
-<li><a href="http://www.jarchitect.com/Doc_Maven">Maven Integration</a></li>
-<li><a href="http://www.jarchitect.com/Doc_Gradle">Gradle Integration</a></li>
-</ul>
-
-
-<p>Also, Continuous Integration process is real using JArchitect.</p>
-
-<ul>
-<li><a href="http://www.jarchitect.com/Doc_CI_Jenkins">Jenkins Integration</a></li>
-<li><a href="http://www.jarchitect.com/Doc_CI_TeamCity">TeamCity Integration</a></li>
-</ul>
-
-
-<p>About <code>Code Coverage</code>, <code>cobertura</code> is the only technology supported by JArchitect at this moment. These metrics can be getting from xml files, but we need to generate reports previous to the code analysis.</p>
-
-<p>Another great integration is that we can enrich our analysis with existing tools in the market like <code>CheckStyle</code>, <code>FindBugs</code>, <code>PMD</code>.</p>
-
-<p>Languages that already run in the JVM can be analyze by JArchitect like <code>scala</code>, <code>groovy</code>, <code>clojure</code>.</p>
-
-<p>For <code>Open Source</code> contributor there are good news. You can get your own free copy of <code>JArchitect</code>. How to apply? Check this <a href="http://www.jarchitect.com/JArchitectForOSS">link</a> for more information.</p>
-
-<p>Analysis Bar<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20analysis.png" alt="" /></p>
-
-<p>Graph Dependency<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20graph%20dependency.png" alt="" /></p>
-
-<p>Report- Metrics<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20metrics.png" alt="" /></p>
-
-<p>Report- Rules Violated<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20rules%20violated.png" alt="" /></p>
-
-<p>CQLinq sentence<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect-%20cqlinq.png" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[JEE: MVC 1.0]]></title>
-    <link href="http://eddumelendez.github.io/blog/2015/05/01/jee-mvc-1-0/"/>
-    <updated>2015-05-01T22:16:32-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2015/05/01/jee-mvc-1-0</id>
+    <link href="http://eddumelendez.github.io/blog/2015/06/01/jee-mvc-1-0/"/>
+    <updated>2015-06-01T22:16:32-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/06/01/jee-mvc-1-0</id>
     <content type="html"><![CDATA[<p>JEE is evolving and there are a lot of news coming in JEE8. JEE is constantly adopting standards and now is time to the new spec
 <code>MVC 1.0</code> (JSR-371) is part of JEE8 which will be released in 2016.</p>
 
@@ -281,6 +224,63 @@
 
 
 <p>If you can check the code of this API take a look the github repository <a href="https://github.com/spericas/mvc-spec">MVC 1.0</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code Analysis With JArchitect]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/05/27/code-analysis-with-jarchitect/"/>
+    <updated>2015-05-27T00:02:29-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/05/27/code-analysis-with-jarchitect</id>
+    <content type="html"><![CDATA[<p>Code Analysis is a really important stage in our projects, we need to take a look the software healthy every day. In this blog, <code>JArchitect</code> is the Code Analysis tool for Java projects that we are going to talk about.</p>
+
+<p>Months ago I have the chance to get a JArchitect&rsquo;s license- thanks to the <code>CodeGears</code> team for this license. Then, I started taking a look how it works.</p>
+
+<ul>
+<li>Code Quality Metrics</li>
+<li>Graph Dependency</li>
+<li>Dependency Cycle</li>
+</ul>
+
+
+<h2>Features</h2>
+
+<p>A really nice feature is that you can use <code>CQLinq</code> to build query over Java code. To learn more about <code>CQLinq</code> syntax check <a href="http://www.jarchitect.com/Doc_CQLinq_Syntax">here</a>. Also, allow you to create your own rules.</p>
+
+<p>Modern projects use build tools to package their artifacts (jar, war, etc) So the integration with modern build tools such as <code>gradle</code> and <code>maven</code> is possible, you can follow the online documentation to set up.</p>
+
+<ul>
+<li><a href="http://www.jarchitect.com/Doc_Ant">Ant Integration</a></li>
+<li><a href="http://www.jarchitect.com/Doc_Maven">Maven Integration</a></li>
+<li><a href="http://www.jarchitect.com/Doc_Gradle">Gradle Integration</a></li>
+</ul>
+
+
+<p>Also, Continuous Integration process is real using JArchitect.</p>
+
+<ul>
+<li><a href="http://www.jarchitect.com/Doc_CI_Jenkins">Jenkins Integration</a></li>
+<li><a href="http://www.jarchitect.com/Doc_CI_TeamCity">TeamCity Integration</a></li>
+</ul>
+
+
+<p>About <code>Code Coverage</code>, <code>cobertura</code> is the only technology supported by JArchitect at this moment. These metrics can be getting from xml files, but we need to generate reports previous to the code analysis.</p>
+
+<p>Another great integration is that we can enrich our analysis with existing tools in the market like <code>CheckStyle</code>, <code>FindBugs</code>, <code>PMD</code>.</p>
+
+<p>Languages that already run in the JVM can be analyze by JArchitect like <code>scala</code>, <code>groovy</code>, <code>clojure</code>.</p>
+
+<p>For <code>Open Source</code> contributor there are good news. You can get your own free copy of <code>JArchitect</code>. How to apply? Check this <a href="http://www.jarchitect.com/JArchitectForOSS">link</a> for more information.</p>
+
+<p>Analysis Bar<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20analysis.png" alt="" /></p>
+
+<p>Graph Dependency<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20graph%20dependency.png" alt="" /></p>
+
+<p>Report- Metrics<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20metrics.png" alt="" /></p>
+
+<p>Report- Rules Violated<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect%20-%20rules%20violated.png" alt="" /></p>
+
+<p>CQLinq sentence<img src="https://dl.dropboxusercontent.com/u/15671111/blog/jarchitect-%20cqlinq.png" alt="" /></p>
 ]]></content>
   </entry>
   
