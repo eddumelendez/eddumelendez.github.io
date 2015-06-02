@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-01T22:48:23-05:00</updated>
+  <updated>2015-06-01T22:49:25-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -68,9 +68,9 @@
 <pre><code class="bash">git cherry-pick hash
 </code></pre>
 
-<h3>Ammend</h3>
+<h3>Amend</h3>
 
-<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>ammend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
+<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>amend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
 
 <pre><code class="bash">git commit --amend --reuse-message=HEAD
 </code></pre>

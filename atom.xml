@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-01T22:48:23-05:00</updated>
+  <updated>2015-06-01T22:49:25-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -80,9 +80,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Ammend</h3>
+<h3>Amend</h3>
 
-<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>ammend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
+<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>amend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit --amend --reuse-message<span class="o">=</span>HEAD
