@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Git is the most popular Version Control System at this time. There are several benefits like Distributed Version Control System, manage commits by &hellip;">
+  <meta name="description" content="Spring Framework 4.2.0.RELEASE has arrived and two new rules have been added to spring-framework project SpringClassRule and SpringMethodRule. In &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,107 +67,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/06/01/git-useful-commands/">Git: Useful Commands</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2016-06-01T01:18:55-05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2016</span></span> <span class='time'>1:18 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Git</code> is the most popular Version Control System at this time. There are several benefits like Distributed Version Control System, manage commits by references, save space and so on. And to be honest make my job easy in the software development.</p>
-
-<p>In this post I will share some <code>git</code> useful commands.</p>
-
-<h3>View cool log</h3>
-
-<p>Sometimes we don&rsquo;t need to much detail in our log and it is enough reading the commit&rsquo;s title. Also we would like to know ref names of commits. Additionally, we would like to display branching graph.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --oneline --decorate --graph
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As a result, you can see the commit hash towards to the commit&rsquo;s title. Also, you can see branches graph.</p>
-
-<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/git-comman%20-%20log%20oneline%20decorate%20graph.png" alt="" /></p>
-
-<h3>View pending commits to push</h3>
-
-<p>Sometimes, I thought that have been sent my commits to the central repository. An easy way to know how many commits are in your local repository and ready to push them is with the command below.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --oneline origin/master.. master
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Rebase</h3>
-
-<p>Put your local commits to the top and pull all the changes in the repository avoiding conflicts with the central repository.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull --rebase origin master
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can also rebase in interactive mode, which allow to choose actions like <code>pick</code>, <code>reword</code>, <code>edit</code>, <code>squash</code>, <code>fixup</code>, <code>exec</code>. To know about this command check this <a href="https://help.github.com/articles/about-git-rebase/#commands-available-while-rebasing">link</a>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rebase -i origin/master
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Push specific commit</h3>
-
-<p>If you have one pending commit and start in a new feature you maybe wondering how to push your commit without revert all the changes you started. You just need the commit hash and execute the command below.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git push origin <span class="nb">hash</span>:master
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Get commit from another branch</h3>
-
-<p>Imagine you are working in a new feature with your team in a different branch than master. Then, a team member add a cool functionality which will be util in production right now. You can not wait and want to deploy this functionality in production tonight.</p>
-
-<p>Using the command below you just need to know the commit hash and all changes in that commit will be copy in your current branch. Awesome, isn&rsquo;t it?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git cherry-pick <span class="nb">hash</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Amend</h3>
-
-<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>amend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit --amend --reuse-message<span class="o">=</span>HEAD
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>Building git command alias</h1>
-
-<p>All commands mentioned above can be too large or complex to remember them but you can use <code>alias</code> to give a easy name for you.</p>
-
-<p>Command below will store <code>log --oneline --decorate --graph</code> in the alias <code>logd</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global alias.lodg <span class="sb">`</span>log --oneline --decorate --graph<span class="sb">`</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After setup your new alias. You can use <code>git lodg</code> instead <code>git log --oneline --decorate --graph</code> and the result will be the same.</p>
-</div>
-    </article>
   
   
     <article>
@@ -387,6 +286,107 @@
 
 
 <p>If you can check the code of this API take a look the github repository <a href="https://github.com/spericas/mvc-spec">MVC 1.0</a></p>
+</div>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/01/git-useful-commands/">Git: Useful Commands</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-06-01T01:18:55-05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:18 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Git</code> is the most popular Version Control System at this time. There are several benefits like Distributed Version Control System, manage commits by references, save space and so on. And to be honest make my job easy in the software development.</p>
+
+<p>In this post I will share some <code>git</code> useful commands.</p>
+
+<h3>View cool log</h3>
+
+<p>Sometimes we don&rsquo;t need to much detail in our log and it is enough reading the commit&rsquo;s title. Also we would like to know ref names of commits. Additionally, we would like to display branching graph.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --oneline --decorate --graph
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As a result, you can see the commit hash towards to the commit&rsquo;s title. Also, you can see branches graph.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/git-comman%20-%20log%20oneline%20decorate%20graph.png" alt="" /></p>
+
+<h3>View pending commits to push</h3>
+
+<p>Sometimes, I thought that have been sent my commits to the central repository. An easy way to know how many commits are in your local repository and ready to push them is with the command below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --oneline origin/master.. master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Rebase</h3>
+
+<p>Put your local commits to the top and pull all the changes in the repository avoiding conflicts with the central repository.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull --rebase origin master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also rebase in interactive mode, which allow to choose actions like <code>pick</code>, <code>reword</code>, <code>edit</code>, <code>squash</code>, <code>fixup</code>, <code>exec</code>. To know about this command check this <a href="https://help.github.com/articles/about-git-rebase/#commands-available-while-rebasing">link</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rebase -i origin/master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Push specific commit</h3>
+
+<p>If you have one pending commit and start in a new feature you maybe wondering how to push your commit without revert all the changes you started. You just need the commit hash and execute the command below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git push origin <span class="nb">hash</span>:master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Get commit from another branch</h3>
+
+<p>Imagine you are working in a new feature with your team in a different branch than master. Then, a team member add a cool functionality which will be util in production right now. You can not wait and want to deploy this functionality in production tonight.</p>
+
+<p>Using the command below you just need to know the commit hash and all changes in that commit will be copy in your current branch. Awesome, isn&rsquo;t it?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git cherry-pick <span class="nb">hash</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Amend</h3>
+
+<p>Every day, as a developers we are introducing new code. After few changes we can save our work, but, wait!!! It&rsquo;s not the end we need to do more changes to finish the feature. Git add <code>amend</code> which allow us to override the last commit. <strong>NOTE: which has not been pushed to the central repository.</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit --amend --reuse-message<span class="o">=</span>HEAD
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Building git command alias</h1>
+
+<p>All commands mentioned above can be too large or complex to remember them but you can use <code>alias</code> to give a easy name for you.</p>
+
+<p>Command below will store <code>log --oneline --decorate --graph</code> in the alias <code>logd</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global alias.lodg <span class="sb">`</span>log --oneline --decorate --graph<span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After setup your new alias. You can use <code>git lodg</code> instead <code>git log --oneline --decorate --graph</code> and the result will be the same.</p>
 </div>
     </article>
   
@@ -1397,15 +1397,15 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, P
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/06/01/git-useful-commands/">Git: Useful Commands</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/">Spring 4.2.0: SpringClassRule and SpringMethodRule</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/06/01/java-ee-mvc-1-0/">Java EE: MVC 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/01/git-useful-commands/">Git: Useful Commands</a>
       </li>
     
       <li class="post">

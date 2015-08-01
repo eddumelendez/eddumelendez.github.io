@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-08-01T00:11:49-05:00</updated>
+  <updated>2015-08-01T00:14:39-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Git: Useful Commands]]></title>
-    <link href="http://eddumelendez.github.io/blog/2016/06/01/git-useful-commands/"/>
-    <updated>2016-06-01T01:18:55-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2016/06/01/git-useful-commands</id>
+    <link href="http://eddumelendez.github.io/blog/2015/06/01/git-useful-commands/"/>
+    <updated>2015-06-01T01:18:55-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/06/01/git-useful-commands</id>
     <content type="html"><![CDATA[<p><code>Git</code> is the most popular Version Control System at this time. There are several benefits like Distributed Version Control System, manage commits by references, save space and so on. And to be honest make my job easy in the software development.</p>
 
 <p>In this post I will share some <code>git</code> useful commands.</p>
