@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Dbdeploy | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/dbdeploy/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-02T20:23:54-05:00</updated>
+  <updated>2015-08-01T00:11:49-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -57,7 +57,7 @@ Another option is get a backup from production, is not a bad idea if you want to
 </ol>
 
 
-<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a> or <a href="http://flywaydb.org/">flyway</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
 ]]></content>
   </entry>
   

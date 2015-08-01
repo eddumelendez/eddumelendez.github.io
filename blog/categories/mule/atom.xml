@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mule | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/mule/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-02T20:23:54-05:00</updated>
+  <updated>2015-08-01T00:11:49-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -57,6 +57,8 @@
   &lt;/repository&gt;
 &lt;/repositories&gt;
 </code></pre>
+
+<p>Also, check you have the pluginGroup <code>org.mule.tools</code>.</p>
 
 <p>Now, you are able to run the following command your terminal:</p>
 
@@ -129,7 +131,7 @@ mule.muleEnterprise = false
 
 <p><code>mule-config.xml</code> is placed inside of <code>src/main/app</code>. Here you will find a http service which will return <code>Hello World!</code> message.</p>
 
-<p>&#8220;`xml
+<p>```xml
 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?></p>
 
 <!-- created by the gradle mule plugin -->
@@ -143,7 +145,7 @@ mule.muleEnterprise = false
     <set-payload doc:name="Set Payload" value="Hello World!"/>
   </flow>
 </mule>
-&#8220;`</p>
+```</p>
 
 <p>Then, proceed to write a test for the existing flow. As you can see response will be validated.</p>
 

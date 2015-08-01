@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Spring-test | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/spring-test/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2015-08-01T00:11:49-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Spring 4.2.0: SpringClassRule and SpringMethodRule]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/"/>
+    <updated>2015-08-01T00:10:00-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule</id>
+    <content type="html"><![CDATA[<p>Spring Framework 4.2.0.RELEASE has arrived and two new rules have been added to spring-framework project <code>SpringClassRule</code> and <code>SpringMethodRule</code>.</p>
+
+<p>In spring applications we have used <code>SpringJUnit4ClassRunner</code> for a long time in our tests but <code>JUnit</code> only support one Runner at the time, in order to allow integration between spring with other Runners like <code>org.junit.runners.Parameterized</code> we can use these new classes instead of <code>@RunWith(SpringJUnit4ClassRunner.class)</code></p>
+
+<ul>
+<li><p><code>SpringClassRule</code> enable the following annotations <code>@BeforeClass</code>, <code>@AfterClass</code>, <code>@ProfileValueSourceConfiguration</code>, <code>@IfProfileValue</code>.</p></li>
+<li><p><code>SpringMethodRule</code> enable the following annotations <code>@Before</code>, <code>@After</code>, <code>@Repeat</code>, <code>@Timeout</code>, <code>@ProfileValueSourceConfiguration</code>, <code>@IfProfileValue</code>.</p></li>
+</ul>
+
+
+<p>Test using classic <code>SpringJUnit4ClassRunner</code>.</p>
+
+<pre><code class="java">package io.eddumelendez;
+
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+public class SpringTest {
+
+}
+</code></pre>
+
+<p>Test using new rules <code>SpringClassRule</code> and <code>SpringMethodRule</code>.</p>
+
+<pre><code class="java">package io.eddumelendez;
+
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.springframework.test.context.junit4.rules.SpringClassRule;
+import org.springframework.test.context.junit4.rules.SpringMethodRule;
+
+public class SpringTest {
+
+    @ClassRule
+    public static final SpringClassRule SPRING_CLASS_RULE = new SpringClassRule();
+
+    @Rule
+    public final SpringMethodRule springMethodRule = new SpringMethodRule();
+
+}
+</code></pre>
+
+<p>Both have the same effect in your test and you can use them in different context.</p>
+]]></content>
+  </entry>
+  
+</feed>

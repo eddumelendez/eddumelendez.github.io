@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-06-02T20:23:54-05:00</updated>
+  <updated>2015-08-01T00:11:49-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -105,6 +105,85 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Spring 4.2.0: SpringClassRule and SpringMethodRule]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/"/>
+    <updated>2015-08-01T00:10:00-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule</id>
+    <content type="html"><![CDATA[<p>Spring Framework 4.2.0.RELEASE has arrived and two new rules have been added to spring-framework project <code>SpringClassRule</code> and <code>SpringMethodRule</code>.</p>
+
+<p>In spring applications we have used <code>SpringJUnit4ClassRunner</code> for a long time in our tests but <code>JUnit</code> only support one Runner at the time, in order to allow integration between spring with other Runners like <code>org.junit.runners.Parameterized</code> we can use these new classes instead of <code>@RunWith(SpringJUnit4ClassRunner.class)</code></p>
+
+<ul>
+<li><p><code>SpringClassRule</code> enable the following annotations <code>@BeforeClass</code>, <code>@AfterClass</code>, <code>@ProfileValueSourceConfiguration</code>, <code>@IfProfileValue</code>.</p></li>
+<li><p><code>SpringMethodRule</code> enable the following annotations <code>@Before</code>, <code>@After</code>, <code>@Repeat</code>, <code>@Timeout</code>, <code>@ProfileValueSourceConfiguration</code>, <code>@IfProfileValue</code>.</p></li>
+</ul>
+
+
+<p>Test using classic <code>SpringJUnit4ClassRunner</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">io</span><span class="o">.</span><span class="na">eddumelendez</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Test using new rules <code>SpringClassRule</code> and <code>SpringMethodRule</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">io</span><span class="o">.</span><span class="na">eddumelendez</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.ClassRule</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Rule</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.rules.SpringClassRule</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.rules.SpringMethodRule</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@ClassRule</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">SpringClassRule</span> <span class="n">SPRING_CLASS_RULE</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SpringClassRule</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Rule</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">final</span> <span class="n">SpringMethodRule</span> <span class="n">springMethodRule</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SpringMethodRule</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both have the same effect in your test and you can use them in different context.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Java EE: MVC 1.0]]></title>
     <link href="http://eddumelendez.github.io/blog/2015/06/01/java-ee-mvc-1-0/"/>
     <updated>2015-06-01T22:16:32-05:00</updated>
@@ -197,7 +276,7 @@
 </span><span class='line'><span class="nd">@Produces</span><span class="o">(</span><span class="s">&quot;text/html&quot;</span><span class="o">)</span>
 </span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BookController</span> <span class="o">{</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="nd">@GET</span>
+</span><span class='line'>    <span class="nd">@GET</span>
 </span><span class='line'>  <span class="nd">@View</span><span class="o">(</span><span class="s">&quot;books.jsp&quot;</span><span class="o">)</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">viewBooks</span><span class="o">()</span> <span class="o">{</span>
 </span><span class='line'>
@@ -526,7 +605,7 @@
 
 <p>Finalmente construye tu marca. Quizás suene como un chico de marketing, pero no lo soy. Haga publicidad de si mismo con sus logros, incluso si es el millonésimo que lo hizo. No importa. Haga saber a los demás sus intereses y que estas activo en el desarrollo de software. Linkedin, Twitter y otras redes profesionales pueden ayudar bastante. Empieza tu blog y publica pequeños artículos sobre tu experiencia y conocimiento, incluso si son para principiantes. Otra vez, no importa!!! Te encontraras publicando mas y mas material avanzado muy pronto.</p>
 
-<p>Y unas cosa mas&hellip; <strong>Nunca pares de aprender nuevas cosas</strong>. Tu decidiste ser un Ingeniero de Software. Este es tu destino. Aprender nuevas cosas constantemente.&#8221;</p>
+<p>Y unas cosa mas&hellip; <strong>Nunca pares de aprender nuevas cosas</strong>. Tu decidiste ser un Ingeniero de Software. Este es tu destino. Aprender nuevas cosas constantemente."</p>
 
 <p>  <strong>Source:</strong>
 <a href='http://softwaregarden.io/my-advice-to-junior-developers-about-their-career/' class='article-link linkpost'>My Advice to (Junior) Developers About Their&nbsp;Career&nbsp;<span class='post-marker post-marker-after'>→</span></a></p>
@@ -585,6 +664,8 @@
 </span><span class='line'><span class="nt">&lt;/repositories&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Also, check you have the pluginGroup <code>org.mule.tools</code>.</p>
 
 <p>Now, you are able to run the following command your terminal:</p>
 
@@ -1050,7 +1131,7 @@
 
 
 <p>Some companies were present in this event such as:
-Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
+Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
 
 <p>Also, had the chance to meet:</p>
 
@@ -1458,10 +1539,10 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Learning Cypher Review]]></title>
-    <link href="http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review/"/>
+    <title type="html"><![CDATA[Review: Learning Cypher]]></title>
+    <link href="http://eddumelendez.github.io/blog/2014/08/30/review-learning-cypher/"/>
     <updated>2014-08-30T21:35:39-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2014/08/30/learning-cypher-review</id>
+    <id>http://eddumelendez.github.io/blog/2014/08/30/review-learning-cypher</id>
     <content type="html"><![CDATA[<p>I have had the change to review another book from <strong>Packtpub.com</strong>. Now, it&rsquo;s time to take a look inside the <a href="https://www.packtpub.com/hardware-and-creative/learning-cypher">Learning Cypher</a>.</p>
 
 <p>Maybe you have heard about <em>NoSQL (Not only SQL)</em> databases. So, one kind is a <code>Graph Databases</code> and <strong>Neo4j</strong> is one of them, which is based on Nodes and Relationships.</p>
@@ -1947,7 +2028,7 @@ Another option is get a backup from production, is not a bad idea if you want to
 </ol>
 
 
-<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a>, <a href="http://flywaydb.org/">flyway</a> or <a href="http://dbdeploy.com/">dbdeploy</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a> or <a href="http://flywaydb.org/">flyway</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
 ]]></content>
   </entry>
   
@@ -2017,137 +2098,6 @@ Another option is get a backup from production, is not a bad idea if you want to
 </span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JUnit and Mockito]]></title>
-    <link href="http://eddumelendez.github.io/blog/2014/03/23/junit-and-mockito/"/>
-    <updated>2014-03-23T20:55:45-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2014/03/23/junit-and-mockito</id>
-    <content type="html"><![CDATA[<p>As you maybe know, <a href="http://junit.org/">JUnit</a> is a java testing framework.</p>
-
-<p>Before to talk about our mock framework, we need to be in the same page about what mock is?</p>
-
-<p>Marting Fowler in his article <a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks are not Stubs</a> said:</p>
-
-<blockquote><p>Mocks are  objects pre-programmed with expectations which form a specification of the calls they are expected to receive.</p></blockquote>
-
-<p><a href="https://code.google.com/p/mockito/">Mockito</a> is the mock framework which we will use.</p>
-
-<p>Lets start with the example, first of all we need to setup our Maven project.</p>
-
-<p><strong>1.</strong> Adding dependencies</p>
-
-<figure class='code'><figcaption><span>pom.xml</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependencies&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;version&gt;</span>4.10<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>org.mockito<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>mockito-all<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;version&gt;</span>1.8.5<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependencies&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>2.</strong> In this example, we will use annotations so we have two ways to enable them.</p>
-
-<figure class='code'><figcaption><span>UserServiceImplTest.java</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RunWith</span><span class="o">(</span><span class="n">MockitoJUnitRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>               <span class="c1">//First method to enable mockito&#39;s annotations</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Before</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">MockitoAnnotations</span><span class="o">.</span><span class="na">initMocks</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>      <span class="c1">//Second method to enable mockito&#39;s annotations</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>Note: You can use one of them.</strong></p>
-
-<p><strong>3.</strong> UserServiceImpl HAS-A UserRepository. For that reason, create a UserRepository mock and it will be injected in UserServiceImpl. Then, we can mock UserRepository methods as you can see in step 3.</p>
-
-<figure class='code'><figcaption><span>UserServiceImplTest.java</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Mock</span>                               <span class="c1">//1. Create UserRepository mock object</span>
-</span><span class='line'>  <span class="n">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@InjectMocks</span>                        <span class="c1">//2. Insert UserRepository mock object into UserService</span>
-</span><span class='line'>  <span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Before</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">//MockitoAnnotations.initMocks(this);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSomething</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">&quot;emelendez&quot;</span><span class="o">;</span>
-</span><span class='line'>      <span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userRepository</span><span class="o">.</span><span class="na">getPassword</span><span class="o">(</span><span class="n">username</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="s">&quot;PasswordMock&quot;</span><span class="o">);</span> <span class="c1">//3. Mocking objects</span>
-</span><span class='line'>      <span class="n">userService</span><span class="o">.</span><span class="na">validateCredential</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userRepository</span><span class="o">).</span><span class="na">getPassword</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can download the source code <a href="https://github.com/eddumelendez/mockito">here</a></p>
 ]]></content>
   </entry>
   

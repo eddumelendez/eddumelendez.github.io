@@ -173,6 +173,95 @@
     <article>
       <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/">Spring 4.2.0: SpringClassRule and SpringMethodRule</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-08-01T00:10:00-05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>12:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Spring Framework 4.2.0.RELEASE has arrived and two new rules have been added to spring-framework project <code>SpringClassRule</code> and <code>SpringMethodRule</code>.</p>
+
+<p>In spring applications we have used <code>SpringJUnit4ClassRunner</code> for a long time in our tests but <code>JUnit</code> only support one Runner at the time, in order to allow integration between spring with other Runners like <code>org.junit.runners.Parameterized</code> we can use these new classes instead of <code>@RunWith(SpringJUnit4ClassRunner.class)</code></p>
+
+<ul>
+<li><p><code>SpringClassRule</code> enable the following annotations <code>@BeforeClass</code>, <code>@AfterClass</code>, <code>@ProfileValueSourceConfiguration</code>, <code>@IfProfileValue</code>.</p></li>
+<li><p><code>SpringMethodRule</code> enable the following annotations <code>@Before</code>, <code>@After</code>, <code>@Repeat</code>, <code>@Timeout</code>, <code>@ProfileValueSourceConfiguration</code>, <code>@IfProfileValue</code>.</p></li>
+</ul>
+
+
+<p>Test using classic <code>SpringJUnit4ClassRunner</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">io</span><span class="o">.</span><span class="na">eddumelendez</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Test using new rules <code>SpringClassRule</code> and <code>SpringMethodRule</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">io</span><span class="o">.</span><span class="na">eddumelendez</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.ClassRule</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Rule</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.rules.SpringClassRule</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.rules.SpringMethodRule</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@ClassRule</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">SpringClassRule</span> <span class="n">SPRING_CLASS_RULE</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SpringClassRule</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Rule</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">final</span> <span class="n">SpringMethodRule</span> <span class="n">springMethodRule</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SpringMethodRule</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both have the same effect in your test and you can use them in different context.</p>
+</div>
+    </article>
+  
+  
+    <article>
+      <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/06/01/java-ee-mvc-1-0/">Java EE: MVC 1.0</a></h1>
     
     
@@ -272,7 +361,7 @@
 </span><span class='line'><span class="nd">@Produces</span><span class="o">(</span><span class="s">&quot;text/html&quot;</span><span class="o">)</span>
 </span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BookController</span> <span class="o">{</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="nd">@GET</span>
+</span><span class='line'>    <span class="nd">@GET</span>
 </span><span class='line'>  <span class="nd">@View</span><span class="o">(</span><span class="s">&quot;books.jsp&quot;</span><span class="o">)</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">viewBooks</span><span class="o">()</span> <span class="o">{</span>
 </span><span class='line'>
@@ -631,7 +720,7 @@
 
 <p>Finalmente construye tu marca. Quizás suene como un chico de marketing, pero no lo soy. Haga publicidad de si mismo con sus logros, incluso si es el millonésimo que lo hizo. No importa. Haga saber a los demás sus intereses y que estas activo en el desarrollo de software. Linkedin, Twitter y otras redes profesionales pueden ayudar bastante. Empieza tu blog y publica pequeños artículos sobre tu experiencia y conocimiento, incluso si son para principiantes. Otra vez, no importa!!! Te encontraras publicando mas y mas material avanzado muy pronto.</p>
 
-<p>Y unas cosa mas&hellip; <strong>Nunca pares de aprender nuevas cosas</strong>. Tu decidiste ser un Ingeniero de Software. Este es tu destino. Aprender nuevas cosas constantemente.&#8221;</p>
+<p>Y unas cosa mas&hellip; <strong>Nunca pares de aprender nuevas cosas</strong>. Tu decidiste ser un Ingeniero de Software. Este es tu destino. Aprender nuevas cosas constantemente."</p>
 
 <p>  <strong>Source:</strong>
 <a href='http://softwaregarden.io/my-advice-to-junior-developers-about-their-career/' class='article-link linkpost'>My Advice to (Junior) Developers About Their&nbsp;Career&nbsp;<span class='post-marker post-marker-after'>→</span></a></p>
@@ -700,6 +789,8 @@
 </span><span class='line'><span class="nt">&lt;/repositories&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Also, check you have the pluginGroup <code>org.mule.tools</code>.</p>
 
 <p>Now, you are able to run the following command your terminal:</p>
 
@@ -1195,7 +1286,7 @@
 
 
 <p>Some companies were present in this event such as:
-Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
+Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
 
 <p>Also, had the chance to meet:</p>
 
@@ -1275,343 +1366,6 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O&#8217;Rei
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/02/raml-designing-an-api/">RAML: Designing an API</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-09-02T23:28:31-05:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:28 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As a developers, every day we are working coding many APIs.
-But, <em>what about design?</em> Sometimes due to the project schedule, too much requirements and even the lack of knowledge about what is <code>REST</code>; developers forget about the design of API.<br/>
-Months ago I was surfing on the internet, don&rsquo;t remember where but I read:</p>
-
-<blockquote><p><code>REST</code>is more than work with <code>xml</code> or <code>json</code>.</p></blockquote>
-
-<p>And that&rsquo;s true. So, I researched more about REST and learned lot of things.</p>
-
-<h2>What RAML is?</h2>
-
-<p><code>RESTful API Modeling Language</code> allow us to design, describe, define the API. It&rsquo;s human readable and it is visible to everyone.</p>
-
-<p>That&rsquo;s pretty cool, we can design the API and document as well.</p>
-
-<h2>Security</h2>
-
-<p><code>RAML</code> supports authentication:</p>
-
-<ul>
-<li>Basic authentication</li>
-<li>Digest authentication</li>
-<li>Oauth 1.0</li>
-<li>Oauth 2.0</li>
-</ul>
-
-
-<h2>Book Store API</h2>
-
-<p>In the example below, I have designed a Books Store API working my favourite book list.
-The API allow me to Create, Read, Update and Delete books. A simple CRUD operation which is represents by HTTP methods.</p>
-
-<table>
-<thead>
-<tr>
-<th><strong>OPERATION</strong> </th>
-<th> <strong>HTTP METHODS</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CREATE        </td>
-<td> POST</td>
-</tr>
-<tr>
-<td>READ          </td>
-<td> GET</td>
-</tr>
-<tr>
-<td>UPDATE        </td>
-<td> PUT</td>
-</tr>
-<tr>
-<td>DELETE        </td>
-<td> DELETE</td>
-</tr>
-</tbody>
-</table>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#%RAML 0.8
-</span><span class='line'>---
-</span><span class='line'>title: Book Store API
-</span><span class='line'>version: 1.0
-</span><span class='line'>baseUri: http://localhost:8081/api
-</span><span class='line'>/books:
-</span><span class='line'>  displayName: Books Catalog
-</span><span class='line'>  get:
-</span><span class='line'>    responses:
-</span><span class='line'>      200:
-</span><span class='line'>        body:
-</span><span class='line'>          application/json:
-</span><span class='line'>            example: |
-</span><span class='line'>                {
-</span><span class='line'>                  "bookId": 1,
-</span><span class='line'>                  "title": "Angel & Demons",
-</span><span class='line'>                  "isbn": "0-671-02735-2",
-</span><span class='line'>                  "authors": [
-</span><span class='line'>                    "Dan Brown"
-</span><span class='line'>                  ]
-</span><span class='line'>                },
-</span><span class='line'>                {
-</span><span class='line'>                  "bookId": 2,
-</span><span class='line'>                  "title": "The Da Vinci Code",
-</span><span class='line'>                  "isbn": "0-385-50420-9",
-</span><span class='line'>                  "authors": [
-</span><span class='line'>                    "Dan Brown"
-</span><span class='line'>                  ]
-</span><span class='line'>                },
-</span><span class='line'>                {
-</span><span class='line'>                  "bookId": 3,
-</span><span class='line'>                  "title": "The Lost Symbol",
-</span><span class='line'>                  "isbn": "978-0-385-50422-5",
-</span><span class='line'>                  "authors": [
-</span><span class='line'>                    "Dan Brown"
-</span><span class='line'>                  ]
-</span><span class='line'>                },
-</span><span class='line'>                {
-</span><span class='line'>                  "bookId": 4,
-</span><span class='line'>                  "title": "Inferno",
-</span><span class='line'>                  "isbn": "978-0-385-53785-8",
-</span><span class='line'>                  "authors": [
-</span><span class='line'>                    "Dan Brown"
-</span><span class='line'>                  ]
-</span><span class='line'>                }
-</span><span class='line'>  post:
-</span><span class='line'>    body:
-</span><span class='line'>      application/json:
-</span><span class='line'>        example: |  
-</span><span class='line'>            {
-</span><span class='line'>             "title": "Deception Point",
-</span><span class='line'>             "isbn": "0-671-02738-7",
-</span><span class='line'>             "authors": [
-</span><span class='line'>              "Dan Brown"
-</span><span class='line'>             ]
-</span><span class='line'>            }
-</span><span class='line'>    responses:
-</span><span class='line'>      201:
-</span><span class='line'>        description: Book has been successfully created.
-</span><span class='line'>      409:
-</span><span class='line'>        description: Book already exists.
-</span><span class='line'>  /{bookId}:
-</span><span class='line'>    displayName: Book
-</span><span class='line'>    uriParameters:
-</span><span class='line'>      bookId:
-</span><span class='line'>        description: |
-</span><span class='line'>          Book Identifier
-</span><span class='line'>        required: true
-</span><span class='line'>    get:
-</span><span class='line'>      description: Retrieve book-related information.
-</span><span class='line'>      responses:
-</span><span class='line'>        200:
-</span><span class='line'>          body:
-</span><span class='line'>            application/json:
-</span><span class='line'>              example:  |
-</span><span class='line'>                {
-</span><span class='line'>                  "bookId": 1,
-</span><span class='line'>                  "title": "Angel & Demons",
-</span><span class='line'>                  "isbn": "0-671-02735-2",
-</span><span class='line'>                  "authors": [
-</span><span class='line'>                    "Dan Brown"
-</span><span class='line'>                  ]  
-</span><span class='line'>                }
-</span><span class='line'>    put:
-</span><span class='line'>      description: Update book information.
-</span><span class='line'>      body:
-</span><span class='line'>         application/json:
-</span><span class='line'>          example: |  
-</span><span class='line'>            {
-</span><span class='line'>             "title": "Inferno",
-</span><span class='line'>             "isbn": "978-0-385-53785-8",
-</span><span class='line'>             "authors": [
-</span><span class='line'>              "Dan Brown"
-</span><span class='line'>             ]
-</span><span class='line'>            }
-</span><span class='line'>      responses:
-</span><span class='line'>        204:
-</span><span class='line'>          description: |
-</span><span class='line'>            The book has been successfully updated.
-</span><span class='line'>        404:
-</span><span class='line'>          description: |
-</span><span class='line'>            Unable to find book with that identifier.
-</span><span class='line'>    delete:
-</span><span class='line'>      description: Remove book from the catalog.
-</span><span class='line'>      responses:
-</span><span class='line'>        204:
-</span><span class='line'>          description: |
-</span><span class='line'>            The book has been successfully removed.
-</span><span class='line'>        404:
-</span><span class='line'>          description: |
-</span><span class='line'>            Unable to find book with that identifier.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As you can see, the Book Store API have five services:</p>
-
-<ul>
-<li>GET <a href="http://localhost:8081/api/books">http://localhost:8081/api/books</a></li>
-<li>POST <a href="http://localhost:8081/api/books">http://localhost:8081/api/books</a></li>
-<li>GET <a href="http://localhost:8081/api/books/{bookId}">http://localhost:8081/api/books/{bookId}</a></li>
-<li>PUT <a href="http://localhost:8081/api/books/{bookId}">http://localhost:8081/api/books/{bookId}</a></li>
-<li>DELETE <a href="http://localhost:8081/api/books/{bookId}">http://localhost:8081/api/books/{bookId}</a></li>
-</ul>
-
-
-<p>Learn more about <a href="http://httpstatus.es/">HTTP Status</a></p>
-
-<h2>Platforms and Tools</h2>
-
-<ul>
-<li><strong>Mulesoft</strong> provides an <a href="https://anypoint.mulesoft.com/#/signup">API Platform</a> and <a href="http://www.mulesoft.org/documentation/display/current/APIkit+Tutorial">APIkit</a>.</li>
-<li><a href="https://github.com/kevinrenskers/raml2html">raml2html</a>, transform raml file to html.</li>
-<li><a href="https://github.com/mulesoft/jaxrs-to-raml/">jaxrs-to-raml</a>, generate raml file to existing JAX-RS services. It has been updated today, JAX-RS 2.0 Asynchronous Responses is now supported!!!</li>
-</ul>
-
-
-<p>There are more RAML projects <a href="http://raml.org/projects.html">here</a>.</p>
-
-<h2>Resources</h2>
-
-<p>There are a lot of resources about REST, how to write a good API, some of them are:</p>
-
-<ul>
-<li><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf">Roy Thomas Fielding&rsquo;s Dissertation</a></li>
-<li><a href="http://blogs.mulesoft.org/designing-restful-api-longevity/">Designing your RESTful API for Longevity</a></li>
-<li><a href="https://spring.io/blog/2013/12/02/springone2gx-2013-replay-rest-ful-api-design">SpringOne2GX 2013 Replay: REST-ful API Design</a></li>
-<li><a href="http://spring.io/blog/2014/01/14/springone2gx-2013-replay-rest-ful-api-evolution">SpringOne2GX 2013 Replay: REST-Ful API Evolution</a></li>
-<li><a href="http://softwaregarden.io/rest-api-best-practices-reloaded/">Rest API Best(?) Practices Reloaded</a></li>
-</ul>
-
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1647,6 +1401,10 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
       </li>
     
       <li class="post">
+        <a href="/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/">Spring 4.2.0: SpringClassRule and SpringMethodRule</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/01/java-ee-mvc-1-0/">Java EE: MVC 1.0</a>
       </li>
     
@@ -1656,10 +1414,6 @@ The API allow me to Create, Read, Update and Delete books. A simple CRUD operati
     
       <li class="post">
         <a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/06/my-advice-to-junior-developers-about-their-career-spanish-version/">My Advice to (Junior) Developers About Their Career</a>
       </li>
     
   </ul>
