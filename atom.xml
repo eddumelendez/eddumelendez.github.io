@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-08-01T00:14:39-05:00</updated>
+  <updated>2015-08-19T00:44:01-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,143 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dockerizing Mule ESB]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/08/19/dockerizing-mule-esb/"/>
+    <updated>2015-08-19T00:10:00-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/08/19/dockerizing-mule-esb</id>
+    <content type="html"><![CDATA[<h2>Creating a Dockerfile for MuleESB</h2>
+
+<p>Let&rsquo;s create our <code>Dockerfile</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vim Dockerfile</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We will build our Mule ESB Standalone Server image based on java version 8 from <a href="https://registry.hub.docker.com/_/java/">Docker Hub Java</a> repository. More info about <a href="https://docs.docker.com/docker/reference/builder/#from">FROM</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FROM java:8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We will use two environment variables <code>MULE_HOME</code> and <code>MULE_VERSION</code>, which will be used in our <code>Dockerfile</code>. More info about <a href="https://docs.docker.com/docker/reference/builder/#env">ENV</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ENV MULE_HOME /opt/mule
+</span><span class='line'>
+</span><span class='line'>ENV MULE_VERSION 3.7.0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we need to download the latest version of Mule Standalone Server from Mulesoft&rsquo;s repository in <code>/opt</code> folder, unzip it and rename the folder to <code>mule</code>. Additionally, zip file will be deleted. Since, we are running over Linux (Ubuntu) we can use some useful commands. More info about <a href="https://docs.docker.com/docker/reference/builder/#run">RUN</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RUN set -x \
+</span><span class='line'>        && cd /opt \
+</span><span class='line'>        && curl -o mule.zip https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/$MULE_VERSION/mule-standalone-$MULE_VERSION.zip \
+</span><span class='line'>        && unzip mule.zip \
+</span><span class='line'>        && mv mule-standalone-$MULE_VERSION mule \
+</span><span class='line'>        && rm mule.zip*</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, we will locate at <code>$MULE_HOME</code> folder. More info about <a href="https://docs.docker.com/docker/reference/builder/#workdir">WORKDIR</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>WORKDIR $MULE_HOME</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we will expose some folder inside of mule in order to have access from outside of docker container. More info about <a href="https://docs.docker.com/docker/reference/builder/#volume">VOLUME</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>VOLUME $MULE_HOME/apps
+</span><span class='line'>VOLUME $MULE_HOME/conf
+</span><span class='line'>VOLUME $MULE_HOME/domains
+</span><span class='line'>VOLUME $MULE_HOME/logs</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, we need to start the server. More info about <a href="https://docs.docker.com/docker/reference/builder/#entrypoint">ENTRYPOINT</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ENTRYPOINT ["./bin/mule"]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our final <code>Dockerfile</code> looks like this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FROM java:8
+</span><span class='line'>
+</span><span class='line'>MAINTAINER Eddú Meléndez &lt;eddu.melendez@gmail.com&gt;
+</span><span class='line'>
+</span><span class='line'>ENV MULE_HOME /opt/mule
+</span><span class='line'>
+</span><span class='line'>ENV MULE_VERSION 3.7.0
+</span><span class='line'>
+</span><span class='line'>RUN set -x \
+</span><span class='line'>        && cd /opt \
+</span><span class='line'>        && curl -o mule.zip https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/$MULE_VERSION/mule-standalone-$MULE_VERSION.zip \
+</span><span class='line'>        && unzip mule.zip \
+</span><span class='line'>        && mv mule-standalone-$MULE_VERSION mule \
+</span><span class='line'>        && rm mule.zip*
+</span><span class='line'>
+</span><span class='line'>WORKDIR $MULE_HOME
+</span><span class='line'>
+</span><span class='line'>VOLUME $MULE_HOME/apps
+</span><span class='line'>VOLUME $MULE_HOME/conf
+</span><span class='line'>VOLUME $MULE_HOME/domains
+</span><span class='line'>VOLUME $MULE_HOME/logs
+</span><span class='line'>
+</span><span class='line'>ENTRYPOINT ["./bin/mule"]</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Building the MuleESB Docker image</h2>
+
+<p>In order to have the image available in your local machine we just need to execute the command below:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>docker build --tag eddumelendez/mule  .</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Running the MuleESB Docker image</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>docker run -ti eddumelendez/mule</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can find the final example on my github repository <a href="https://github.com/eddumelendez/docker-mule">docker-mule</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring 4.2.0: SpringClassRule and SpringMethodRule]]></title>
@@ -97,7 +234,7 @@
     <link href="http://eddumelendez.github.io/blog/2015/06/01/java-ee-mvc-1-0/"/>
     <updated>2015-06-01T22:16:32-05:00</updated>
     <id>http://eddumelendez.github.io/blog/2015/06/01/java-ee-mvc-1-0</id>
-    <content type="html"><![CDATA[<p>Java EE is evolving and there are a lot of news coming in Java EE8. Java EE is constantly adopting standards and now is time to the new spec <code>MVC 1.0</code> (JSR-371) is part of Java EE8 which will be released in 2016.</p>
+    <content type="html"><![CDATA[<p>Java EE is evolving and there are a lot of news coming in Java EE 8. Java EE is constantly adopting standards and now is time to the new spec <code>MVC 1.0</code> (JSR-371) is part of Java EE 8 which will be released in 2016.</p>
 
 <p>If you are thinking on a new concept, let me tell that you are wrong MVC is Model, View, Controller the pattern for web frameworks and you already knew it.</p>
 
@@ -185,7 +322,7 @@
 </span><span class='line'><span class="nd">@Produces</span><span class="o">(</span><span class="s">&quot;text/html&quot;</span><span class="o">)</span>
 </span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BookController</span> <span class="o">{</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="nd">@GET</span>
+</span><span class='line'>  <span class="nd">@GET</span>
 </span><span class='line'>  <span class="nd">@View</span><span class="o">(</span><span class="s">&quot;books.jsp&quot;</span><span class="o">)</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">viewBooks</span><span class="o">()</span> <span class="o">{</span>
 </span><span class='line'>
@@ -2029,75 +2166,6 @@ Another option is get a backup from production, is not a bad idea if you want to
 
 
 <p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a> or <a href="http://flywaydb.org/">flyway</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Embedded Database Compatibility]]></title>
-    <link href="http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility/"/>
-    <updated>2014-03-27T22:01:18-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2014/03/27/embedded-database-compatibility</id>
-    <content type="html"><![CDATA[<p>Some weeks ago I was watching a video about <a href="https://www.youtube.com/watch?v=LYVJ69h76nw">Spring Testing</a>, one thing that called my attention was one feature about embedded databases. It is about compatibility with other databases.</p>
-
-<p>From my side, this feature is really useful because when I started using embedded database in my tests I had to change some types or remove lines in my script due to there are not supported (At that time, I didn&rsquo;t know about it)</p>
-
-<p>Lines below you can see how to setup <strong>MYSQL</strong> compatibility into <strong>HSQL</strong> and <strong>H2</strong> databases, both for testing purpose. Also, you can see the dependencies if you are using maven projects.</p>
-
-<h2>HSQL</h2>
-
-<p>You can review this <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html">link</a> for more information.</p>
-
-<figure class='code'><figcaption><span>script.sql</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SET</span> <span class="k">DATABASE</span> <span class="k">SQL</span> <span class="n">SYNTAX</span> <span class="n">MYS</span> <span class="k">TRUE</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>pom.xml</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>org.hsqldb<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>hsqldb<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>2.2.8<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>H2</h2>
-
-<p>You can review this <a href="http://www.h2database.com/html/features.html#compatibility">link</a> for more information.</p>
-
-<figure class='code'><figcaption><span>script.sql</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SET</span> <span class="k">MODE</span> <span class="n">MySQL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>pom.xml</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='xml+evoque'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.3.175<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java Ee | Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/blog/categories/java-ee/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-08-01T00:14:39-05:00</updated>
+  <updated>2015-08-19T00:44:01-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -18,7 +18,7 @@
     <link href="http://eddumelendez.github.io/blog/2015/06/01/java-ee-mvc-1-0/"/>
     <updated>2015-06-01T22:16:32-05:00</updated>
     <id>http://eddumelendez.github.io/blog/2015/06/01/java-ee-mvc-1-0</id>
-    <content type="html"><![CDATA[<p>Java EE is evolving and there are a lot of news coming in Java EE8. Java EE is constantly adopting standards and now is time to the new spec <code>MVC 1.0</code> (JSR-371) is part of Java EE8 which will be released in 2016.</p>
+    <content type="html"><![CDATA[<p>Java EE is evolving and there are a lot of news coming in Java EE 8. Java EE is constantly adopting standards and now is time to the new spec <code>MVC 1.0</code> (JSR-371) is part of Java EE 8 which will be released in 2016.</p>
 
 <p>If you are thinking on a new concept, let me tell that you are wrong MVC is Model, View, Controller the pattern for web frameworks and you already knew it.</p>
 
@@ -73,7 +73,7 @@
 @Produces("text/html")
 public class BookController {
 
-    @GET
+  @GET
     @View("books.jsp")
     public void viewBooks() {
 

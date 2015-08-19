@@ -9,7 +9,8 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Spring Framework 4.2.0.RELEASE has arrived and two new rules have been added to spring-framework project SpringClassRule and SpringMethodRule. In &hellip;">
+  <meta name="description" content="Creating a Dockerfile for MuleESB Let&rsquo;s create our Dockerfile 1
+vim Dockerfile We will build our Mule ESB Standalone Server image based on java &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -61,12 +62,158 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
 </ul></nav>
   <div id="main">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/19/dockerizing-mule-esb/">Dockerizing Mule ESB</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-08-19T00:10:00-05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Creating a Dockerfile for MuleESB</h2>
+
+<p>Let&rsquo;s create our <code>Dockerfile</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vim Dockerfile</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We will build our Mule ESB Standalone Server image based on java version 8 from <a href="https://registry.hub.docker.com/_/java/">Docker Hub Java</a> repository. More info about <a href="https://docs.docker.com/docker/reference/builder/#from">FROM</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FROM java:8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We will use two environment variables <code>MULE_HOME</code> and <code>MULE_VERSION</code>, which will be used in our <code>Dockerfile</code>. More info about <a href="https://docs.docker.com/docker/reference/builder/#env">ENV</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ENV MULE_HOME /opt/mule
+</span><span class='line'>
+</span><span class='line'>ENV MULE_VERSION 3.7.0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we need to download the latest version of Mule Standalone Server from Mulesoft&rsquo;s repository in <code>/opt</code> folder, unzip it and rename the folder to <code>mule</code>. Additionally, zip file will be deleted. Since, we are running over Linux (Ubuntu) we can use some useful commands. More info about <a href="https://docs.docker.com/docker/reference/builder/#run">RUN</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RUN set -x \
+</span><span class='line'>        && cd /opt \
+</span><span class='line'>        && curl -o mule.zip https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/$MULE_VERSION/mule-standalone-$MULE_VERSION.zip \
+</span><span class='line'>        && unzip mule.zip \
+</span><span class='line'>        && mv mule-standalone-$MULE_VERSION mule \
+</span><span class='line'>        && rm mule.zip*</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, we will locate at <code>$MULE_HOME</code> folder. More info about <a href="https://docs.docker.com/docker/reference/builder/#workdir">WORKDIR</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>WORKDIR $MULE_HOME</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we will expose some folder inside of mule in order to have access from outside of docker container. More info about <a href="https://docs.docker.com/docker/reference/builder/#volume">VOLUME</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>VOLUME $MULE_HOME/apps
+</span><span class='line'>VOLUME $MULE_HOME/conf
+</span><span class='line'>VOLUME $MULE_HOME/domains
+</span><span class='line'>VOLUME $MULE_HOME/logs</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, we need to start the server. More info about <a href="https://docs.docker.com/docker/reference/builder/#entrypoint">ENTRYPOINT</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ENTRYPOINT ["./bin/mule"]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our final <code>Dockerfile</code> looks like this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FROM java:8
+</span><span class='line'>
+</span><span class='line'>MAINTAINER Eddú Meléndez &lt;eddu.melendez@gmail.com&gt;
+</span><span class='line'>
+</span><span class='line'>ENV MULE_HOME /opt/mule
+</span><span class='line'>
+</span><span class='line'>ENV MULE_VERSION 3.7.0
+</span><span class='line'>
+</span><span class='line'>RUN set -x \
+</span><span class='line'>        && cd /opt \
+</span><span class='line'>        && curl -o mule.zip https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/$MULE_VERSION/mule-standalone-$MULE_VERSION.zip \
+</span><span class='line'>        && unzip mule.zip \
+</span><span class='line'>        && mv mule-standalone-$MULE_VERSION mule \
+</span><span class='line'>        && rm mule.zip*
+</span><span class='line'>
+</span><span class='line'>WORKDIR $MULE_HOME
+</span><span class='line'>
+</span><span class='line'>VOLUME $MULE_HOME/apps
+</span><span class='line'>VOLUME $MULE_HOME/conf
+</span><span class='line'>VOLUME $MULE_HOME/domains
+</span><span class='line'>VOLUME $MULE_HOME/logs
+</span><span class='line'>
+</span><span class='line'>ENTRYPOINT ["./bin/mule"]</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Building the MuleESB Docker image</h2>
+
+<p>In order to have the image available in your local machine we just need to execute the command below:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>docker build --tag eddumelendez/mule  .</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Running the MuleESB Docker image</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>docker run -ti eddumelendez/mule</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can find the final example on my github repository <a href="https://github.com/eddumelendez/docker-mule">docker-mule</a></p>
+</div>
+    </article>
   
   
     <article>
@@ -172,7 +319,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Java EE is evolving and there are a lot of news coming in Java EE8. Java EE is constantly adopting standards and now is time to the new spec <code>MVC 1.0</code> (JSR-371) is part of Java EE8 which will be released in 2016.</p>
+  <div class="entry-content"><p>Java EE is evolving and there are a lot of news coming in Java EE 8. Java EE is constantly adopting standards and now is time to the new spec <code>MVC 1.0</code> (JSR-371) is part of Java EE 8 which will be released in 2016.</p>
 
 <p>If you are thinking on a new concept, let me tell that you are wrong MVC is Model, View, Controller the pattern for web frameworks and you already knew it.</p>
 
@@ -260,7 +407,7 @@
 </span><span class='line'><span class="nd">@Produces</span><span class="o">(</span><span class="s">&quot;text/html&quot;</span><span class="o">)</span>
 </span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BookController</span> <span class="o">{</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="nd">@GET</span>
+</span><span class='line'>  <span class="nd">@GET</span>
 </span><span class='line'>  <span class="nd">@View</span><span class="o">(</span><span class="s">&quot;books.jsp&quot;</span><span class="o">)</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">viewBooks</span><span class="o">()</span> <span class="o">{</span>
 </span><span class='line'>
@@ -1257,115 +1404,6 @@
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/05/javaone-2014/">JavaOne 2014</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-10-05T19:39:37-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:39 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This year I had the opportunity to attend at JavaOne 2014 in San Francisco, California. It has been a really good experience to me.</p>
-
-<p>In the JavaHub, I could take a look about:</p>
-
-<ul>
-<li>Mission Control.</li>
-<li>3D Modeling and Printing, using Java FX.</li>
-<li>New features in Netbeans, which allow us to migrate from older java versions to java 8 and use Streams.</li>
-<li>Internet of Things, using Java Embedded and Raspberry Pi.</li>
-<li>Hackergarten, the place where you can contribute in open source projects talking with the experts.</li>
-</ul>
-
-
-<p>Some companies were present in this event such as:
-Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, Pivotal, RedHat, Sonatype, Vaadin, Zeroturnaround.</p>
-
-<p>Also, had the chance to meet:</p>
-
-<ul>
-<li>Anton Arhipov - <a href="https://twitter.com/antonarhipov">@antonarhipov</a>, JRebel and XRebel Product Manager at Zeroturnaround.</li>
-<li>Arun Gupta - <a href="https://twitter.com/arungupta">@arungupta</a>, Director of Developer Advocacy at Red Hat and Author of Java EE 7 Essentials.</li>
-<li>Benjamin Muschko - <a href="https://twitter.com/bmuschko">@bmuschko</a>, Principal Engineer at Gradleware and Author of Gradle in Action.</li>
-<li>John Ferguson - <a href="https://twitter.com/wakaleo">@wakaleo</a>, Author of Java Power Tools, Jenkins: The Definitive Guide and BDD in Action.</li>
-<li>Josh Long - <a href="https://twitter.com/starbuxman">@starbuxman</a>, Spring Developer Advocate.</li>
-<li>Phill Weeb - <a href="https://twitter.com/phillip_webb">@phillip_webb</a>, Spring Framework committer and co-lead of Spring Boot.</li>
-</ul>
-
-
-<p>Below, are the sessions I found most interesting:</p>
-
-<p>Sunday</p>
-
-<ul>
-<li>Introduction to Java 8: JVM, Language, and Platform.</li>
-<li>Starting a JUGgernaut: How to Start and Rapidly Grow Your JUG.</li>
-<li>Java Strategy and Technical Keynotes.</li>
-</ul>
-
-
-<p>Monday</p>
-
-<ul>
-<li>Hadoop for Java Developers. <a href="http://goo.gl/f2CwNz">http://goo.gl/f2CwNz</a></li>
-<li>Next Step in Automation: Elastic Build Environment.</li>
-<li>Programming with Streams in Java 8.</li>
-</ul>
-
-
-<p>Tuesday</p>
-
-<ul>
-<li>Devoxx4Kids for Parents.</li>
-<li>Functional UIs with Java 8 and Vaadin.</li>
-<li>Building a Continuous Delivery Pipeline with Gradle and Jenkins.</li>
-</ul>
-
-
-<p>Wednesday</p>
-
-<ul>
-<li>Continuous Delivery and Zero Downtime: What Your Architecture Needs to Succeed.</li>
-<li>Apache TomEE, Java EE Web Profile, and More on Tomcat.</li>
-<li>REST Assured: Hypermedia APIs with Spring MVC.</li>
-</ul>
-
-
-<p>Tuesday</p>
-
-<ul>
-<li>The Deploy Factory: Open Source Tools for Java Deployment.</li>
-<li>Run Java Applications with Docker on the Raspberry Pi and Other Platforms.</li>
-</ul>
-
-
-<p><strong>Java 8</strong> was the main topic during this party, everyone talked about it. As a Venkat Subramaniam said in his talk:</p>
-
-<blockquote><p>Java arrived later with lambdas but arrived with the desserts (Streams)</p></blockquote>
-
-<p><strong>MVC 1.0</strong> part of <strong>JEE 8</strong> had place at JavaOne&hellip; in my opinion looks like Spring MVC but good to know that good things have been adopted.</p>
-
-<p><strong>JavaOne</strong> is the best place to meet people, authors, learn new things, get stuff like raspberry pi, books and t-shirts and drink a beer.</p>
-
-<p>Duke and me<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-1.jpg" alt="" /></p>
-
-<p>Keynote<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-2.jpg" alt="" /></p>
-
-<p>Duke<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-3.jpg" alt="" /></p>
-
-<p>Duke Awards<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-4.jpg" alt="" /></p>
-
-<p>Josh Long and me<img src="https://dl.dropboxusercontent.com/u/15671111/blog/javaone2014-5.jpg" alt="" /></p>
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1397,6 +1435,10 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, P
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/19/dockerizing-mule-esb/">Dockerizing Mule ESB</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/">Spring 4.2.0: SpringClassRule and SpringMethodRule</a>
       </li>
     
@@ -1410,10 +1452,6 @@ Cloudbees, GitHub, Gradleware, Hazelcast, JetBrains, JFrog, Liferay, O'Reilly, P
     
       <li class="post">
         <a href="/blog/2015/05/27/code-analysis-with-jarchitect/">Code Analysis With JArchitect</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/14/improving-maven-projects/">Improving Maven Projects</a>
       </li>
     
   </ul>
