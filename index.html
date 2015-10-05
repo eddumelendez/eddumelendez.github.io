@@ -9,8 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Creating a Dockerfile for MuleESB Let&rsquo;s create our Dockerfile 1
-vim Dockerfile We will build our Mule ESB Standalone Server image based on java &hellip;">
+  <meta name="description" content="Database Change Management has been one of the practices which I have not seen much in action but there is a first time for everything. When I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,153 @@ vim Dockerfile We will build our Mule ESB Standalone Server image based on java 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">Spring Boot Endpoints for Data Migration</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-10-05T00:10:00-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Database Change Management has been one of the practices which I have not seen much in action but there is a first time for everything. When I started a new project time ago, I was aware of lack of this practice and the risks around. In order to avoid risks in the database and wasting time between team members with backups and restores, I started with the research. During the research, I met <code>Flyway</code> and <code>Liquibase</code>. Both are powerful but <code>liquibase</code> was chosen because meet the needs. You can read my post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/">Database Change Management</a> and <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/">Database Change Management with Liquibase</a>.</p>
+
+<p>Currently, <code>Flyway</code> and <code>Liquibase</code> are supported by <code>spring-boot</code>. Both help to manage the scripts execution over the database and you can configure using <code>flyway.*</code> and <code>liquibase.*</code> property namespaces. Since version 1.3.0, endpoints for both technologies has been added, their purpose is display data in  <code>schema_version</code>, <code>databasechangelog</code> or any table you have customized. Previous to this change, credentials are required to access to the database in order to know this status. Now, everything is exposed via <code>spring-boot</code> and can be accessed to this information through the following endpoints <code>/flyway</code>, <code>/liquibase</code>.</p>
+
+<p>These new endpoints have arrived thanks to <code>actuator</code> which provide several useful endpoints in <code>spring-boot</code>.</p>
+
+<p>If you are currently using one of these technologies integrated with <code>spring-boot</code> you just need to add the actuator in your dependencies and voilá you can see through the inside.</p>
+
+<p>For maven users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-boot-actuator<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For gradle users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>org.springframework.boot:spring-boot-actuator
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>/flyway endpoint</h2>
+
+<p>Once you have everything configure, point to the endpoint. E.g: <a href="http://localhost:8080/flyway">http://localhost:8080/flyway</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;SQL&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;checksum&quot;</span><span class="p">:</span><span class="mi">710039845</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;init&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="s2">&quot;V1__init.sql&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;installedOn&quot;</span><span class="p">:</span><span class="mi">1441826719448</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;executionTime&quot;</span><span class="p">:</span><span class="mi">3</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>/liquibase endpoint</h2>
+
+<p>Once you have everything configure, point to the endpoint. E.g: <a href="http://localhost:8080/liquibase">http://localhost:8080/liquibase</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;ID&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;AUTHOR&quot;</span><span class="p">:</span><span class="s2">&quot;marceloverdijk&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;FILENAME&quot;</span><span class="p">:</span><span class="s2">&quot;classpath:/db/changelog/db.changelog-master.yaml&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DATEEXECUTED&quot;</span><span class="p">:</span><span class="mi">1441826872659</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;ORDEREXECUTED&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;EXECTYPE&quot;</span><span class="p">:</span><span class="s2">&quot;EXECUTED&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;MD5SUM&quot;</span><span class="p">:</span><span class="s2">&quot;7:b8f2ae9c88deabd32666dff9bc5d7f5d&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DESCRIPTION&quot;</span><span class="p">:</span><span class="s2">&quot;createTable&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;COMMENTS&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;TAG&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LIQUIBASE&quot;</span><span class="p">:</span><span class="s2">&quot;3.4.1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;CONTEXTS&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LABELS&quot;</span><span class="p">:</span><span class="kc">null</span>
+</span><span class='line'>   <span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;ID&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;AUTHOR&quot;</span><span class="p">:</span><span class="s2">&quot;marceloverdijk&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;FILENAME&quot;</span><span class="p">:</span><span class="s2">&quot;classpath:/db/changelog/db.changelog-master.yaml&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DATEEXECUTED&quot;</span><span class="p">:</span><span class="mi">1441826872663</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;ORDEREXECUTED&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;EXECTYPE&quot;</span><span class="p">:</span><span class="s2">&quot;EXECUTED&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;MD5SUM&quot;</span><span class="p">:</span><span class="s2">&quot;7:a8006415097ebb8b3334a23347847322&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DESCRIPTION&quot;</span><span class="p">:</span><span class="s2">&quot;insert&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;COMMENTS&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;TAG&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LIQUIBASE&quot;</span><span class="p">:</span><span class="s2">&quot;3.4.1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;CONTEXTS&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LABELS&quot;</span><span class="p">:</span><span class="kc">null</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+    </article>
   
   
     <article>
@@ -1312,98 +1458,6 @@ vim Dockerfile We will build our Mule ESB Standalone Server image based on java 
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/18/introduction-to-gradle/">Introduction to Gradle</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-10-18T08:57:01-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:57 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Gradle</code> is called the next generation of <strong>build automation</strong> and <strong>dependency management</strong>. If you have used <code>Ant</code> or <code>Maven</code> you know what that mean.</p>
-
-<p><code>Gradle</code> is based on <code>Groovy</code> and has compatibility with existing tools like <code>Ant</code> and <code>Maven</code>.</p>
-
-<p>The company behind this project is <strong>Gradleware</strong>.</p>
-
-<h6>Build Automation</h6>
-
-<p>As you know, manual tasks are error-prone and tedious. Take in mind that you are working in a project and you have to compile your code&hellip; manually!!! It&rsquo;s boring and you are spending time if you are doing this, Can you imaging running <code>javac</code> command for all your project and dependencies? and after that you need to package the artifact in a <code>jar</code> or <code>war</code>. <code>Ant</code> is the first tool which help developers to write a xml file with all the step to compile, copy, package artifacts. Currently, <code>Maven</code> have standardized all of this and it is charge of to run all the previous tasks and manage the dependencies.</p>
-
-<h6>Dependency Management</h6>
-
-<p>All the projects have dependencies with other projects, years ago and even now is a headache when you are copying and pasting jars inside your projects. To avoid this pain <code>maven</code> and <code>ivy</code> are tools to manage this.</p>
-
-<h2>Getting Started</h2>
-
-<p>It is really cool to see what amazing things you can do with <code>Gradle</code>. It allow us to work with <code>java</code>, <code>groovy</code> and <code>scala</code> projects too.</p>
-
-<p>I really like the easy way to add tasks and manage the dependencies between them. Another good thing is the capability to extend the functionality in <code>Java</code> or <code>Groovy</code>.</p>
-
-<p><code>Gradle</code> have the power run tasks in a new way: Gradle task name abbreviation. For example, if you have created a task called deployInLocalhost&hellip; run <code>gradle dIL</code> instead of<code>gradle deployInLocalhost</code> but make sure you have not another task with the same abbreviation.</p>
-
-<h2>Gradle Wrapper</h2>
-
-<p>I remember when I started using <code>maven</code>, I had downloaded some examples but that was not enough. I had to install <code>maven</code> in my local machine. To avoid install new runtime manually like I did, Gradle Wrapper has arrived to the rescue!!!</p>
-
-<p>As a best practice, it is a good idea to have a wrapper in your project in order to avoid compatibility troubles or any other issues. To apply the wrapper configuration you just need to execute this command <strong>gradle wrapper</strong> and changes to your project will be applied, your wrapper will have the same version as your gradle runtime but you can change it.</p>
-
-<h2>Gradle Daemon</h2>
-
-<p>Gradle take time to up and run when task is executed. If you want to improve the performance, Gradle daemons is here to the rescue&hellip; to active it <strong>gradle &ndash;daemon</strong> and finalize the process <strong>gradle &ndash;stop</strong>. This is useful when you run unit test many times.</p>
-
-<p><strong>Note:</strong> expire after 3 hours.</p>
-
-<h2>Moving from Maven to Gradle</h2>
-
-<p>Currently, you may are working with <code>maven</code> so if you want to try <code>gradle</code> without lost all your maven configuration you can run this command <strong>gradle maven2gradle</strong>. It will create the <code>build.gradle</code> and <code>settings.gradle</code> files with all the dependencies and configuration. Looks great, right? but as a new build automation tool, <code>gradle</code> is growing so if you have additional plugin configuration in your <code>pom.xml</code> this will not be migrated. Your project can live with both.</p>
-
-<h2>Gradle Commands</h2>
-
-<p>I will describe some useful commands but to get more information visit <a href="http://www.gradle.org/docs/current/userguide/gradle_command_line.html">online documentation</a>.</p>
-
-<p>All those commands start with <code>gradle</code>: <code>gradle &lt;command&gt;</code></p>
-
-<p>Commands:</p>
-
-<p><strong>-v or &ndash;version</strong> -> display gradle version.</p>
-
-<p><strong>tasks</strong> -> display tasks related to the project.</p>
-
-<p><strong>-q</strong> -> show tasks output.</p>
-
-<p><strong>-x</strong> or <strong>gradle &ndash;exclude-task</strong> -> exclude the execution of tasks defined.</p>
-
-<p><strong>dependencies</strong> -> display project dependencies and how dependencies were solved.</p>
-
-<p><strong>projects</strong> -> list all the project and subprojects.</p>
-
-<p><strong>properties</strong> -> list all available properties in the project.</p>
-
-<p><strong>-a</strong> or <strong>&ndash;no-rebuild</strong> -> it&rsquo;s used when you won&rsquo;t to rebuild a projects that you didn&rsquo;t change. It works if you are only changing files in a single project.</p>
-
-<p><strong>&ndash;refresh-dependencies</strong> -> refresh project dependencies.</p>
-
-<p><strong>-b</strong> or <strong>&ndash;build-file</strong> -> give the option to choose another build script.</p>
-
-<p><strong>-Dtest.debug test</strong> -> debug test in port 5005</p>
-
-<h2>Recommended Books</h2>
-
-<ul>
-<li><a href="http://www.manning.com/muschko/">Gradle in Action</a></li>
-</ul>
-
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1435,6 +1489,10 @@ vim Dockerfile We will build our Mule ESB Standalone Server image based on java 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">Spring Boot Endpoints for Data Migration</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/19/dockerizing-mule-esb/">Dockerizing Mule ESB</a>
       </li>
     
@@ -1448,10 +1506,6 @@ vim Dockerfile We will build our Mule ESB Standalone Server image based on java 
     
       <li class="post">
         <a href="/blog/2015/06/01/git-useful-commands/">Git: Useful Commands</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/27/code-analysis-with-jarchitect/">Code Analysis With JArchitect</a>
       </li>
     
   </ul>

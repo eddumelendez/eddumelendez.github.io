@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-08-19T00:44:01-05:00</updated>
+  <updated>2015-10-05T15:47:44-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,143 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring Boot Endpoints for Data Migration]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration/"/>
+    <updated>2015-10-05T00:10:00-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration</id>
+    <content type="html"><![CDATA[<p>Database Change Management has been one of the practices which I have not seen much in action but there is a first time for everything. When I started a new project time ago, I was aware of lack of this practice and the risks around. In order to avoid risks in the database and wasting time between team members with backups and restores, I started with the research. During the research, I met <code>Flyway</code> and <code>Liquibase</code>. Both are powerful but <code>liquibase</code> was chosen because meet the needs. You can read my post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/">Database Change Management</a> and <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/">Database Change Management with Liquibase</a>.</p>
+
+<p>Currently, <code>Flyway</code> and <code>Liquibase</code> are supported by <code>spring-boot</code>. Both help to manage the scripts execution over the database and you can configure using <code>flyway.*</code> and <code>liquibase.*</code> property namespaces. Since version 1.3.0, endpoints for both technologies has been added, their purpose is display data in  <code>schema_version</code>, <code>databasechangelog</code> or any table you have customized. Previous to this change, credentials are required to access to the database in order to know this status. Now, everything is exposed via <code>spring-boot</code> and can be accessed to this information through the following endpoints <code>/flyway</code>, <code>/liquibase</code>.</p>
+
+<p>These new endpoints have arrived thanks to <code>actuator</code> which provide several useful endpoints in <code>spring-boot</code>.</p>
+
+<p>If you are currently using one of these technologies integrated with <code>spring-boot</code> you just need to add the actuator in your dependencies and voilá you can see through the inside.</p>
+
+<p>For maven users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-boot-actuator<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For gradle users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>org.springframework.boot:spring-boot-actuator
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>/flyway endpoint</h2>
+
+<p>Once you have everything configure, point to the endpoint. E.g: <a href="http://localhost:8080/flyway">http://localhost:8080/flyway</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;SQL&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;checksum&quot;</span><span class="p">:</span><span class="mi">710039845</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;init&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="s2">&quot;V1__init.sql&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;installedOn&quot;</span><span class="p">:</span><span class="mi">1441826719448</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;executionTime&quot;</span><span class="p">:</span><span class="mi">3</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>/liquibase endpoint</h2>
+
+<p>Once you have everything configure, point to the endpoint. E.g: <a href="http://localhost:8080/liquibase">http://localhost:8080/liquibase</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;ID&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;AUTHOR&quot;</span><span class="p">:</span><span class="s2">&quot;marceloverdijk&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;FILENAME&quot;</span><span class="p">:</span><span class="s2">&quot;classpath:/db/changelog/db.changelog-master.yaml&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DATEEXECUTED&quot;</span><span class="p">:</span><span class="mi">1441826872659</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;ORDEREXECUTED&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;EXECTYPE&quot;</span><span class="p">:</span><span class="s2">&quot;EXECUTED&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;MD5SUM&quot;</span><span class="p">:</span><span class="s2">&quot;7:b8f2ae9c88deabd32666dff9bc5d7f5d&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DESCRIPTION&quot;</span><span class="p">:</span><span class="s2">&quot;createTable&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;COMMENTS&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;TAG&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LIQUIBASE&quot;</span><span class="p">:</span><span class="s2">&quot;3.4.1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;CONTEXTS&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LABELS&quot;</span><span class="p">:</span><span class="kc">null</span>
+</span><span class='line'>   <span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;ID&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;AUTHOR&quot;</span><span class="p">:</span><span class="s2">&quot;marceloverdijk&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;FILENAME&quot;</span><span class="p">:</span><span class="s2">&quot;classpath:/db/changelog/db.changelog-master.yaml&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DATEEXECUTED&quot;</span><span class="p">:</span><span class="mi">1441826872663</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;ORDEREXECUTED&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;EXECTYPE&quot;</span><span class="p">:</span><span class="s2">&quot;EXECUTED&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;MD5SUM&quot;</span><span class="p">:</span><span class="s2">&quot;7:a8006415097ebb8b3334a23347847322&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DESCRIPTION&quot;</span><span class="p">:</span><span class="s2">&quot;insert&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;COMMENTS&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;TAG&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LIQUIBASE&quot;</span><span class="p">:</span><span class="s2">&quot;3.4.1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;CONTEXTS&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LABELS&quot;</span><span class="p">:</span><span class="kc">null</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dockerizing Mule ESB]]></title>
@@ -2118,54 +2255,6 @@ and Zuul caught my attention.</p>
 
 <p><strong>Note:</strong> We have to consider that Cloudbees provide a limit space, if you want more space you have to buy.
 Cloudbees, is a good service. And I hope you can use it.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Database Change Management]]></title>
-    <link href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/"/>
-    <updated>2014-03-27T22:15:11-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2014/03/27/database-change-management</id>
-    <content type="html"><![CDATA[<p>First, I have some questions to you:</p>
-
-<ol>
-<li>Do you have scripts into the Source Control Management?</li>
-<li>Do you know which scripts have been executed into the database?</li>
-<li>Do you write scripts for rollback?</li>
-<li>Are DBAs involve in your development process?</li>
-<li>Tell me, how do you manage your database changes?</li>
-</ol>
-
-
-<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
-Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
-
-<h2>What it is my point?</h2>
-
-<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
-
-<h2>Which is involve?</h2>
-
-<ol>
-<li>Every database modification should be written as a delta script.</li>
-<li>Add rollback section to your scripts.</li>
-<li>Use a naming conventions for your scripts.</li>
-<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
-<li>Version Control your scripts.</li>
-<li>Maintain a database changelog.</li>
-</ol>
-
-
-<h2>Advantages</h2>
-
-<ol>
-<li>Reduce risks during deployments.</li>
-<li>Ensure you are executing the right scripts.</li>
-<li>You can build a new database.</li>
-</ol>
-
-
-<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a> or <a href="http://flywaydb.org/">flyway</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,8 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Some weeks ago I was watching a video about Spring Testing, one thing that called my attention was one feature about embedded databases. It is about &hellip;">
+  <meta name="description" content="First, I have some questions to you: Do you have scripts into the Source Control Management?
+Do you know which scripts have been executed into the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +67,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/27/database-change-management/">Database Change Management</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2014-03-27T22:15:11-05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:15 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First, I have some questions to you:</p>
+
+<ol>
+<li>Do you have scripts into the Source Control Management?</li>
+<li>Do you know which scripts have been executed into the database?</li>
+<li>Do you write scripts for rollback?</li>
+<li>Are DBAs involve in your development process?</li>
+<li>Tell me, how do you manage your database changes?</li>
+</ol>
+
+
+<p>If I were a new team member, I will ask you how to build my database and maybe this would be your answer &ldquo;Let me get a dump from my local database and I will send you&rdquo;. This is valid if your dump has the same structure that production environment but I would not be 100% sure.
+Another option is get a backup from production, is not a bad idea if you want to work with real data and solve a specific issue but is not ever the case. So, you must be able to build the database whenever you want.</p>
+
+<h2>What it is my point?</h2>
+
+<p>Continuous Improvement, that is my point. We need to improve our delivery process every day and Database Change Management is something that you can not forget.</p>
+
+<h2>Which is involve?</h2>
+
+<ol>
+<li>Every database modification should be written as a delta script.</li>
+<li>Add rollback section to your scripts.</li>
+<li>Use a naming conventions for your scripts.</li>
+<li>If a delta script has already been applied to a database is subsequently modified that subsequent modification will not be applied to the database.</li>
+<li>Version Control your scripts.</li>
+<li>Maintain a database changelog.</li>
+</ol>
+
+
+<h2>Advantages</h2>
+
+<ol>
+<li>Reduce risks during deployments.</li>
+<li>Ensure you are executing the right scripts.</li>
+<li>You can build a new database.</li>
+</ol>
+
+
+<p>After this, you can research about some tools such as <a href="http://www.liquibase.org/">liquibase</a> or <a href="http://flywaydb.org/">flyway</a> in order to automated scripts execution and then promote communication with Database Team in your job.</p>
+</div>
+    </article>
   
   
     <article>
@@ -357,6 +416,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">Spring Boot Endpoints for Data Migration</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/19/dockerizing-mule-esb/">Dockerizing Mule ESB</a>
       </li>
     
@@ -370,10 +433,6 @@
     
       <li class="post">
         <a href="/blog/2015/06/01/git-useful-commands/">Git: Useful Commands</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/27/code-analysis-with-jarchitect/">Code Analysis With JArchitect</a>
       </li>
     
   </ul>

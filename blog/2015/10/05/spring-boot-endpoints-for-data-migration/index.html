@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Spring Boot Endpoints for Data Migration - Eddú Meléndez</title>
+  <meta name="author" content="Eddú Meléndez">
+
+  
+  <meta name="description" content="Database Change Management has been one of the practices which I have not seen much in action but there is a first time for everything. When I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Eddú Meléndez" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-49292682-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Eddú Meléndez</a></h1>
+  
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="eddumelendez.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  <header>
+    
+      <h1 class="entry-title">Spring Boot Endpoints for Data Migration</h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-10-05T00:10:00-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Database Change Management has been one of the practices which I have not seen much in action but there is a first time for everything. When I started a new project time ago, I was aware of lack of this practice and the risks around. In order to avoid risks in the database and wasting time between team members with backups and restores, I started with the research. During the research, I met <code>Flyway</code> and <code>Liquibase</code>. Both are powerful but <code>liquibase</code> was chosen because meet the needs. You can read my post about <a href="http://eddumelendez.github.io/blog/2014/03/27/database-change-management/">Database Change Management</a> and <a href="http://eddumelendez.github.io/blog/2014/08/11/database-change-management-liquibase/">Database Change Management with Liquibase</a>.</p>
+
+<p>Currently, <code>Flyway</code> and <code>Liquibase</code> are supported by <code>spring-boot</code>. Both help to manage the scripts execution over the database and you can configure using <code>flyway.*</code> and <code>liquibase.*</code> property namespaces. Since version 1.3.0, endpoints for both technologies has been added, their purpose is display data in  <code>schema_version</code>, <code>databasechangelog</code> or any table you have customized. Previous to this change, credentials are required to access to the database in order to know this status. Now, everything is exposed via <code>spring-boot</code> and can be accessed to this information through the following endpoints <code>/flyway</code>, <code>/liquibase</code>.</p>
+
+<p>These new endpoints have arrived thanks to <code>actuator</code> which provide several useful endpoints in <code>spring-boot</code>.</p>
+
+<p>If you are currently using one of these technologies integrated with <code>spring-boot</code> you just need to add the actuator in your dependencies and voilá you can see through the inside.</p>
+
+<p>For maven users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-boot-actuator<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For gradle users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>org.springframework.boot:spring-boot-actuator
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>/flyway endpoint</h2>
+
+<p>Once you have everything configure, point to the endpoint. E.g: <a href="http://localhost:8080/flyway">http://localhost:8080/flyway</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;SQL&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;checksum&quot;</span><span class="p">:</span><span class="mi">710039845</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;init&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="s2">&quot;V1__init.sql&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;installedOn&quot;</span><span class="p">:</span><span class="mi">1441826719448</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;executionTime&quot;</span><span class="p">:</span><span class="mi">3</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>/liquibase endpoint</h2>
+
+<p>Once you have everything configure, point to the endpoint. E.g: <a href="http://localhost:8080/liquibase">http://localhost:8080/liquibase</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;ID&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;AUTHOR&quot;</span><span class="p">:</span><span class="s2">&quot;marceloverdijk&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;FILENAME&quot;</span><span class="p">:</span><span class="s2">&quot;classpath:/db/changelog/db.changelog-master.yaml&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DATEEXECUTED&quot;</span><span class="p">:</span><span class="mi">1441826872659</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;ORDEREXECUTED&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;EXECTYPE&quot;</span><span class="p">:</span><span class="s2">&quot;EXECUTED&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;MD5SUM&quot;</span><span class="p">:</span><span class="s2">&quot;7:b8f2ae9c88deabd32666dff9bc5d7f5d&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DESCRIPTION&quot;</span><span class="p">:</span><span class="s2">&quot;createTable&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;COMMENTS&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;TAG&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LIQUIBASE&quot;</span><span class="p">:</span><span class="s2">&quot;3.4.1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;CONTEXTS&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LABELS&quot;</span><span class="p">:</span><span class="kc">null</span>
+</span><span class='line'>   <span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;ID&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;AUTHOR&quot;</span><span class="p">:</span><span class="s2">&quot;marceloverdijk&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;FILENAME&quot;</span><span class="p">:</span><span class="s2">&quot;classpath:/db/changelog/db.changelog-master.yaml&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DATEEXECUTED&quot;</span><span class="p">:</span><span class="mi">1441826872663</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;ORDEREXECUTED&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;EXECTYPE&quot;</span><span class="p">:</span><span class="s2">&quot;EXECUTED&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;MD5SUM&quot;</span><span class="p">:</span><span class="s2">&quot;7:a8006415097ebb8b3334a23347847322&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;DESCRIPTION&quot;</span><span class="p">:</span><span class="s2">&quot;insert&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;COMMENTS&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;TAG&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LIQUIBASE&quot;</span><span class="p">:</span><span class="s2">&quot;3.4.1&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;CONTEXTS&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;LABELS&quot;</span><span class="p">:</span><span class="kc">null</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  <footer>
+    <p class="meta">
+      <span class="byline author vcard">Posted by <span class="fn">Eddú Meléndez</span></span>
+      <time class='entry-date' datetime='2015-10-05T00:10:00-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:10 am</span></time>
+      <span class="categories">
+  
+    <a class='category' href='/blog/categories/flyway/'>flyway</a>, <a class='category' href='/blog/categories/liquibase/'>liquibase</a>, <a class='category' href='/blog/categories/spring-boot/'>spring-boot</a>
+  
+</span>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration/" data-via="eddumelendez" data-counturl="http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/08/19/dockerizing-mule-esb/" title="Next Post: Dockerizing Mule ESB">Dockerizing Mule ESB &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/cf9e8d46103d66657d9c6817a5aa35d3" alt="Gravatar of Eddú Meléndez " title="Gravatar of Eddú Meléndez" />
+	</span>
+</section>
+
+<section>
+  <h1>Follow Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <a href="https://twitter.com/eddumelendez" class="twitter-follow-button" data-show-count="false">Follow @eddumelendez</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </p>
+  </div>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">Spring Boot Endpoints for Data Migration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/19/dockerizing-mule-esb/">Dockerizing Mule ESB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/">Spring 4.2.0: SpringClassRule and SpringMethodRule</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/01/java-ee-mvc-1-0/">Java EE: MVC 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/01/git-useful-commands/">Git: Useful Commands</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eddú Meléndez -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></footer>
+  <script type="text/javascript">
+      var disqus_shortname = 'eddumelendez';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration/';
+        var disqus_url = 'http://eddumelendez.github.io/blog/2015/10/05/spring-boot-endpoints-for-data-migration/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+</body>
+</html>
