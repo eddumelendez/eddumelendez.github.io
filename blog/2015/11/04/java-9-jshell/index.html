@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Java 9: JShell - Eddú Meléndez</title>
+  <meta name="author" content="Eddú Meléndez">
+
+  
+  <meta name="description" content="JDK 9 Build b90 have been released few days ago and in this build JShell REPL has been integrated. Officially this is the Kulla Project. REPL - Read &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Eddú Meléndez" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-49292682-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Eddú Meléndez</a></h1>
+  
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="eddumelendez.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  <header>
+    
+      <h1 class="entry-title">Java 9: JShell</h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-11-04T00:59:36-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>JDK 9 Build b90 have been released few days ago and in this build JShell REPL has been integrated. Officially this is the <strong>Kulla Project</strong>.</p>
+
+<p><strong>REPL</strong> - Read- Eval- Print- Loop has been in other languages and now has arrived to Java. Now, we can write code in our terminal and it read, evaluate them, print the output and</p>
+
+<blockquote><p>Provide an interactive tool to evaluate declarations, statements, and expressions of the Java programming language, together with an API so that other applications can leverage this functionality.
+- JEP 222</p></blockquote>
+
+<p>If you want to know more about REPL check <a href="http://openjdk.java.net/jeps/222">JEP 222</a>.</p>
+
+<p>To install the JDK 9 download from <a href="https://jdk9.java.net/download/">here</a>. Make sure you have the right version and remember that build <strong>1.9.0-ea-b90</strong> is integrated with <code>jshell</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Terminal will display the java version and the build number.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java version "1.9.0-ea"
+</span><span class='line'>Java(TM) SE Runtime Environment (build 1.9.0-ea-b90)
+</span><span class='line'>Java HotSpot(TM) 64-Bit Server VM (build 1.9.0-ea-b90, mixed mode)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, that you have installed the right version you just need to execute the following command:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jshell</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Terminal will display something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|  Welcome to JShell -- Version 1.9.0-ea
+</span><span class='line'>|  Type /help for help
+</span><span class='line'>
+</span><span class='line'>-&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the example below, start typing <code>"Hello World"</code> and the value will be stored in <code>$1</code>. Then, assign <code>$1</code> to <code>saludo</code> which is a <code>String</code>. Finally, print <code>saludo</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-&gt; "Hello World"
+</span><span class='line'>|  Expression value is: "Hello World"
+</span><span class='line'>|    assigned to temporary variable $1 of type String
+</span><span class='line'>
+</span><span class='line'>-&gt; String saludo = $1
+</span><span class='line'>|  Added variable saludo of type String with initial value "Hello World"
+</span><span class='line'>
+</span><span class='line'>-&gt; System.out.print
+</span><span class='line'>print(     printf(    println(   
+</span><span class='line'>
+</span><span class='line'>-&gt; System.out.println(saludo)
+</span><span class='line'>Hello World</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Good, you have started playing around <code>jshell</code>. As you can see, <code>jshell</code> provides autocompletion with <code>tab</code> key.</p>
+
+<p>If you want test the last successful build from <strong>Kulla Project</strong> click <a href="https://adopt-openjdk.ci.cloudbees.com/view/OpenJDK/job/langtools-1.9-linux-x86_64-kulla-dev/lastSuccessfulBuild/artifact/">here</a>. Download the jar and execute it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar kulla--20151104010121.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check the <a href="https://java.net/downloads/adoptopenjdk/REPL_Tutorial.pdf">REPL tutorial</a> and play with java in your terminal.</p>
+
+<p>If you want to start in java this is a good place to start and if you are an experienced developer then jshell is for you too!</p>
+</div>
+  <footer>
+    <p class="meta">
+      <span class="byline author vcard">Posted by <span class="fn">Eddú Meléndez</span></span>
+      <time class='entry-date' datetime='2015-11-04T00:59:36-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:59 am</span></time>
+      <span class="categories">
+  
+    <a class='category' href='/blog/categories/java-9/'>java 9</a>, <a class='category' href='/blog/categories/jshell/'>jshell</a>
+  
+</span>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/" data-via="eddumelendez" data-counturl="http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/" title="Next Post: Spring Boot Endpoints for Data Migration">Spring Boot Endpoints for Data Migration &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/cf9e8d46103d66657d9c6817a5aa35d3" alt="Gravatar of Eddú Meléndez " title="Gravatar of Eddú Meléndez" />
+	</span>
+</section>
+
+<section>
+  <h1>Follow Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <a href="https://twitter.com/eddumelendez" class="twitter-follow-button" data-show-count="false">Follow @eddumelendez</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </p>
+  </div>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/11/04/java-9-jshell/">Java 9: JShell</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">Spring Boot Endpoints for Data Migration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/19/dockerizing-mule-esb/">Dockerizing Mule ESB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/01/spring-4-2-0-springclassrule-and-springmethodrule/">Spring 4.2.0: SpringClassRule and SpringMethodRule</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/01/java-ee-mvc-1-0/">Java EE: MVC 1.0</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eddú Meléndez -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></footer>
+  <script type="text/javascript">
+      var disqus_shortname = 'eddumelendez';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/';
+        var disqus_url = 'http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+</body>
+</html>

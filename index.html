@@ -9,7 +9,7 @@
   <meta name="author" content="Eddú Meléndez">
 
   
-  <meta name="description" content="Database Change Management has been one of the practices which I have not seen much in action but there is a first time for everything. When I &hellip;">
+  <meta name="description" content="JDK 9 Build b90 have been released few days ago and in this build JShell REPL has been integrated. Officially this is the Kulla Project. REPL - Read &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,106 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/04/java-9-jshell/">Java 9: JShell</a></h1>
+    
+    
+      <p class="meta">
+        <time class='entry-date' datetime='2015-11-04T00:59:36-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JDK 9 Build b90 have been released few days ago and in this build JShell REPL has been integrated. Officially this is the <strong>Kulla Project</strong>.</p>
+
+<p><strong>REPL</strong> - Read- Eval- Print- Loop has been in other languages and now has arrived to Java. Now, we can write code in our terminal and it read, evaluate them, print the output and</p>
+
+<blockquote><p>Provide an interactive tool to evaluate declarations, statements, and expressions of the Java programming language, together with an API so that other applications can leverage this functionality.
+- JEP 222</p></blockquote>
+
+<p>If you want to know more about REPL check <a href="http://openjdk.java.net/jeps/222">JEP 222</a>.</p>
+
+<p>To install the JDK 9 download from <a href="https://jdk9.java.net/download/">here</a>. Make sure you have the right version and remember that build <strong>1.9.0-ea-b90</strong> is integrated with <code>jshell</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Terminal will display the java version and the build number.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java version "1.9.0-ea"
+</span><span class='line'>Java(TM) SE Runtime Environment (build 1.9.0-ea-b90)
+</span><span class='line'>Java HotSpot(TM) 64-Bit Server VM (build 1.9.0-ea-b90, mixed mode)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, that you have installed the right version you just need to execute the following command:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jshell</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Terminal will display something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|  Welcome to JShell -- Version 1.9.0-ea
+</span><span class='line'>|  Type /help for help
+</span><span class='line'>
+</span><span class='line'>-&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the example below, start typing <code>"Hello World"</code> and the value will be stored in <code>$1</code>. Then, assign <code>$1</code> to <code>saludo</code> which is a <code>String</code>. Finally, print <code>saludo</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-&gt; "Hello World"
+</span><span class='line'>|  Expression value is: "Hello World"
+</span><span class='line'>|    assigned to temporary variable $1 of type String
+</span><span class='line'>
+</span><span class='line'>-&gt; String saludo = $1
+</span><span class='line'>|  Added variable saludo of type String with initial value "Hello World"
+</span><span class='line'>
+</span><span class='line'>-&gt; System.out.print
+</span><span class='line'>print(     printf(    println(   
+</span><span class='line'>
+</span><span class='line'>-&gt; System.out.println(saludo)
+</span><span class='line'>Hello World</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Good, you have started playing around <code>jshell</code>. As you can see, <code>jshell</code> provides autocompletion with <code>tab</code> key.</p>
+
+<p>If you want test the last successful build from <strong>Kulla Project</strong> click <a href="https://adopt-openjdk.ci.cloudbees.com/view/OpenJDK/job/langtools-1.9-linux-x86_64-kulla-dev/lastSuccessfulBuild/artifact/">here</a>. Download the jar and execute it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar kulla--20151104010121.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check the <a href="https://java.net/downloads/adoptopenjdk/REPL_Tutorial.pdf">REPL tutorial</a> and play with java in your terminal.</p>
+
+<p>If you want to start in java this is a good place to start and if you are an experienced developer then jshell is for you too!</p>
+</div>
+    </article>
   
   
     <article>
@@ -1254,210 +1354,6 @@
 </div>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/30/news-about-java-8/">News About Java 8</a></h1>
-    
-    
-      <p class="meta">
-        <time class='entry-date' datetime='2014-10-30T22:09:19-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:09 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Java 8 was released in March and many cool features have arrived in a functional programming style.</p>
-
-<h2>Lambdas</h2>
-
-<p>Lambdas has been used in other programming languages. In <code>java</code>, it&rsquo;s the new way to call <code>anonymous classes</code>.</p>
-
-<p>If you have been Swing developer, you may have seen lot of this code. Example of <code>anonymous class</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">File</span><span class="o">[]</span> <span class="n">directories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;user.home&quot;</span><span class="o">)).</span><span class="na">listFiles</span><span class="o">(</span><span class="k">new</span> <span class="n">FileFilter</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>           <span class="nd">@Override</span>
-</span><span class='line'>           <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="n">File</span> <span class="n">pathname</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>               <span class="k">return</span> <span class="n">pathname</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">();</span>
-</span><span class='line'>           <span class="o">}</span>
-</span><span class='line'>       <span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Below, you can see three approaches to use lambdas:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello lamdba&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//pass an object</span>
-</span><span class='line'><span class="n">customer</span> <span class="o">-&gt;</span> <span class="n">customer</span><span class="o">.</span><span class="na">getLastname</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//using blocks</span>
-</span><span class='line'><span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">String</span> <span class="n">greeting</span> <span class="o">=</span> <span class="s">&quot;Hello lambda block&quot;</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">greeting</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now, let write our first example using lambdas:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">File</span><span class="o">[]</span> <span class="n">directories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;user.home&quot;</span><span class="o">))</span>
-</span><span class='line'>                <span class="o">.</span><span class="na">listFiles</span><span class="o">((</span><span class="n">File</span> <span class="n">pathname</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">pathname</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">());</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In this example, to move from <code>anonymous class</code> to <code>lambdas</code> there are two steps to do. As you can see the difference is inside of <code>listFiles</code> method. The first part of the lambda is the parameter of the method <code>accept</code> (File pathname) next the arrow (->) and finally the return statement (pathname.isDirectory()). If you want to add extra functionality inside of the lambda you can use block statements.</p>
-
-<h2>Streams API</h2>
-
-<p>The power to manage collections with readable code is here.</p>
-
-<p>I will work in this example with my favourite books. So, we will print in the console only books that contains <em>&ldquo;o&rdquo;</em></p>
-
-<p>Old fashionable way:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">Book</span><span class="o">&gt;</span> <span class="n">books</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-</span><span class='line'><span class="n">books</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">BookBuilder</span><span class="o">.</span><span class="na">defaultValues</span><span class="o">().</span><span class="na">withId</span><span class="o">(</span><span class="mi">1</span><span class="n">l</span><span class="o">).</span><span class="na">withTitle</span><span class="o">(</span><span class="s">&quot;Angel &amp; Demons&quot;</span><span class="o">).</span><span class="na">withIsbn</span><span class="o">(</span><span class="s">&quot;0-671-02735-2&quot;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">books</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">BookBuilder</span><span class="o">.</span><span class="na">defaultValues</span><span class="o">().</span><span class="na">withId</span><span class="o">(</span><span class="mi">2</span><span class="n">l</span><span class="o">).</span><span class="na">withTitle</span><span class="o">(</span><span class="s">&quot;The Da Vinci Code&quot;</span><span class="o">).</span><span class="na">withIsbn</span><span class="o">(</span><span class="s">&quot;0-385-50420-9&quot;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">books</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">BookBuilder</span><span class="o">.</span><span class="na">defaultValues</span><span class="o">().</span><span class="na">withId</span><span class="o">(</span><span class="mi">3</span><span class="n">l</span><span class="o">).</span><span class="na">withTitle</span><span class="o">(</span><span class="s">&quot;The Lost Symbol&quot;</span><span class="o">).</span><span class="na">withIsbn</span><span class="o">(</span><span class="s">&quot;978-0-385-50422-5&quot;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">books</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">BookBuilder</span><span class="o">.</span><span class="na">defaultValues</span><span class="o">().</span><span class="na">withId</span><span class="o">(</span><span class="mi">4</span><span class="n">l</span><span class="o">).</span><span class="na">withTitle</span><span class="o">(</span><span class="s">&quot;Inferno&quot;</span><span class="o">).</span><span class="na">withIsbn</span><span class="o">(</span><span class="s">&quot;978-0-385-53785-8&quot;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Book</span> <span class="n">book</span> <span class="o">:</span> <span class="n">books</span><span class="o">){</span>
-</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">book</span><span class="o">.</span><span class="na">getTitle</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&quot;o&quot;</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">book</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now we will use Stream API to rewrite the last part:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">bookNames</span> <span class="o">=</span> <span class="n">books</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">book</span> <span class="o">-&gt;</span> <span class="n">book</span><span class="o">.</span><span class="na">getTitle</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&quot;o&quot;</span><span class="o">))</span>
-</span><span class='line'><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Book:</span><span class="o">:</span><span class="n">getTitle</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bookNames</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Both are doing the same thing but stream offers another great cool features like parallelStream or group function. Additionally, it is readable code and the <code>ciclomatic complexity</code> is reduced.</p>
-
-<p>There are <code>eager</code> and <code>lazy</code> methods inside of Streams API.</p>
-
-<ul>
-<li>Eager, return some value or void. Ex: foreach, collect.</li>
-<li>Lazy, return another stream. Ex: filter, map.</li>
-</ul>
-
-
-<p><strong>Note:</strong> Streams can be read just once. If you try to work with the same stream twice you will se an exception.</p>
-
-<p>For more infomation about Streams visit the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html">official documentation</a>.</p>
-
-<h2>Default Methods</h2>
-
-<p>In java 8, there are big changes like this. Do you remember interfaces? The place where you define what to do and the class implementation define how.</p>
-
-<p>Default methods has been used in the Java 8 API in order to add new functionality without break existing code. Take a look inside <code>Collection.java</code> you will se that <code>stream()</code> method is a default method.</p>
-
-<p>If you have take a look inside of the API you can see that default method has body or define an action.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Greeting</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="k">default</span> <span class="kt">void</span> <span class="nf">welcome</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hi, I am a default method.&quot;</span><span class="o">)</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">class</span> <span class="nc">SpanishGreeting</span> <span class="kd">implements</span> <span class="n">Greeting</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">welcome</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hola, soy un método por defecto.&quot;</span><span class="o">)</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">class</span> <span class="nc">EnglishGreeting</span> <span class="kd">implements</span> <span class="n">Greeting</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If we call welcome method from SpanishGreeting &ldquo;Hola, soy un método por defecto.&rdquo; will be printed but if you call the method from EnglishGreeting &ldquo;Hi, I am a default method.&rdquo; will be printed.</p>
-
-<h2>Method References</h2>
-
-<p>Everything can be well used or not, in the case of lambdas does nothing, just call the method you can use method references as a easy-to-read approach.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nl">Customer:</span><span class="o">:</span><span class="n">getFirstname</span> <span class="c1">//instead  customer -&gt; customer.getFirstname()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1489,6 +1385,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/04/java-9-jshell/">Java 9: JShell</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/05/spring-boot-endpoints-for-data-migration/">Spring Boot Endpoints for Data Migration</a>
       </li>
     
@@ -1502,10 +1402,6 @@
     
       <li class="post">
         <a href="/blog/2015/06/01/java-ee-mvc-1-0/">Java EE: MVC 1.0</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/01/git-useful-commands/">Git: Useful Commands</a>
       </li>
     
   </ul>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jshell | Eddú Meléndez]]></title>
+  <link href="http://eddumelendez.github.io/blog/categories/jshell/atom.xml" rel="self"/>
+  <link href="http://eddumelendez.github.io/"/>
+  <updated>2015-11-04T20:40:13-05:00</updated>
+  <id>http://eddumelendez.github.io/</id>
+  <author>
+    <name><![CDATA[Eddú Meléndez]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Java 9: JShell]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/"/>
+    <updated>2015-11-04T00:59:36-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell</id>
+    <content type="html"><![CDATA[<p>JDK 9 Build b90 have been released few days ago and in this build JShell REPL has been integrated. Officially this is the <strong>Kulla Project</strong>.</p>
+
+<p><strong>REPL</strong> - Read- Eval- Print- Loop has been in other languages and now has arrived to Java. Now, we can write code in our terminal and it read, evaluate them, print the output and</p>
+
+<blockquote><p>Provide an interactive tool to evaluate declarations, statements, and expressions of the Java programming language, together with an API so that other applications can leverage this functionality.
+- JEP 222</p></blockquote>
+
+<p>If you want to know more about REPL check <a href="http://openjdk.java.net/jeps/222">JEP 222</a>.</p>
+
+<p>To install the JDK 9 download from <a href="https://jdk9.java.net/download/">here</a>. Make sure you have the right version and remember that build <strong>1.9.0-ea-b90</strong> is integrated with <code>jshell</code>.</p>
+
+<pre><code>java -version
+</code></pre>
+
+<p>Terminal will display the java version and the build number.</p>
+
+<pre><code>java version "1.9.0-ea"
+Java(TM) SE Runtime Environment (build 1.9.0-ea-b90)
+Java HotSpot(TM) 64-Bit Server VM (build 1.9.0-ea-b90, mixed mode)
+</code></pre>
+
+<p>Now, that you have installed the right version you just need to execute the following command:</p>
+
+<pre><code>jshell
+</code></pre>
+
+<p>Terminal will display something like this:</p>
+
+<pre><code>|  Welcome to JShell -- Version 1.9.0-ea
+|  Type /help for help
+
+-&gt;
+</code></pre>
+
+<p>In the example below, start typing <code>"Hello World"</code> and the value will be stored in <code>$1</code>. Then, assign <code>$1</code> to <code>saludo</code> which is a <code>String</code>. Finally, print <code>saludo</code>.</p>
+
+<pre><code>-&gt; "Hello World"
+|  Expression value is: "Hello World"
+|    assigned to temporary variable $1 of type String
+
+-&gt; String saludo = $1
+|  Added variable saludo of type String with initial value "Hello World"
+
+-&gt; System.out.print
+print(     printf(    println(   
+
+-&gt; System.out.println(saludo)
+Hello World
+</code></pre>
+
+<p>Good, you have started playing around <code>jshell</code>. As you can see, <code>jshell</code> provides autocompletion with <code>tab</code> key.</p>
+
+<p>If you want test the last successful build from <strong>Kulla Project</strong> click <a href="https://adopt-openjdk.ci.cloudbees.com/view/OpenJDK/job/langtools-1.9-linux-x86_64-kulla-dev/lastSuccessfulBuild/artifact/">here</a>. Download the jar and execute it.</p>
+
+<pre><code>java -jar kulla--20151104010121.jar
+</code></pre>
+
+<p>Check the <a href="https://java.net/downloads/adoptopenjdk/REPL_Tutorial.pdf">REPL tutorial</a> and play with java in your terminal.</p>
+
+<p>If you want to start in java this is a good place to start and if you are an experienced developer then jshell is for you too!</p>
+]]></content>
+  </entry>
+  
+</feed>

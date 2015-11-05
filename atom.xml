@@ -4,7 +4,7 @@
   <title><![CDATA[Eddú Meléndez]]></title>
   <link href="http://eddumelendez.github.io/atom.xml" rel="self"/>
   <link href="http://eddumelendez.github.io/"/>
-  <updated>2015-10-05T15:47:44-05:00</updated>
+  <updated>2015-11-04T20:40:13-05:00</updated>
   <id>http://eddumelendez.github.io/</id>
   <author>
     <name><![CDATA[Eddú Meléndez]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Java 9: JShell]]></title>
+    <link href="http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell/"/>
+    <updated>2015-11-04T00:59:36-05:00</updated>
+    <id>http://eddumelendez.github.io/blog/2015/11/04/java-9-jshell</id>
+    <content type="html"><![CDATA[<p>JDK 9 Build b90 have been released few days ago and in this build JShell REPL has been integrated. Officially this is the <strong>Kulla Project</strong>.</p>
+
+<p><strong>REPL</strong> - Read- Eval- Print- Loop has been in other languages and now has arrived to Java. Now, we can write code in our terminal and it read, evaluate them, print the output and</p>
+
+<blockquote><p>Provide an interactive tool to evaluate declarations, statements, and expressions of the Java programming language, together with an API so that other applications can leverage this functionality.
+- JEP 222</p></blockquote>
+
+<p>If you want to know more about REPL check <a href="http://openjdk.java.net/jeps/222">JEP 222</a>.</p>
+
+<p>To install the JDK 9 download from <a href="https://jdk9.java.net/download/">here</a>. Make sure you have the right version and remember that build <strong>1.9.0-ea-b90</strong> is integrated with <code>jshell</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Terminal will display the java version and the build number.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java version "1.9.0-ea"
+</span><span class='line'>Java(TM) SE Runtime Environment (build 1.9.0-ea-b90)
+</span><span class='line'>Java HotSpot(TM) 64-Bit Server VM (build 1.9.0-ea-b90, mixed mode)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, that you have installed the right version you just need to execute the following command:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jshell</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Terminal will display something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|  Welcome to JShell -- Version 1.9.0-ea
+</span><span class='line'>|  Type /help for help
+</span><span class='line'>
+</span><span class='line'>-&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the example below, start typing <code>"Hello World"</code> and the value will be stored in <code>$1</code>. Then, assign <code>$1</code> to <code>saludo</code> which is a <code>String</code>. Finally, print <code>saludo</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-&gt; "Hello World"
+</span><span class='line'>|  Expression value is: "Hello World"
+</span><span class='line'>|    assigned to temporary variable $1 of type String
+</span><span class='line'>
+</span><span class='line'>-&gt; String saludo = $1
+</span><span class='line'>|  Added variable saludo of type String with initial value "Hello World"
+</span><span class='line'>
+</span><span class='line'>-&gt; System.out.print
+</span><span class='line'>print(     printf(    println(   
+</span><span class='line'>
+</span><span class='line'>-&gt; System.out.println(saludo)
+</span><span class='line'>Hello World</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Good, you have started playing around <code>jshell</code>. As you can see, <code>jshell</code> provides autocompletion with <code>tab</code> key.</p>
+
+<p>If you want test the last successful build from <strong>Kulla Project</strong> click <a href="https://adopt-openjdk.ci.cloudbees.com/view/OpenJDK/job/langtools-1.9-linux-x86_64-kulla-dev/lastSuccessfulBuild/artifact/">here</a>. Download the jar and execute it.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar kulla--20151104010121.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check the <a href="https://java.net/downloads/adoptopenjdk/REPL_Tutorial.pdf">REPL tutorial</a> and play with java in your terminal.</p>
+
+<p>If you want to start in java this is a good place to start and if you are an experienced developer then jshell is for you too!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring Boot Endpoints for Data Migration]]></title>
@@ -2233,28 +2323,6 @@ and Zuul caught my attention.</p>
 <p><img src="https://dl.dropboxusercontent.com/u/15671111/blog/sonarqube-LCOM4.png" alt="" /></p>
 
 <p><strong>Code Review</strong> and <strong>Pair Programming</strong> are practices that we need to do in order to support Continuous Inspection Process.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cloudbees]]></title>
-    <link href="http://eddumelendez.github.io/blog/2014/04/27/cloudbees/"/>
-    <updated>2014-04-27T21:49:32-05:00</updated>
-    <id>http://eddumelendez.github.io/blog/2014/04/27/cloudbees</id>
-    <content type="html"><![CDATA[<p>Time ago, I was looking for subversion server. I could have used Google code, but I had a problem with that, it is a public repository. So, I found <strong>Cloudbees</strong> and meets my expectation.</p>
-
-<h2>What is Paas?</h2>
-
-<p>Nowadays, we should know about <em>Platform as a Service</em>. But, it doesn&rsquo;t matter if you don&rsquo;t know it. You can learn something new everyday. Briefly, PaaS is a environment on cloud based on products from the providers. So, Cloudbees is a <strong>PaaS</strong>. In this case, Cloudbees was built using Sonar, Jenkins, Subversion, Git, MySQL, Tomcat and many other tools.</p>
-
-<h2>What can you find on Cloudbees?</h2>
-
-<p>You can find several products such as I have mentioned before, besides JFrog, SendGrid, AppDynamics, New Relic, Mongo HQ.</p>
-
-<p>I suggest to use it at university projects. Sometimes we need to application server, and using Cloudbees we can have source control management, database, application server, maven repository. It is a good place to start teaching about <em>Continuous Integration</em>, <em>Continuous Delivery</em>.</p>
-
-<p><strong>Note:</strong> We have to consider that Cloudbees provide a limit space, if you want more space you have to buy.
-Cloudbees, is a good service. And I hope you can use it.</p>
 ]]></content>
   </entry>
   
